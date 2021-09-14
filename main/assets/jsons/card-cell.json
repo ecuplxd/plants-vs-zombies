@@ -1,0 +1,310 @@
+{
+  "card/Blover": [
+    { "left": 0, "top": 0, "width": 100, "height": 60 },
+    { "left": 0, "top": 60, "width": 100, "height": 60 }
+  ],
+  "card/BoomWallNut": [
+    { "left": 100, "top": 0, "width": 100, "height": 60 },
+    { "left": 100, "top": 60, "width": 100, "height": 60 }
+  ],
+  "card/Cabbagepult": [
+    { "left": 200, "top": 0, "width": 100, "height": 60 },
+    { "left": 200, "top": 60, "width": 100, "height": 60 }
+  ],
+  "card/Cactus": [
+    { "left": 300, "top": 0, "width": 100, "height": 60 },
+    { "left": 300, "top": 60, "width": 100, "height": 60 }
+  ],
+  "card/Catttail": [
+    { "left": 400, "top": 0, "width": 100, "height": 60 },
+    { "left": 400, "top": 60, "width": 100, "height": 60 }
+  ],
+  "card/CherryBomb": [
+    { "left": 500, "top": 0, "width": 100, "height": 60 },
+    { "left": 500, "top": 60, "width": 100, "height": 60 }
+  ],
+  "card/Chomper": [
+    { "left": 600, "top": 0, "width": 100, "height": 60 },
+    { "left": 600, "top": 60, "width": 100, "height": 60 }
+  ],
+  "card/CobCannon": [
+    { "left": 0, "top": 120, "width": 100, "height": 60 },
+    { "left": 0, "top": 180, "width": 100, "height": 60 }
+  ],
+  "card/CoffeeBean": [
+    { "left": 100, "top": 120, "width": 100, "height": 60 },
+    { "left": 100, "top": 180, "width": 100, "height": 60 }
+  ],
+  "card/DoomShroom": [
+    { "left": 200, "top": 120, "width": 100, "height": 60 },
+    { "left": 200, "top": 180, "width": 100, "height": 60 }
+  ],
+  "card/FlowerPot": [
+    { "left": 300, "top": 120, "width": 100, "height": 60 },
+    { "left": 300, "top": 180, "width": 100, "height": 60 }
+  ],
+  "card/FumeShroom": [
+    { "left": 400, "top": 120, "width": 100, "height": 60 },
+    { "left": 400, "top": 180, "width": 100, "height": 60 }
+  ],
+  "card/Garlic": [
+    { "left": 500, "top": 120, "width": 100, "height": 60 },
+    { "left": 500, "top": 180, "width": 100, "height": 60 }
+  ],
+  "card/GatlingPea": [
+    { "left": 600, "top": 120, "width": 100, "height": 60 },
+    { "left": 600, "top": 180, "width": 100, "height": 60 }
+  ],
+  "card/GloomShroom": [
+    { "left": 0, "top": 240, "width": 100, "height": 60 },
+    { "left": 0, "top": 300, "width": 100, "height": 60 }
+  ],
+  "card/GoldMagnet": [
+    { "left": 100, "top": 240, "width": 100, "height": 60 },
+    { "left": 100, "top": 300, "width": 100, "height": 60 }
+  ],
+  "card/GraveBuster": [
+    { "left": 200, "top": 240, "width": 100, "height": 60 },
+    { "left": 200, "top": 300, "width": 100, "height": 60 }
+  ],
+  "card/HugeWallNut": [
+    { "left": 300, "top": 240, "width": 100, "height": 59 },
+    { "left": 300, "top": 299, "width": 100, "height": 59 }
+  ],
+  "card/HypnoShroom": [
+    { "left": 400, "top": 240, "width": 100, "height": 60 },
+    { "left": 400, "top": 300, "width": 100, "height": 60 }
+  ],
+  "card/IceShroom": [
+    { "left": 500, "top": 240, "width": 100, "height": 60 },
+    { "left": 500, "top": 300, "width": 100, "height": 60 }
+  ],
+  "card/Imitators": [
+    { "left": 600, "top": 240, "width": 100, "height": 29.5 },
+    { "left": 600, "top": 269.5, "width": 100, "height": 29.5 }
+  ],
+  "card/Jalapeno": [
+    { "left": 0, "top": 360, "width": 100, "height": 60 },
+    { "left": 0, "top": 420, "width": 100, "height": 60 }
+  ],
+  "card/Kernelpult": [
+    { "left": 100, "top": 360, "width": 100, "height": 60 },
+    { "left": 100, "top": 420, "width": 100, "height": 60 }
+  ],
+  "card/LilyPad": [
+    { "left": 200, "top": 360, "width": 100, "height": 60 },
+    { "left": 200, "top": 420, "width": 100, "height": 60 }
+  ],
+  "card/MagnetShroom": [
+    { "left": 300, "top": 360, "width": 100, "height": 60 },
+    { "left": 300, "top": 420, "width": 100, "height": 60 }
+  ],
+  "card/Marigold": [
+    { "left": 400, "top": 360, "width": 100, "height": 60 },
+    { "left": 400, "top": 420, "width": 100, "height": 60 }
+  ],
+  "card/Melonpult": [
+    { "left": 500, "top": 360, "width": 100, "height": 60 },
+    { "left": 500, "top": 420, "width": 100, "height": 60 }
+  ],
+  "card/Peashooter": [
+    { "left": 600, "top": 360, "width": 100, "height": 60 },
+    { "left": 600, "top": 420, "width": 100, "height": 60 }
+  ],
+  "card/Plantern": [
+    { "left": 0, "top": 480, "width": 100, "height": 60 },
+    { "left": 0, "top": 540, "width": 100, "height": 60 }
+  ],
+  "card/PotatoMine": [
+    { "left": 100, "top": 480, "width": 100, "height": 60 },
+    { "left": 100, "top": 540, "width": 100, "height": 60 }
+  ],
+  "card/PuffShroom": [
+    { "left": 200, "top": 480, "width": 100, "height": 60 },
+    { "left": 200, "top": 540, "width": 100, "height": 60 }
+  ],
+  "card/PumpkinHead": [
+    { "left": 300, "top": 480, "width": 100, "height": 60 },
+    { "left": 300, "top": 540, "width": 100, "height": 60 }
+  ],
+  "card/Repeater": [
+    { "left": 400, "top": 480, "width": 100, "height": 60 },
+    { "left": 400, "top": 540, "width": 100, "height": 60 }
+  ],
+  "card/ScaredyShroom": [
+    { "left": 500, "top": 480, "width": 100, "height": 60 },
+    { "left": 500, "top": 540, "width": 100, "height": 60 }
+  ],
+  "card/SeaShroom": [
+    { "left": 600, "top": 480, "width": 100, "height": 60 },
+    { "left": 600, "top": 540, "width": 100, "height": 60 }
+  ],
+  "card/SnowPea": [
+    { "left": 0, "top": 600, "width": 100, "height": 60 },
+    { "left": 0, "top": 660, "width": 100, "height": 60 }
+  ],
+  "card/Spikerock": [
+    { "left": 100, "top": 600, "width": 100, "height": 60 },
+    { "left": 100, "top": 660, "width": 100, "height": 60 }
+  ],
+  "card/Spikeweed": [
+    { "left": 200, "top": 600, "width": 100, "height": 60 },
+    { "left": 200, "top": 660, "width": 100, "height": 60 }
+  ],
+  "card/SplitPea": [
+    { "left": 300, "top": 600, "width": 100, "height": 60 },
+    { "left": 300, "top": 660, "width": 100, "height": 60 }
+  ],
+  "card/Squash": [
+    { "left": 400, "top": 600, "width": 100, "height": 60 },
+    { "left": 400, "top": 660, "width": 100, "height": 60 }
+  ],
+  "card/Starfruit": [
+    { "left": 500, "top": 600, "width": 100, "height": 60 },
+    { "left": 500, "top": 660, "width": 100, "height": 60 }
+  ],
+  "card/SunFlower": [
+    { "left": 600, "top": 600, "width": 100, "height": 60 },
+    { "left": 600, "top": 660, "width": 100, "height": 60 }
+  ],
+  "card/SunShroom": [
+    { "left": 0, "top": 720, "width": 100, "height": 60 },
+    { "left": 0, "top": 780, "width": 100, "height": 60 }
+  ],
+  "card/TallNut": [
+    { "left": 100, "top": 720, "width": 100, "height": 60 },
+    { "left": 100, "top": 780, "width": 100, "height": 60 }
+  ],
+  "card/TangleKlep": [
+    { "left": 200, "top": 720, "width": 100, "height": 60 },
+    { "left": 200, "top": 780, "width": 100, "height": 60 }
+  ],
+  "card/Threepeater": [
+    { "left": 300, "top": 720, "width": 100, "height": 60 },
+    { "left": 300, "top": 780, "width": 100, "height": 60 }
+  ],
+  "card/Torchwood": [
+    { "left": 400, "top": 720, "width": 100, "height": 60 },
+    { "left": 400, "top": 780, "width": 100, "height": 60 }
+  ],
+  "card/TwinSunflower": [
+    { "left": 500, "top": 720, "width": 100, "height": 60 },
+    { "left": 500, "top": 780, "width": 100, "height": 60 }
+  ],
+  "card/UmbrellaLeaf": [
+    { "left": 600, "top": 720, "width": 100, "height": 60 },
+    { "left": 600, "top": 780, "width": 100, "height": 60 }
+  ],
+  "card/WallNut": [
+    { "left": 0, "top": 840, "width": 100, "height": 60 },
+    { "left": 0, "top": 900, "width": 100, "height": 60 }
+  ],
+  "card/WinterMelonpult": [
+    { "left": 100, "top": 840, "width": 100, "height": 60 },
+    { "left": 100, "top": 900, "width": 100, "height": 60 }
+  ],
+  "card/BackupDancer": [
+    { "left": 200, "top": 840, "width": 100, "height": 60 },
+    { "left": 200, "top": 900, "width": 100, "height": 60 }
+  ],
+  "card/Balloonzombie": [
+    { "left": 300, "top": 840, "width": 100, "height": 60 },
+    { "left": 300, "top": 900, "width": 100, "height": 60 }
+  ],
+  "card/BucketheadZombie": [
+    { "left": 400, "top": 840, "width": 100, "height": 60 },
+    { "left": 400, "top": 900, "width": 100, "height": 60 }
+  ],
+  "card/Bungeezombie": [
+    { "left": 500, "top": 840, "width": 100, "height": 60 },
+    { "left": 500, "top": 900, "width": 100, "height": 60 }
+  ],
+  "card/Catapult": [
+    { "left": 600, "top": 840, "width": 100, "height": 60 },
+    { "left": 600, "top": 900, "width": 100, "height": 60 }
+  ],
+  "card/ConeheadZombie": [
+    { "left": 0, "top": 960, "width": 100, "height": 60 },
+    { "left": 0, "top": 1020, "width": 100, "height": 60 }
+  ],
+  "card/DancingZombie": [
+    { "left": 100, "top": 960, "width": 100, "height": 60 },
+    { "left": 100, "top": 1020, "width": 100, "height": 60 }
+  ],
+  "card/Diggerzombie": [
+    { "left": 200, "top": 960, "width": 100, "height": 60 },
+    { "left": 200, "top": 1020, "width": 100, "height": 60 }
+  ],
+  "card/DolphinRiderZombie": [
+    { "left": 300, "top": 960, "width": 100, "height": 60 },
+    { "left": 300, "top": 1020, "width": 100, "height": 60 }
+  ],
+  "card/dr": [
+    { "left": 400, "top": 960, "width": 100, "height": 60 },
+    { "left": 400, "top": 1020, "width": 100, "height": 60 }
+  ],
+  "card/DuckyTubeZombie1": [
+    { "left": 500, "top": 960, "width": 100, "height": 60 },
+    { "left": 500, "top": 1020, "width": 100, "height": 60 }
+  ],
+  "card/FlagZombie": [
+    { "left": 600, "top": 960, "width": 100, "height": 60 },
+    { "left": 600, "top": 1020, "width": 100, "height": 60 }
+  ],
+  "card/FootballZombie": [
+    { "left": 0, "top": 1080, "width": 100, "height": 60 },
+    { "left": 0, "top": 1140, "width": 100, "height": 60 }
+  ],
+  "card/Gargantuar": [
+    { "left": 100, "top": 1080, "width": 100, "height": 60 },
+    { "left": 100, "top": 1140, "width": 100, "height": 60 }
+  ],
+  "card/Imp": [
+    { "left": 200, "top": 1080, "width": 100, "height": 60 },
+    { "left": 200, "top": 1140, "width": 100, "height": 60 }
+  ],
+  "card/JackboxZombie": [
+    { "left": 300, "top": 1080, "width": 100, "height": 60 },
+    { "left": 300, "top": 1140, "width": 100, "height": 60 }
+  ],
+  "card/LadderZombie": [
+    { "left": 400, "top": 1080, "width": 100, "height": 60 },
+    { "left": 400, "top": 1140, "width": 100, "height": 60 }
+  ],
+  "card/NewspaperZombie": [
+    { "left": 500, "top": 1080, "width": 100, "height": 60 },
+    { "left": 500, "top": 1140, "width": 100, "height": 60 }
+  ],
+  "card/PoleVaultingZombie": [
+    { "left": 600, "top": 1080, "width": 100, "height": 60 },
+    { "left": 600, "top": 1140, "width": 100, "height": 60 }
+  ],
+  "card/ScreenDoorZombie": [
+    { "left": 0, "top": 1200, "width": 100, "height": 60 },
+    { "left": 0, "top": 1260, "width": 100, "height": 60 }
+  ],
+  "card/SnorkelZombie": [
+    { "left": 100, "top": 1200, "width": 100, "height": 60 },
+    { "left": 100, "top": 1260, "width": 100, "height": 60 }
+  ],
+  "card/Yeti": [
+    { "left": 200, "top": 1200, "width": 100, "height": 60 },
+    { "left": 200, "top": 1260, "width": 100, "height": 60 }
+  ],
+  "card/Zombie": [
+    { "left": 300, "top": 1200, "width": 100, "height": 60 },
+    { "left": 300, "top": 1260, "width": 100, "height": 60 }
+  ],
+  "card/ZombieBobsledTeam": [
+    { "left": 400, "top": 1200, "width": 100, "height": 60 },
+    { "left": 400, "top": 1260, "width": 100, "height": 60 }
+  ],
+  "card/ZombiesJump": [
+    { "left": 500, "top": 1200, "width": 100, "height": 60 },
+    { "left": 500, "top": 1260, "width": 100, "height": 60 }
+  ],
+  "card/Zomboni": [
+    { "left": 600, "top": 1200, "width": 100, "height": 60 },
+    { "left": 600, "top": 1260, "width": 100, "height": 60 }
+  ]
+}

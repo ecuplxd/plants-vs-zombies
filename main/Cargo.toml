@@ -1,0 +1,49 @@
+[package]
+name = "plants-vs-zombies"
+version = "0.1.0"
+authors = ["ecuplxd"]
+edition = "2018"
+
+[lib]
+crate-type = ["cdylib", "rlib"]
+
+[dependencies]
+derives = { path = "../derives" }
+futures = "0.3.14"
+js-sys = "0.3.53"
+serde = { version = "1.0.130", features = ["derive"] }
+serde_derive = "1.0.130"
+wasm-bindgen = { version = "0.2.76", features = ["serde-serialize"] }
+wasm-bindgen-futures = "0.4.23"
+
+[dependencies.web-sys]
+version = "0.3.53"
+features = [
+    'CanvasRenderingContext2d',
+    'console',
+    'Document',
+    'Element',
+    'EventTarget',
+    'HtmlCanvasElement',
+    'HtmlElement',
+    'HtmlImageElement',
+    'ImageData',
+    'MouseEvent',
+    'Node',
+    'Request',
+    'RequestInit',
+    'RequestMode',
+    'Response',
+    'Performance',
+    'PerformanceTiming',
+    'Window',
+]
+
+
+[target."cfg(debug_assertions)".dependencies]
+console_error_panic_hook = "0.1.6"
+
+[profile.release]
+opt-level = 'z'
+lto = true
+panic = 'abort'

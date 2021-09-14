@@ -1,0 +1,12 @@
+/target
+Cargo.lock
+node_modules
+package-lock.json
+.idea
+pkg
+data.txt
+/dist
+/main/assets/images/Card
+/main/assets/images/Interface
+/main/assets/plants
+/main/assets/zombies
