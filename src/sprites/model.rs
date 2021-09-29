@@ -32,8 +32,6 @@ pub struct SpriteData {
     pub behaviors: Vec<BehaviorData>,
     #[serde(default)]
     pub offset: Pos,
-    #[serde(default = "default_visible")]
-    visible: bool,
     #[serde(default = "default_scale")]
     pub scale: f64,
     #[serde(default = "default_order")]
@@ -45,10 +43,6 @@ pub struct SpriteData {
 }
 
 fn default_normal_shape() -> bool {
-    true
-}
-
-fn default_visible() -> bool {
     true
 }
 
@@ -67,7 +61,6 @@ impl SpriteData {
             pos,
             behaviors,
             offset: Default::default(),
-            visible: true,
             scale: 1.0,
             order: 2,
             collision_margin: Default::default(),
@@ -110,12 +103,12 @@ impl Pos {
         Pos::new(self.left, self.top + scale)
     }
 
-    pub fn to_rect_points(&self, size: &Size, scale: f64) -> Vec<Pos> {
+    pub fn get_rect_points(&self, size: &Size, scale: f64) -> Vec<Pos> {
         let scale_left = size.width * scale;
         let scale_top = size.height * scale;
 
         vec![
-            self.clone(),
+            *self,
             self.scale_left(scale_left),
             self.scale(scale_left, scale_top),
             self.scale_top(scale_top),

@@ -44,7 +44,7 @@ impl BehaviorFactory {
         behavior
     }
 
-    fn get_switch_cells(resource: &Resource, switch_cells: &Vec<String>) -> Vec<Vec<SpriteCell>> {
+    fn get_switch_cells(resource: &Resource, switch_cells: &[String]) -> Vec<Vec<SpriteCell>> {
         let cells: Vec<Vec<SpriteCell>> = switch_cells
             .iter()
             .filter_map(|switch_cell| {

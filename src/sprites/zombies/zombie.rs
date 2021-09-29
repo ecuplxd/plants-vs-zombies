@@ -40,7 +40,7 @@ impl ZombieSprite {
 
     pub fn get_random_pos(index: usize, size: &Size) -> (Loc, Pos) {
         let loc = Loc::new(index % 5, 9);
-        let mut pos = Loc::put_on_cell_bottom(&loc, &size);
+        let mut pos = Loc::put_on_cell_bottom(&loc, size);
         let random_offset = get_random_int_inclusive(0.0, 40.0);
 
         pos.left -= random_offset;
@@ -120,7 +120,7 @@ impl ZombieSprite {
         self.sprite.size = size;
         self.sprite.update_loc(loc);
 
-        if self.name() == SpriteType::Zombie(Zombie::ScreenDoorZombie) && self.attacking {
+        if self.name() == SpriteType::Zombie(Zombie::ScreenDoor) && self.attacking {
             new_pos.top += 18.0;
         }
 
@@ -139,13 +139,11 @@ impl ZombieSprite {
     }
 
     fn get_callback(&mut self, callback: PlantCallback) -> ErasedFnPointer<SpritePointer> {
-        let pointer = match callback {
+        match callback {
             PlantCallback::Switch => {
                 ErasedFnPointer::from_associated(self, ZombieSprite::toggle_bullet)
             }
-        };
-
-        pointer
+        }
     }
 
     pub fn register_callback(&mut self, behavior: &mut Box<dyn Behavior>, callback: PlantCallback) {

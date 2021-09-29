@@ -47,9 +47,9 @@ impl Elapsed for AnimationTimer {
             return elapsed_time;
         }
 
-        return match &self.easing {
+        match &self.easing {
             Some(easing) => elapsed_time * (easing.calc(percent_complete) / percent_complete),
             None => elapsed_time,
-        };
+        }
     }
 }

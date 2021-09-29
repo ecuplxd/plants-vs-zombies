@@ -37,11 +37,9 @@ impl Behavior for IntervalBehavior {
         _mouse_pos: &Pos,
         _context: &CanvasRenderingContext2d,
     ) {
-        if let Some(_) = self.sprite {
-            if self.timer.is_expired(now) {
-                self.start(now);
-                self.execute_callback();
-            }
+        if self.sprite.is_some() && self.timer.is_expired(now) {
+            self.start(now);
+            self.execute_callback();
         }
     }
 }

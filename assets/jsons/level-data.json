@@ -20,13 +20,13 @@
       "TallNut"
     ],
     "zombie_cards": [
-      "BucketheadZombie",
-      "ConeheadZombie",
-      "ScreenDoorZombie",
-      "ConeheadZombie",
-      "ConeheadZombie",
+      "Buckethead",
+      "Conehead",
+      "ScreenDoor",
+      "Conehead",
+      "Conehead",
       "Zombie1",
-      "FlagZombie"
+      "Flag"
     ]
   }
 ]

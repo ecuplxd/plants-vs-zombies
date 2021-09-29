@@ -12,6 +12,6 @@ impl EaseOut {
 
 impl Easing for EaseOut {
     fn calc(&self, percent_complete: f64) -> f64 {
-        return 1.0 - f64::powf(1.0 - percent_complete, self.strength * 2.0);
+        1.0 - f64::powf(1.0 - percent_complete, self.strength * 2.0)
     }
 }

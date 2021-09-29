@@ -11,7 +11,7 @@ pub trait Draw {
 
     fn revert(&mut self) {}
 
-    fn switch(&mut self, _cells: &Vec<SpriteCell>) {}
+    fn switch(&mut self, _cells: &[SpriteCell]) {}
 
     fn advance(&mut self) {}
 
@@ -57,8 +57,8 @@ pub trait Stroke {
         context.restore();
     }
 
-    fn outline(&self, context: &CanvasRenderingContext2d, points: &Vec<Pos>) {
-        if points.len() == 0 {
+    fn outline(&self, context: &CanvasRenderingContext2d, points: &[Pos]) {
+        if points.is_empty() {
             return;
         }
 

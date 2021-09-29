@@ -101,7 +101,7 @@ impl Resource {
     }
 
     pub fn get_cells_may_not_exit(&self, name: &str) -> Option<&Vec<SpriteCell>> {
-        return self.cells.get(name);
+        self.cells.get(name)
     }
 
     pub fn get_name(sheet_kind: SheetKind, name: &str) -> (String, String) {
@@ -270,30 +270,29 @@ pub enum Plant {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
 pub enum Zombie {
     BackupDancer,
-    Balloonzombie,
-    BucketheadZombie,
-    Bungeezombie,
+    Balloon,
+    Buckethead,
+    Bungee,
     Catapult,
-    ConeheadZombie,
-    DancingZombie,
-    Diggerzombie,
-    DolphinRiderZombie,
-    Dr,
-    DuckyTubeZombie1,
-    FlagZombie,
-    FootballZombie,
+    Conehead,
+    Dancing,
+    Digger,
+    DolphinRider,
+    DuckyTube,
+    Flag,
+    Football,
     Gargantuar,
     Imp,
-    JackboxZombie,
-    LadderZombie,
-    NewspaperZombie,
-    PoleVaultingZombie,
-    ScreenDoorZombie,
-    SnorkelZombie,
+    Jackbox,
+    Ladder,
+    Newspaper,
+    PoleVaulting,
+    ScreenDoor,
+    Snorkel,
     Yeti,
     Zombie,
-    ZombieBobsledTeam,
-    ZombiesJump,
+    BobsledTeam,
+    Jump,
     Zomboni,
     Zombie1,
 }
@@ -309,35 +308,26 @@ pub enum SpriteType {
 
 impl SpriteType {
     pub fn is_zombie(name: SpriteType) -> bool {
-        match name {
-            SpriteType::Zombie(_) => true,
-            _ => false,
-        }
+        matches!(name, SpriteType::Zombie(_))
     }
 
     pub fn is_plant(name: SpriteType) -> bool {
-        match name {
-            SpriteType::Plant(_) => true,
-            _ => false,
-        }
+        matches!(name, SpriteType::Plant(_))
     }
 
     pub fn is_bullet(name: SpriteType) -> bool {
-        match name {
-            SpriteType::Plant(Plant::PB00) | SpriteType::Plant(Plant::PB100) => true,
-            _ => false,
-        }
+        matches!(
+            name,
+            SpriteType::Plant(Plant::PB00) | SpriteType::Plant(Plant::PB100)
+        )
     }
 
     pub fn is_lawn_cleaner(name: SpriteType) -> bool {
-        match name {
-            SpriteType::Plant(Plant::LawnCleaner) => true,
-            _ => false,
-        }
+        matches!(name, SpriteType::Plant(Plant::LawnCleaner))
     }
 
     pub fn from_str(name: &str) -> SpriteType {
-        return match name {
+        match name {
             // Text
             "Reset" => SpriteType::Text(Text::Reset),
             "Start" => SpriteType::Text(Text::Start),
@@ -429,41 +419,40 @@ impl SpriteType {
             "LawnCleaner" => SpriteType::Plant(Plant::LawnCleaner),
             // Zombie
             "BackupDancer" => SpriteType::Zombie(Zombie::BackupDancer),
-            "Balloonzombie" => SpriteType::Zombie(Zombie::Balloonzombie),
-            "BucketheadZombie" => SpriteType::Zombie(Zombie::BucketheadZombie),
-            "Bungeezombie" => SpriteType::Zombie(Zombie::Bungeezombie),
+            "Balloon" => SpriteType::Zombie(Zombie::Balloon),
+            "Buckethead" => SpriteType::Zombie(Zombie::Buckethead),
+            "Bungee" => SpriteType::Zombie(Zombie::Bungee),
             "Catapult" => SpriteType::Zombie(Zombie::Catapult),
-            "ConeheadZombie" => SpriteType::Zombie(Zombie::ConeheadZombie),
-            "DancingZombie" => SpriteType::Zombie(Zombie::DancingZombie),
-            "Diggerzombie" => SpriteType::Zombie(Zombie::Diggerzombie),
-            "DolphinRiderZombie" => SpriteType::Zombie(Zombie::DolphinRiderZombie),
-            "Dr" => SpriteType::Zombie(Zombie::Dr),
-            "DuckyTubeZombie1" => SpriteType::Zombie(Zombie::DuckyTubeZombie1),
-            "FlagZombie" => SpriteType::Zombie(Zombie::FlagZombie),
-            "FootballZombie" => SpriteType::Zombie(Zombie::FootballZombie),
+            "Conehead" => SpriteType::Zombie(Zombie::Conehead),
+            "Dancing" => SpriteType::Zombie(Zombie::Dancing),
+            "Digger" => SpriteType::Zombie(Zombie::Digger),
+            "DolphinRider" => SpriteType::Zombie(Zombie::DolphinRider),
+            "DuckyTube" => SpriteType::Zombie(Zombie::DuckyTube),
+            "Flag" => SpriteType::Zombie(Zombie::Flag),
+            "Football" => SpriteType::Zombie(Zombie::Football),
             "Gargantuar" => SpriteType::Zombie(Zombie::Gargantuar),
             "Imp" => SpriteType::Zombie(Zombie::Imp),
-            "JackboxZombie" => SpriteType::Zombie(Zombie::JackboxZombie),
-            "LadderZombie" => SpriteType::Zombie(Zombie::LadderZombie),
-            "NewspaperZombie" => SpriteType::Zombie(Zombie::NewspaperZombie),
-            "PoleVaultingZombie" => SpriteType::Zombie(Zombie::PoleVaultingZombie),
-            "ScreenDoorZombie" => SpriteType::Zombie(Zombie::ScreenDoorZombie),
-            "SnorkelZombie" => SpriteType::Zombie(Zombie::SnorkelZombie),
+            "Jackbox" => SpriteType::Zombie(Zombie::Jackbox),
+            "Ladder" => SpriteType::Zombie(Zombie::Ladder),
+            "Newspaper" => SpriteType::Zombie(Zombie::Newspaper),
+            "PoleVaulting" => SpriteType::Zombie(Zombie::PoleVaulting),
+            "ScreenDoor" => SpriteType::Zombie(Zombie::ScreenDoor),
+            "Snorkel" => SpriteType::Zombie(Zombie::Snorkel),
             "Yeti" => SpriteType::Zombie(Zombie::Yeti),
             "Zombie" => SpriteType::Zombie(Zombie::Zombie),
-            "ZombieBobsledTeam" => SpriteType::Zombie(Zombie::ZombieBobsledTeam),
-            "ZombiesJump" => SpriteType::Zombie(Zombie::ZombiesJump),
+            "BobsledTeam" => SpriteType::Zombie(Zombie::BobsledTeam),
+            "Jump" => SpriteType::Zombie(Zombie::Jump),
             "Zomboni" => SpriteType::Zombie(Zombie::Zomboni),
             "Zombie1" => SpriteType::Zombie(Zombie::Zombie1),
             _ => SpriteType::Unknown,
-        };
+        }
     }
 
     #[inline]
     pub fn short_name(&self) -> String {
         let name = self.to_string();
-        let begin = name.find("(").unwrap() + 1;
-        let end = name.find(")").unwrap();
+        let begin = name.find('(').unwrap() + 1;
+        let end = name.find(')').unwrap();
 
         String::from(&name[begin..end])
     }

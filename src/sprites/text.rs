@@ -36,9 +36,9 @@ impl Draw for TextArtist {
     fn draw_text(&self, context: &CanvasRenderingContext2d, text: &str, size: f64, pos: &Pos) {
         context.save();
 
-        TextArtist::set_text_style(&context, size);
+        TextArtist::set_text_style(context, size);
 
-        context.fill_text(&text, pos.left, pos.top).unwrap();
+        context.fill_text(text, pos.left, pos.top).unwrap();
 
         context.restore();
     }

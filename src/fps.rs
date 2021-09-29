@@ -20,11 +20,11 @@ impl Fps {
     }
 
     pub fn format(value: f64) -> u16 {
-        return value as u16;
+        value as u16
     }
 
     pub fn cal_pixel_frame(rate: f64, now: f64, last_animation_frame_time: f64) -> f64 {
-        return rate * ((now - last_animation_frame_time) / 1000.0);
+        rate * ((now - last_animation_frame_time) / 1000.0)
     }
 
     pub fn cal_velocit_offset(velocit: &Velocit, now: f64, last_animation_frame_time: f64) -> Pos {
@@ -47,7 +47,7 @@ impl Fps {
     }
 
     pub fn _one_frame_passed(&self, last_time: f64, animation_rate: f64) -> bool {
-        return self.current_time - last_time > animation_rate;
+        self.current_time - last_time > animation_rate
     }
 
     pub fn _increase_update(&mut self, delta: f64) {

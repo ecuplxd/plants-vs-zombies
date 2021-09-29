@@ -31,7 +31,7 @@ pub fn get_random_int_inclusive(min: f64, max: f64) -> f64 {
         let min = Math::ceil(min);
         let max = Math::floor(max);
 
-        return Math::floor(Math::random() * (max - min + 1.0)) + min;
+        Math::floor(Math::random() * (max - min + 1.0)) + min
     }
 }
 

@@ -18,11 +18,11 @@ impl MarchingSquares {
         }
     }
 
-    pub fn get(&self, data: &Vec<u8>, width: i32, height: i32) -> Vec<Pos> {
-        return self.get_blob_outline_points(data, width, height);
+    pub fn get(&self, data: &[u8], width: i32, height: i32) -> Vec<Pos> {
+        self.get_blob_outline_points(data, width, height)
     }
 
-    fn get_blob_outline_points(&self, data4: &Vec<u8>, width: i32, height: i32) -> Vec<Pos> {
+    fn get_blob_outline_points(&self, data4: &[u8], width: i32, height: i32) -> Vec<Pos> {
         let size = width * height;
         let mut data: Vec<u8> = vec![0; size as usize];
 
@@ -32,16 +32,17 @@ impl MarchingSquares {
 
         let starting_point = self.get_first_non_transparent_pixel_top_down(&data, width, height);
 
-        if let Some(starting_point) = starting_point {
-            return self.walk_perimeter(&data, width, height, starting_point.0, starting_point.1);
-        } else {
-            return vec![];
+        match starting_point {
+            Some(starting_point) => {
+                self.walk_perimeter(&data, width, height, starting_point.0, starting_point.1)
+            }
+            None => vec![],
         }
     }
 
     fn get_first_non_transparent_pixel_top_down(
         &self,
-        data: &Vec<u8>,
+        data: &[u8],
         width: i32,
         height: i32,
     ) -> Option<(i32, i32)> {
@@ -57,12 +58,12 @@ impl MarchingSquares {
             }
         }
 
-        return None;
+        None
     }
 
     fn walk_perimeter(
         &self,
-        data: &Vec<u8>,
+        data: &[u8],
         width: i32,
         height: i32,
         start_w: i32,
@@ -104,17 +105,17 @@ impl MarchingSquares {
 
         point_list.push(Pos::new(self.offset_x + w as f64, self.offset_x + h as f64));
 
-        return point_list;
+        point_list
     }
 
-    fn get_pixel(&self, data: &Vec<u8>, idx: i32) -> u8 {
+    fn get_pixel(&self, data: &[u8], idx: i32) -> u8 {
         match data.get(idx as usize) {
             Some(value) => *value,
             None => 0,
         }
     }
 
-    fn step(&self, idx: i32, data: &Vec<u8>, width: i32) -> i32 {
+    fn step(&self, idx: i32, data: &[u8], width: i32) -> i32 {
         let up_left = 0 < self.get_pixel(data, idx + 1);
         let up_right = 0 < self.get_pixel(data, idx + 2);
         let down_left = 0 < self.get_pixel(data, idx + width + 1);
@@ -165,6 +166,6 @@ impl MarchingSquares {
 
         state_inner.set(new_state);
 
-        return new_state;
+        new_state
     }
 }

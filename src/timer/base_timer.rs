@@ -83,9 +83,9 @@ impl Time for Timer {
 
 impl Elapsed for Timer {
     fn get_elapsed_time(&self, now: f64) -> f64 {
-        return match self.running {
+        match self.running {
             true => now - self.start_time - self.total_paused_time,
             false => self.elapsed,
-        };
+        }
     }
 }

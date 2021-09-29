@@ -21,7 +21,7 @@ impl Artist {
     pub fn new(image: &Rc<HtmlImageElement>, cells: Vec<SpriteCell>, scale: f64) -> Artist {
         Artist {
             scale,
-            image: Rc::downgrade(&image),
+            image: Rc::downgrade(image),
             cell_index: 0,
             cells: cells.to_vec(),
             original_index: 0,
@@ -30,7 +30,7 @@ impl Artist {
     }
 
     pub fn get_normal_outline_points(size: &Size, offset: &Pos, scale: f64) -> Vec<Pos> {
-        offset.to_rect_points(size, scale)
+        offset.get_rect_points(size, scale)
     }
 
     pub fn get_irregular_outline_points(
@@ -46,16 +46,15 @@ impl Artist {
         let offscreen_context = Game::get_canvas_context(&offscreen_canvas);
         let pos = Pos::new(0.0, 0.0);
 
-        Artist::execute_draw_image(&offscreen_context, image, &pos, &cell, scale);
+        Artist::execute_draw_image(&offscreen_context, image, &pos, cell, scale);
 
         let image_data = offscreen_context
             .get_image_data(0.0, 0.0, width, height)
             .unwrap()
             .data();
         let marching_squares = MarchingSquares::new(offset.left, offset.top);
-        let outline_points = marching_squares.get(&image_data, width_i32, height_i32);
 
-        return outline_points;
+        marching_squares.get(&image_data, width_i32, height_i32)
     }
 
     pub fn execute_draw_image(
@@ -85,7 +84,7 @@ impl Artist {
     }
 
     fn in_cell(&self, index: usize) -> bool {
-        return self.cell_index == index;
+        self.cell_index == index
     }
 
     pub fn get_resource(&self) -> (Option<Rc<HtmlImageElement>>, Option<&SpriteCell>) {
@@ -105,15 +104,12 @@ impl Draw for Artist {
     fn draw_image(&self, context: &CanvasRenderingContext2d, pos: &Pos) {
         let (image, cell) = self.get_resource();
 
-        match (cell, image) {
-            (Some(cell), Some(image)) => {
-                Artist::execute_draw_image(context, image.as_ref(), pos, cell, self.scale)
-            }
-            _ => (),
+        if let (Some(cell), Some(image)) = (cell, image) {
+            Artist::execute_draw_image(context, image.as_ref(), pos, cell, self.scale);
         }
     }
 
-    fn switch(&mut self, cells: &Vec<SpriteCell>) {
+    fn switch(&mut self, cells: &[SpriteCell]) {
         self.swap_cell();
         self.cells = cells.to_vec();
         self.goto(0);

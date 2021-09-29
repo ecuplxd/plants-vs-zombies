@@ -28,14 +28,14 @@ impl Loc {
         pos.left += (pos2.left - pos.left - size.width) / 2.0;
         pos.top = pos2.top - 5.0 - size.height;
 
-        return pos;
+        pos
     }
 
     pub fn put_on(loc: &Loc) -> Pos {
         let x = COL_X_COORD[loc.col];
         let y = ROW_Y_COORD[loc.row];
 
-        return Pos::new(x, y);
+        Pos::new(x, y)
     }
 
     pub fn _put_any(left: f64, top: f64) -> Pos {
@@ -62,7 +62,7 @@ impl Loc {
             ));
         }
 
-        return pos;
+        pos
     }
 
     pub fn put_increase_y(x: f64, begin: f64, step: f64, count: usize) -> Vec<Pos> {
@@ -72,7 +72,7 @@ impl Loc {
             pos.push(Pos::new(x, begin + i as f64 * step));
         }
 
-        return pos;
+        pos
     }
 
     pub fn get_col_by_x(x: f64) -> usize {
@@ -97,7 +97,7 @@ impl Loc {
         let row = Loc::get_row_by_y(pos.top);
         let col = Loc::get_col_by_x(pos.left);
 
-        return Loc::new(row, col);
+        Loc::new(row, col)
     }
 
     #[inline]

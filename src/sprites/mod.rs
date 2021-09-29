@@ -10,7 +10,7 @@ mod zombies;
 pub use base::Sprite;
 pub use guideline::Guideline;
 pub use model::{
-    PlantCallback, CollisionMargin, Pos, Size, SpriteCell, SpriteData, SpritePointer, Velocit,
+    CollisionMargin, PlantCallback, Pos, Size, SpriteCell, SpriteData, SpritePointer, Velocit,
 };
 pub use plants::PlantSprite;
 pub use text::TextSprite;

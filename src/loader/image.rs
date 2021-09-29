@@ -80,7 +80,5 @@ impl Future for ImageFuture {
 }
 
 pub async fn _load_image(path: &str) -> HtmlImageElement {
-    let image = ImageFuture::new(path).await;
-
-    return image.unwrap();
+    ImageFuture::new(path).await.unwrap()
 }

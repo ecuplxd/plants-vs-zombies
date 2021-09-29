@@ -30,7 +30,7 @@ impl TimeSystem {
         self.game_time = self.last_time_transducer_was_set + transducer;
         self.reset();
 
-        return self.game_time;
+        self.game_time
     }
 
     pub fn start(&mut self) {

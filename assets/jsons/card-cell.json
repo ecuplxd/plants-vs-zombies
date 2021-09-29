@@ -207,15 +207,15 @@
     { "left": 200, "top": 840, "width": 100, "height": 60 },
     { "left": 200, "top": 900, "width": 100, "height": 60 }
   ],
-  "card/Balloonzombie": [
+  "card/Balloon": [
     { "left": 300, "top": 840, "width": 100, "height": 60 },
     { "left": 300, "top": 900, "width": 100, "height": 60 }
   ],
-  "card/BucketheadZombie": [
+  "card/Buckethead": [
     { "left": 400, "top": 840, "width": 100, "height": 60 },
     { "left": 400, "top": 900, "width": 100, "height": 60 }
   ],
-  "card/Bungeezombie": [
+  "card/Bungee": [
     { "left": 500, "top": 840, "width": 100, "height": 60 },
     { "left": 500, "top": 900, "width": 100, "height": 60 }
   ],
@@ -223,19 +223,19 @@
     { "left": 600, "top": 840, "width": 100, "height": 60 },
     { "left": 600, "top": 900, "width": 100, "height": 60 }
   ],
-  "card/ConeheadZombie": [
+  "card/Conehead": [
     { "left": 0, "top": 960, "width": 100, "height": 60 },
     { "left": 0, "top": 1020, "width": 100, "height": 60 }
   ],
-  "card/DancingZombie": [
+  "card/Dancing": [
     { "left": 100, "top": 960, "width": 100, "height": 60 },
     { "left": 100, "top": 1020, "width": 100, "height": 60 }
   ],
-  "card/Diggerzombie": [
+  "card/Digger": [
     { "left": 200, "top": 960, "width": 100, "height": 60 },
     { "left": 200, "top": 1020, "width": 100, "height": 60 }
   ],
-  "card/DolphinRiderZombie": [
+  "card/DolphinRider": [
     { "left": 300, "top": 960, "width": 100, "height": 60 },
     { "left": 300, "top": 1020, "width": 100, "height": 60 }
   ],
@@ -243,15 +243,15 @@
     { "left": 400, "top": 960, "width": 100, "height": 60 },
     { "left": 400, "top": 1020, "width": 100, "height": 60 }
   ],
-  "card/DuckyTubeZombie1": [
+  "card/DuckyTube": [
     { "left": 500, "top": 960, "width": 100, "height": 60 },
     { "left": 500, "top": 1020, "width": 100, "height": 60 }
   ],
-  "card/FlagZombie": [
+  "card/Flag": [
     { "left": 600, "top": 960, "width": 100, "height": 60 },
     { "left": 600, "top": 1020, "width": 100, "height": 60 }
   ],
-  "card/FootballZombie": [
+  "card/Football": [
     { "left": 0, "top": 1080, "width": 100, "height": 60 },
     { "left": 0, "top": 1140, "width": 100, "height": 60 }
   ],
@@ -263,27 +263,27 @@
     { "left": 200, "top": 1080, "width": 100, "height": 60 },
     { "left": 200, "top": 1140, "width": 100, "height": 60 }
   ],
-  "card/JackboxZombie": [
+  "card/Jackbox": [
     { "left": 300, "top": 1080, "width": 100, "height": 60 },
     { "left": 300, "top": 1140, "width": 100, "height": 60 }
   ],
-  "card/LadderZombie": [
+  "card/Ladder": [
     { "left": 400, "top": 1080, "width": 100, "height": 60 },
     { "left": 400, "top": 1140, "width": 100, "height": 60 }
   ],
-  "card/NewspaperZombie": [
+  "card/Newspaper": [
     { "left": 500, "top": 1080, "width": 100, "height": 60 },
     { "left": 500, "top": 1140, "width": 100, "height": 60 }
   ],
-  "card/PoleVaultingZombie": [
+  "card/PoleVaulting": [
     { "left": 600, "top": 1080, "width": 100, "height": 60 },
     { "left": 600, "top": 1140, "width": 100, "height": 60 }
   ],
-  "card/ScreenDoorZombie": [
+  "card/ScreenDoor": [
     { "left": 0, "top": 1200, "width": 100, "height": 60 },
     { "left": 0, "top": 1260, "width": 100, "height": 60 }
   ],
-  "card/SnorkelZombie": [
+  "card/Snorkel": [
     { "left": 100, "top": 1200, "width": 100, "height": 60 },
     { "left": 100, "top": 1260, "width": 100, "height": 60 }
   ],
@@ -295,11 +295,11 @@
     { "left": 300, "top": 1200, "width": 100, "height": 60 },
     { "left": 300, "top": 1260, "width": 100, "height": 60 }
   ],
-  "card/ZombieBobsledTeam": [
+  "card/BobsledTeam": [
     { "left": 400, "top": 1200, "width": 100, "height": 60 },
     { "left": 400, "top": 1260, "width": 100, "height": 60 }
   ],
-  "card/ZombiesJump": [
+  "card/Jump": [
     { "left": 500, "top": 1200, "width": 100, "height": 60 },
     { "left": 500, "top": 1260, "width": 100, "height": 60 }
   ],

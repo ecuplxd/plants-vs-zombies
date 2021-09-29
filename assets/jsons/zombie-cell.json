@@ -217,7 +217,7 @@
     { "left": 1777, "top": 324, "width": 106, "height": 76 },
     { "left": 2566, "top": 2797, "width": 106, "height": 76 }
   ],
-  "zombie/BucketheadZombie": [
+  "zombie/Buckethead": [
     { "left": 4642, "top": 1552, "width": 81, "height": 134 },
     { "left": 4642, "top": 1418, "width": 81, "height": 134 },
     { "left": 4642, "top": 748, "width": 81, "height": 134 },
@@ -225,7 +225,7 @@
     { "left": 4642, "top": 614, "width": 81, "height": 134 },
     { "left": 4723, "top": 2514, "width": 81, "height": 134 }
   ],
-  "zombie/BucketheadZombieAttack": [
+  "zombie/BucketheadAttack": [
     { "left": 4380, "top": 4130, "width": 88, "height": 136 },
     { "left": 4380, "top": 3994, "width": 88, "height": 136 },
     { "left": 4380, "top": 877, "width": 88, "height": 136 },
@@ -238,7 +238,7 @@
     { "left": 4371, "top": 4360, "width": 88, "height": 136 },
     { "left": 4371, "top": 0, "width": 88, "height": 136 }
   ],
-  "zombie/BucketheadZombieWalk": [
+  "zombie/BucketheadWalk": [
     { "left": 3382, "top": 3961, "width": 94, "height": 142 },
     { "left": 3382, "top": 1022, "width": 94, "height": 142 },
     { "left": 3382, "top": 1164, "width": 94, "height": 142 },
@@ -255,7 +255,7 @@
     { "left": 3463, "top": 0, "width": 94, "height": 142 },
     { "left": 3463, "top": 142, "width": 94, "height": 142 }
   ],
-  "zombie/ConeheadZombie": [
+  "zombie/Conehead": [
     { "left": 5042, "top": 1979, "width": 76, "height": 143 },
     { "left": 5042, "top": 1979, "width": 76, "height": 143 },
     { "left": 5113, "top": 3836, "width": 76, "height": 143 },
@@ -265,7 +265,7 @@
     { "left": 5112, "top": 5080, "width": 76, "height": 143 },
     { "left": 5112, "top": 4937, "width": 76, "height": 143 }
   ],
-  "zombie/ConeheadZombieAttack": [
+  "zombie/ConeheadAttack": [
     { "left": 4555, "top": 1913, "width": 87, "height": 144 },
     { "left": 4555, "top": 2057, "width": 87, "height": 144 },
     { "left": 4555, "top": 1020, "width": 87, "height": 144 },
@@ -278,7 +278,7 @@
     { "left": 4469, "top": 3320, "width": 87, "height": 144 },
     { "left": 4469, "top": 3176, "width": 87, "height": 144 }
   ],
-  "zombie/ConeheadZombieWalk": [
+  "zombie/ConeheadWalk": [
     { "left": 4469, "top": 3032, "width": 87, "height": 144 },
     { "left": 4555, "top": 3896, "width": 87, "height": 144 },
     { "left": 4546, "top": 4959, "width": 87, "height": 144 },
@@ -301,7 +301,7 @@
     { "left": 4546, "top": 4815, "width": 87, "height": 144 },
     { "left": 4555, "top": 4040, "width": 87, "height": 144 }
   ],
-  "zombie/DancingZombie": [
+  "zombie/Dancing": [
     { "left": 5189, "top": 3754, "width": 75, "height": 141 },
     { "left": 5189, "top": 3895, "width": 75, "height": 141 },
     { "left": 5189, "top": 4036, "width": 75, "height": 141 },
@@ -330,10 +330,8 @@
     { "left": 5194, "top": 2125, "width": 75, "height": 141 },
     { "left": 5194, "top": 2266, "width": 75, "height": 141 }
   ],
-  "zombie/DancingZombie0": [
-    { "left": 3755, "top": 643, "width": 91, "height": 127 }
-  ],
-  "zombie/DancingZombieAttack": [
+  "zombie/Dancing0": [{ "left": 3755, "top": 643, "width": 91, "height": 127 }],
+  "zombie/DancingAttack": [
     { "left": 3463, "top": 426, "width": 94, "height": 141 },
     { "left": 3463, "top": 567, "width": 94, "height": 141 },
     { "left": 3463, "top": 4795, "width": 94, "height": 141 },
@@ -346,7 +344,7 @@
     { "left": 3473, "top": 4453, "width": 94, "height": 141 },
     { "left": 3473, "top": 4594, "width": 94, "height": 141 }
   ],
-  "zombie/DancingZombieBoomdie": [
+  "zombie/DancingBoomdie": [
     { "left": 4962, "top": 970, "width": 79, "height": 113 },
     { "left": 4962, "top": 857, "width": 79, "height": 113 },
     { "left": 4962, "top": 744, "width": 79, "height": 113 },
@@ -368,7 +366,7 @@
     { "left": 4963, "top": 2316, "width": 79, "height": 113 },
     { "left": 4963, "top": 0, "width": 79, "height": 113 }
   ],
-  "zombie/DancingZombieDancing": [
+  "zombie/DancingDancing": [
     { "left": 3663, "top": 2328, "width": 92, "height": 143 },
     { "left": 3742, "top": 4933, "width": 92, "height": 143 },
     { "left": 3663, "top": 1374, "width": 92, "height": 143 },
@@ -392,7 +390,7 @@
     { "left": 3742, "top": 5076, "width": 92, "height": 143 },
     { "left": 3742, "top": 5219, "width": 92, "height": 143 }
   ],
-  "zombie/DancingZombieDie": [
+  "zombie/DancingDie": [
     { "left": 1619, "top": 767, "width": 154, "height": 121 },
     { "left": 1619, "top": 888, "width": 154, "height": 121 },
     { "left": 1619, "top": 646, "width": 154, "height": 121 },
@@ -406,7 +404,7 @@
     { "left": 1623, "top": 0, "width": 154, "height": 121 },
     { "left": 1623, "top": 121, "width": 154, "height": 121 }
   ],
-  "zombie/DancingZombieHead": [
+  "zombie/DancingHead": [
     { "left": 5269, "top": 1872, "width": 69, "height": 180 },
     { "left": 5269, "top": 1692, "width": 69, "height": 180 },
     { "left": 5269, "top": 2689, "width": 69, "height": 180 },
@@ -417,7 +415,7 @@
     { "left": 5264, "top": 4238, "width": 69, "height": 180 },
     { "left": 5264, "top": 4778, "width": 69, "height": 180 }
   ],
-  "zombie/DancingZombieLosthead": [
+  "zombie/DancingLosthead": [
     { "left": 4883, "top": 941, "width": 79, "height": 141 },
     { "left": 4883, "top": 520, "width": 79, "height": 141 },
     { "left": 4956, "top": 4175, "width": 79, "height": 141 },
@@ -442,7 +440,7 @@
     { "left": 4956, "top": 4034, "width": 79, "height": 141 },
     { "left": 4956, "top": 4175, "width": 79, "height": 141 }
   ],
-  "zombie/DancingZombieLostheadattack": [
+  "zombie/DancingLostheadattack": [
     { "left": 4556, "top": 3206, "width": 82, "height": 121 },
     { "left": 4556, "top": 3327, "width": 82, "height": 121 },
     { "left": 4623, "top": 124, "width": 82, "height": 121 },
@@ -454,7 +452,7 @@
     { "left": 4633, "top": 4668, "width": 82, "height": 121 },
     { "left": 4633, "top": 4789, "width": 82, "height": 121 }
   ],
-  "zombie/DancingZombieLostheaddancing": [
+  "zombie/DancingLostheaddancing": [
     { "left": 3650, "top": 4915, "width": 92, "height": 128 },
     { "left": 3650, "top": 4915, "width": 92, "height": 128 },
     { "left": 3650, "top": 4787, "width": 92, "height": 128 },
@@ -478,7 +476,7 @@
     { "left": 3570, "top": 2569, "width": 92, "height": 128 },
     { "left": 3571, "top": 1692, "width": 92, "height": 128 }
   ],
-  "zombie/DancingZombieLostheadslidingstep": [
+  "zombie/DancingLostheadslidingstep": [
     { "left": 5119, "top": 309, "width": 76, "height": 103 },
     { "left": 5119, "top": 206, "width": 76, "height": 103 },
     { "left": 5119, "top": 3295, "width": 76, "height": 103 },
@@ -496,12 +494,12 @@
     { "left": 5118, "top": 1886, "width": 76, "height": 103 },
     { "left": 5117, "top": 1783, "width": 76, "height": 103 }
   ],
-  "zombie/DancingZombieLostheadsummon": [
+  "zombie/DancingLostheadsummon": [
     { "left": 3570, "top": 2963, "width": 92, "height": 133 },
     { "left": 3570, "top": 2830, "width": 92, "height": 133 },
     { "left": 3570, "top": 2697, "width": 92, "height": 133 }
   ],
-  "zombie/DancingZombieSlidingstep": [
+  "zombie/DancingSlidingstep": [
     { "left": 3557, "top": 4955, "width": 93, "height": 138 },
     { "left": 3557, "top": 5093, "width": 93, "height": 138 },
     { "left": 3565, "top": 3102, "width": 93, "height": 138 },
@@ -524,46 +522,46 @@
     { "left": 3570, "top": 1554, "width": 93, "height": 138 },
     { "left": 3570, "top": 3240, "width": 93, "height": 138 }
   ],
-  "zombie/DancingZombieSpotlight1": [
+  "zombie/DancingSpotlight1": [
     { "left": 5270, "top": 3024, "width": 50, "height": 155 },
     { "left": 5270, "top": 2869, "width": 50, "height": 155 },
     { "left": 5270, "top": 1068, "width": 50, "height": 155 },
     { "left": 5270, "top": 913, "width": 50, "height": 155 },
     { "left": 5270, "top": 3179, "width": 50, "height": 155 }
   ],
-  "zombie/DancingZombieSpotlight2": [
+  "zombie/DancingSpotlight2": [
     { "left": 1451, "top": 1798, "width": 122, "height": 60 },
     { "left": 1098, "top": 1691, "width": 122, "height": 60 },
     { "left": 1099, "top": 1356, "width": 122, "height": 60 },
     { "left": 301, "top": 4258, "width": 122, "height": 60 },
     { "left": 1463, "top": 404, "width": 122, "height": 60 }
   ],
-  "zombie/DancingZombieSpotlight3": [
+  "zombie/DancingSpotlight3": [
     { "left": 50, "top": 5331, "width": 50, "height": 20 },
     { "left": 100, "top": 5331, "width": 50, "height": 20 },
     { "left": 150, "top": 5331, "width": 50, "height": 20 },
     { "left": 200, "top": 5331, "width": 50, "height": 20 },
     { "left": 0, "top": 5331, "width": 50, "height": 20 }
   ],
-  "zombie/DancingZombieSpotlight4": [
+  "zombie/DancingSpotlight4": [
     { "left": 2345, "top": 3149, "width": 121, "height": 600 },
     { "left": 2318, "top": 599, "width": 122, "height": 600 },
     { "left": 2345, "top": 1896, "width": 121, "height": 600 },
     { "left": 2227, "top": 4197, "width": 122, "height": 599 },
     { "left": 2318, "top": 0, "width": 122, "height": 599 }
   ],
-  "zombie/DancingZombieSummon": [
+  "zombie/DancingSummon": [
     { "left": 3845, "top": 3695, "width": 91, "height": 138 },
     { "left": 3846, "top": 3544, "width": 91, "height": 138 },
     { "left": 3843, "top": 4355, "width": 91, "height": 138 }
   ],
-  "zombie/DancingZombieSummon2": [
+  "zombie/DancingSummon2": [
     { "left": 4556, "top": 2945, "width": 84, "height": 138 }
   ],
-  "zombie/DancingZombieSummon3": [
+  "zombie/DancingSummon3": [
     { "left": 4556, "top": 2445, "width": 85, "height": 134 }
   ],
-  "zombie/DancingZombieWalk": [
+  "zombie/DancingWalk": [
     { "left": 5195, "top": 282, "width": 75, "height": 141 },
     { "left": 5195, "top": 423, "width": 75, "height": 141 },
     { "left": 5195, "top": 564, "width": 75, "height": 141 },
@@ -587,7 +585,7 @@
     { "left": 5195, "top": 1410, "width": 75, "height": 141 },
     { "left": 5195, "top": 141, "width": 75, "height": 141 }
   ],
-  "zombie/DolphinRiderZombie": [
+  "zombie/DolphinRider": [
     { "left": 2882, "top": 4424, "width": 103, "height": 110 },
     { "left": 2881, "top": 2808, "width": 103, "height": 110 },
     { "left": 2882, "top": 3732, "width": 103, "height": 110 },
@@ -601,7 +599,7 @@
     { "left": 2866, "top": 878, "width": 103, "height": 110 },
     { "left": 2878, "top": 4861, "width": 103, "height": 110 }
   ],
-  "zombie/DolphinRiderZombieAttack": [
+  "zombie/DolphinRiderAttack": [
     { "left": 5113, "top": 4394, "width": 76, "height": 83 },
     { "left": 5113, "top": 4311, "width": 76, "height": 83 },
     { "left": 5113, "top": 4228, "width": 76, "height": 83 },
@@ -616,7 +614,7 @@
     { "left": 5119, "top": 3026, "width": 76, "height": 83 },
     { "left": 5113, "top": 4477, "width": 76, "height": 83 }
   ],
-  "zombie/DolphinRiderZombieDie": [
+  "zombie/DolphinRiderDie": [
     { "left": 3288, "top": 1676, "width": 94, "height": 75 },
     { "left": 3190, "top": 3928, "width": 94, "height": 75 },
     { "left": 3091, "top": 1895, "width": 94, "height": 75 },
@@ -627,7 +625,7 @@
     { "left": 3174, "top": 469, "width": 94, "height": 75 },
     { "left": 3288, "top": 2964, "width": 94, "height": 75 }
   ],
-  "zombie/DolphinRiderZombieDie2": [
+  "zombie/DolphinRiderDie2": [
     { "left": 3846, "top": 1795, "width": 73, "height": 55 },
     { "left": 3834, "top": 5306, "width": 73, "height": 55 },
     { "left": 3742, "top": 429, "width": 73, "height": 55 },
@@ -661,7 +659,7 @@
     { "left": 5264, "top": 3963, "width": 73, "height": 55 },
     { "left": 5264, "top": 4073, "width": 73, "height": 55 }
   ],
-  "zombie/DolphinRiderZombieHead": [
+  "zombie/DolphinRiderHead": [
     { "left": 3288, "top": 1418, "width": 95, "height": 158 },
     { "left": 3288, "top": 2806, "width": 95, "height": 158 },
     { "left": 3288, "top": 2648, "width": 95, "height": 158 },
@@ -673,7 +671,7 @@
     { "left": 3287, "top": 3537, "width": 95, "height": 158 },
     { "left": 3287, "top": 3379, "width": 95, "height": 158 }
   ],
-  "zombie/DolphinRiderZombieJump": [
+  "zombie/DolphinRiderJump": [
     { "left": 682, "top": 1605, "width": 218, "height": 193 },
     { "left": 532, "top": 3921, "width": 218, "height": 193 },
     { "left": 532, "top": 3728, "width": 218, "height": 193 },
@@ -701,14 +699,14 @@
     { "left": 464, "top": 1991, "width": 218, "height": 193 },
     { "left": 574, "top": 4500, "width": 218, "height": 193 }
   ],
-  "zombie/DolphinRiderZombieJump2": [
+  "zombie/DolphinRiderJump2": [
     { "left": 1769, "top": 1486, "width": 147, "height": 181 },
     { "left": 1764, "top": 1774, "width": 147, "height": 181 },
     { "left": 1672, "top": 4391, "width": 147, "height": 181 },
     { "left": 1672, "top": 4210, "width": 147, "height": 181 },
     { "left": 1672, "top": 4572, "width": 147, "height": 181 }
   ],
-  "zombie/DolphinRiderZombieJump3": [
+  "zombie/DolphinRiderJump3": [
     { "left": 1459, "top": 884, "width": 160, "height": 202 },
     { "left": 1356, "top": 4762, "width": 160, "height": 202 },
     { "left": 1356, "top": 4964, "width": 160, "height": 202 },
@@ -728,7 +726,7 @@
     { "left": 1459, "top": 682, "width": 160, "height": 202 },
     { "left": 1459, "top": 480, "width": 160, "height": 202 }
   ],
-  "zombie/DolphinRiderZombieWalk1": [
+  "zombie/DolphinRiderWalk1": [
     { "left": 2226, "top": 5096, "width": 113, "height": 124 },
     { "left": 2226, "top": 3715, "width": 113, "height": 124 },
     { "left": 2326, "top": 5220, "width": 113, "height": 124 },
@@ -744,14 +742,14 @@
     { "left": 2313, "top": 1271, "width": 113, "height": 124 },
     { "left": 2339, "top": 5044, "width": 113, "height": 124 }
   ],
-  "zombie/DolphinRiderZombieWalk2": [
+  "zombie/DolphinRiderWalk2": [
     { "left": 3173, "top": 4962, "width": 100, "height": 96 },
     { "left": 3172, "top": 740, "width": 100, "height": 96 },
     { "left": 3173, "top": 4866, "width": 100, "height": 96 },
     { "left": 3173, "top": 5154, "width": 100, "height": 96 },
     { "left": 3173, "top": 5058, "width": 100, "height": 96 }
   ],
-  "zombie/DolphinRiderZombieWalk3": [
+  "zombie/DolphinRiderWalk3": [
     { "left": 4804, "top": 434, "width": 80, "height": 86 },
     { "left": 4723, "top": 3808, "width": 80, "height": 86 },
     { "left": 4875, "top": 5241, "width": 80, "height": 86 },
@@ -811,7 +809,7 @@
     { "left": 4803, "top": 3385, "width": 80, "height": 86 },
     { "left": 4875, "top": 5241, "width": 80, "height": 86 }
   ],
-  "zombie/DolphinRiderZombieWalk4": [
+  "zombie/DolphinRiderWalk4": [
     { "left": 4292, "top": 4234, "width": 88, "height": 126 },
     { "left": 4292, "top": 4108, "width": 88, "height": 126 },
     { "left": 4292, "top": 3982, "width": 88, "height": 126 },
@@ -827,7 +825,7 @@
     { "left": 4283, "top": 0, "width": 88, "height": 126 },
     { "left": 4273, "top": 239, "width": 88, "height": 126 }
   ],
-  "zombie/DuckyTubeZombie1": [
+  "zombie/DuckyTube": [
     { "left": 4803, "top": 3617, "width": 80, "height": 120 },
     { "left": 4723, "top": 1676, "width": 80, "height": 120 },
     { "left": 4801, "top": 3025, "width": 80, "height": 120 },
@@ -1068,7 +1066,7 @@
     { "left": 3382, "top": 3106, "width": 89, "height": 106 },
     { "left": 3754, "top": 4071, "width": 89, "height": 106 }
   ],
-  "zombie/FlagZombie": [
+  "zombie/Flag": [
     { "left": 2561, "top": 4903, "width": 108, "height": 142 },
     { "left": 2466, "top": 3083, "width": 108, "height": 142 },
     { "left": 2562, "top": 2496, "width": 108, "height": 142 },
@@ -1086,7 +1084,7 @@
     { "left": 2550, "top": 5212, "width": 108, "height": 142 },
     { "left": 2466, "top": 1928, "width": 108, "height": 142 }
   ],
-  "zombie/FlagZombieAttack": [
+  "zombie/FlagAttack": [
     { "left": 2882, "top": 4281, "width": 103, "height": 143 },
     { "left": 2882, "top": 4138, "width": 103, "height": 143 },
     { "left": 2882, "top": 2514, "width": 103, "height": 143 },
@@ -1099,7 +1097,7 @@
     { "left": 2868, "top": 220, "width": 103, "height": 143 },
     { "left": 2867, "top": 4995, "width": 103, "height": 143 }
   ],
-  "zombie/FlagZombieLosthead": [
+  "zombie/FlagLosthead": [
     { "left": 2440, "top": 715, "width": 111, "height": 143 },
     { "left": 2440, "top": 572, "width": 111, "height": 143 },
     { "left": 2440, "top": 429, "width": 111, "height": 143 },
@@ -1113,7 +1111,7 @@
     { "left": 2349, "top": 4624, "width": 111, "height": 143 },
     { "left": 2349, "top": 4481, "width": 111, "height": 143 }
   ],
-  "zombie/FlagZombieLostheadattack": [
+  "zombie/FlagLostheadattack": [
     { "left": 2985, "top": 2480, "width": 102, "height": 143 },
     { "left": 2983, "top": 2657, "width": 102, "height": 143 },
     { "left": 2982, "top": 2337, "width": 102, "height": 143 },
@@ -1126,7 +1124,7 @@
     { "left": 2886, "top": 3061, "width": 102, "height": 143 },
     { "left": 2886, "top": 3204, "width": 102, "height": 143 }
   ],
-  "zombie/FlagZombieWalk": [
+  "zombie/FlagWalk": [
     { "left": 2349, "top": 4339, "width": 111, "height": 142 },
     { "left": 2339, "top": 3749, "width": 111, "height": 142 },
     { "left": 2349, "top": 4197, "width": 111, "height": 142 },
@@ -1140,7 +1138,7 @@
     { "left": 2340, "top": 4796, "width": 111, "height": 142 },
     { "left": 2339, "top": 3891, "width": 111, "height": 142 }
   ],
-  "zombie/FootballZombie": [
+  "zombie/Football": [
     { "left": 2224, "top": 4056, "width": 126, "height": 141 },
     { "left": 2222, "top": 1755, "width": 126, "height": 141 },
     { "left": 2222, "top": 1614, "width": 126, "height": 141 },
@@ -1157,7 +1155,7 @@
     { "left": 2211, "top": 3185, "width": 126, "height": 141 },
     { "left": 2192, "top": 981, "width": 126, "height": 141 }
   ],
-  "zombie/FootballZombieAttack": [
+  "zombie/FootballAttack": [
     { "left": 2100, "top": 5096, "width": 126, "height": 141 },
     { "left": 2192, "top": 840, "width": 126, "height": 141 },
     { "left": 2192, "top": 699, "width": 126, "height": 141 },
@@ -1169,7 +1167,7 @@
     { "left": 2189, "top": 1473, "width": 126, "height": 141 },
     { "left": 2187, "top": 1332, "width": 126, "height": 141 }
   ],
-  "zombie/FootballZombieBoomdie": [
+  "zombie/FootballBoomdie": [
     { "left": 4962, "top": 970, "width": 79, "height": 113 },
     { "left": 4962, "top": 857, "width": 79, "height": 113 },
     { "left": 4962, "top": 744, "width": 79, "height": 113 },
@@ -1191,7 +1189,7 @@
     { "left": 4963, "top": 2316, "width": 79, "height": 113 },
     { "left": 4963, "top": 0, "width": 79, "height": 113 }
   ],
-  "zombie/FootballZombieDie": [
+  "zombie/FootballDie": [
     { "left": 1098, "top": 1428, "width": 192, "height": 134 },
     { "left": 1086, "top": 2032, "width": 192, "height": 134 },
     { "left": 1086, "top": 1898, "width": 192, "height": 134 },
@@ -1200,7 +1198,7 @@
     { "left": 991, "top": 4963, "width": 192, "height": 134 },
     { "left": 991, "top": 5097, "width": 192, "height": 134 }
   ],
-  "zombie/FootballZombieLosthead": [
+  "zombie/FootballLosthead": [
     { "left": 1516, "top": 4795, "width": 154, "height": 142 },
     { "left": 1516, "top": 4937, "width": 154, "height": 142 },
     { "left": 1518, "top": 4197, "width": 154, "height": 142 },
@@ -1212,7 +1210,7 @@
     { "left": 1610, "top": 1798, "width": 154, "height": 142 },
     { "left": 1615, "top": 1490, "width": 154, "height": 142 }
   ],
-  "zombie/FootballZombieLostheadattack": [
+  "zombie/FootballLostheadattack": [
     { "left": 2100, "top": 4856, "width": 127, "height": 120 },
     { "left": 2100, "top": 4736, "width": 127, "height": 120 },
     { "left": 2100, "top": 4616, "width": 127, "height": 120 },
@@ -1224,7 +1222,7 @@
     { "left": 2084, "top": 3320, "width": 127, "height": 120 },
     { "left": 2100, "top": 4976, "width": 127, "height": 120 }
   ],
-  "zombie/FootballZombieOrnlost": [
+  "zombie/FootballOrnlost": [
     { "left": 1516, "top": 4636, "width": 156, "height": 159 },
     { "left": 1356, "top": 5166, "width": 156, "height": 159 },
     { "left": 1495, "top": 2787, "width": 156, "height": 159 },
@@ -1237,7 +1235,7 @@
     { "left": 1503, "top": 2220, "width": 156, "height": 159 },
     { "left": 1500, "top": 2447, "width": 156, "height": 159 }
   ],
-  "zombie/FootballZombieOrnlostattack": [
+  "zombie/FootballOrnlostattack": [
     { "left": 2097, "top": 4346, "width": 127, "height": 135 },
     { "left": 2097, "top": 4211, "width": 127, "height": 135 },
     { "left": 2097, "top": 4076, "width": 127, "height": 135 },
@@ -1250,7 +1248,7 @@
     { "left": 2084, "top": 3185, "width": 127, "height": 135 },
     { "left": 2097, "top": 4481, "width": 127, "height": 135 }
   ],
-  "zombie/FootballZombieRun": [
+  "zombie/FootballRun": [
     { "left": 1651, "top": 2765, "width": 154, "height": 160 },
     { "left": 1668, "top": 5079, "width": 154, "height": 160 },
     { "left": 1659, "top": 2061, "width": 154, "height": 160 },
@@ -1428,7 +1426,7 @@
     { "left": 3072, "top": 5217, "width": 101, "height": 144 },
     { "left": 3162, "top": 1044, "width": 101, "height": 144 }
   ],
-  "zombie/NewspaperZombie": [
+  "zombie/Newspaper": [
     { "left": 3660, "top": 4523, "width": 92, "height": 124 },
     { "left": 3662, "top": 2472, "width": 92, "height": 124 },
     { "left": 3662, "top": 2596, "width": 92, "height": 124 },
@@ -1449,7 +1447,7 @@
     { "left": 3650, "top": 376, "width": 92, "height": 124 },
     { "left": 3650, "top": 4663, "width": 92, "height": 124 }
   ],
-  "zombie/NewspaperZombieBoomdie": [
+  "zombie/NewspaperBoomdie": [
     { "left": 4962, "top": 970, "width": 79, "height": 113 },
     { "left": 4962, "top": 857, "width": 79, "height": 113 },
     { "left": 4962, "top": 744, "width": 79, "height": 113 },
@@ -1471,7 +1469,7 @@
     { "left": 4963, "top": 2316, "width": 79, "height": 113 },
     { "left": 4963, "top": 0, "width": 79, "height": 113 }
   ],
-  "zombie/NewspaperZombieDie": [
+  "zombie/NewspaperDie": [
     { "left": 1916, "top": 430, "width": 140, "height": 106 },
     { "left": 1916, "top": 324, "width": 140, "height": 106 },
     { "left": 1916, "top": 1480, "width": 140, "height": 106 },
@@ -1484,7 +1482,7 @@
     { "left": 1771, "top": 1374, "width": 140, "height": 106 },
     { "left": 1824, "top": 4771, "width": 140, "height": 106 }
   ],
-  "zombie/NewspaperZombieHead": [
+  "zombie/NewspaperHead": [
     { "left": 1776, "top": 1212, "width": 143, "height": 162 },
     { "left": 1777, "top": 162, "width": 143, "height": 162 },
     { "left": 1777, "top": 162, "width": 143, "height": 162 },
@@ -1496,7 +1494,7 @@
     { "left": 1773, "top": 888, "width": 143, "height": 162 },
     { "left": 1773, "top": 402, "width": 143, "height": 162 }
   ],
-  "zombie/NewspaperZombieHeadattack0": [
+  "zombie/NewspaperHeadattack0": [
     { "left": 2971, "top": 0, "width": 102, "height": 142 },
     { "left": 2971, "top": 426, "width": 102, "height": 142 },
     { "left": 2969, "top": 649, "width": 102, "height": 142 },
@@ -1505,7 +1503,7 @@
     { "left": 2987, "top": 3915, "width": 102, "height": 142 },
     { "left": 2989, "top": 1842, "width": 102, "height": 142 }
   ],
-  "zombie/NewspaperZombieHeadattack1": [
+  "zombie/NewspaperHeadattack1": [
     { "left": 3090, "top": 2900, "width": 101, "height": 141 },
     { "left": 3090, "top": 2759, "width": 101, "height": 141 },
     { "left": 3089, "top": 3883, "width": 101, "height": 141 },
@@ -1515,7 +1513,7 @@
     { "left": 3087, "top": 3601, "width": 101, "height": 141 },
     { "left": 3087, "top": 3460, "width": 101, "height": 141 }
   ],
-  "zombie/NewspaperZombieHeadwalk0": [
+  "zombie/NewspaperHeadwalk0": [
     { "left": 3087, "top": 4465, "width": 101, "height": 136 },
     { "left": 3087, "top": 4329, "width": 101, "height": 136 },
     { "left": 3087, "top": 4193, "width": 101, "height": 136 },
@@ -1531,7 +1529,7 @@
     { "left": 3073, "top": 136, "width": 101, "height": 136 },
     { "left": 3073, "top": 0, "width": 101, "height": 136 }
   ],
-  "zombie/NewspaperZombieHeadwalk1": [
+  "zombie/NewspaperHeadwalk1": [
     { "left": 3273, "top": 4991, "width": 96, "height": 137 },
     { "left": 3281, "top": 3242, "width": 96, "height": 137 },
     { "left": 3273, "top": 5128, "width": 96, "height": 137 },
@@ -1552,7 +1550,7 @@
     { "left": 3273, "top": 685, "width": 96, "height": 137 },
     { "left": 3273, "top": 4854, "width": 96, "height": 137 }
   ],
-  "zombie/NewspaperZombieLostheadattack0": [
+  "zombie/NewspaperLostheadattack0": [
     { "left": 3288, "top": 1576, "width": 94, "height": 100 },
     { "left": 3192, "top": 1771, "width": 94, "height": 100 },
     { "left": 3283, "top": 4752, "width": 94, "height": 100 },
@@ -1561,7 +1559,7 @@
     { "left": 3359, "top": 922, "width": 94, "height": 100 },
     { "left": 3369, "top": 0, "width": 94, "height": 100 }
   ],
-  "zombie/NewspaperZombieLostheadattack1": [
+  "zombie/NewspaperLostheadattack1": [
     { "left": 4204, "top": 782, "width": 89, "height": 121 },
     { "left": 4204, "top": 661, "width": 89, "height": 121 },
     { "left": 4204, "top": 540, "width": 89, "height": 121 },
@@ -1571,7 +1569,7 @@
     { "left": 4115, "top": 1916, "width": 89, "height": 121 },
     { "left": 4115, "top": 1916, "width": 89, "height": 121 }
   ],
-  "zombie/NewspaperZombieLostheadwalk0": [
+  "zombie/NewspaperLostheadwalk0": [
     { "left": 3061, "top": 1129, "width": 101, "height": 98 },
     { "left": 3061, "top": 1129, "width": 101, "height": 98 },
     { "left": 3083, "top": 4768, "width": 101, "height": 98 },
@@ -1589,7 +1587,7 @@
     { "left": 2970, "top": 5255, "width": 101, "height": 98 },
     { "left": 2988, "top": 3226, "width": 101, "height": 98 }
   ],
-  "zombie/NewspaperZombieLostheadwalk1": [
+  "zombie/NewspaperLostheadwalk1": [
     { "left": 2763, "top": 5229, "width": 104, "height": 98 },
     { "left": 2764, "top": 0, "width": 104, "height": 98 },
     { "left": 2764, "top": 98, "width": 104, "height": 98 },
@@ -1629,7 +1627,7 @@
     { "left": 2779, "top": 1429, "width": 104, "height": 98 },
     { "left": 2780, "top": 3942, "width": 104, "height": 98 }
   ],
-  "zombie/NewspaperZombieLostnewspaper": [
+  "zombie/NewspaperLostnewspaper": [
     { "left": 2883, "top": 1337, "width": 103, "height": 159 },
     { "left": 2783, "top": 3100, "width": 103, "height": 159 },
     { "left": 2783, "top": 2941, "width": 103, "height": 159 },
@@ -1642,7 +1640,7 @@
     { "left": 2783, "top": 1625, "width": 103, "height": 159 },
     { "left": 2783, "top": 1943, "width": 103, "height": 159 }
   ],
-  "zombie/PoleVaultingZombie": [
+  "zombie/PoleVaulting": [
     { "left": 1099, "top": 129, "width": 192, "height": 129 },
     { "left": 1099, "top": 387, "width": 192, "height": 129 },
     { "left": 1099, "top": 258, "width": 192, "height": 129 },
@@ -1653,7 +1651,7 @@
     { "left": 991, "top": 4834, "width": 192, "height": 129 },
     { "left": 1099, "top": 0, "width": 192, "height": 129 }
   ],
-  "zombie/PoleVaultingZombieAttack": [
+  "zombie/PoleVaultingAttack": [
     { "left": 3755, "top": 3136, "width": 91, "height": 133 },
     { "left": 3754, "top": 3003, "width": 91, "height": 133 },
     { "left": 3754, "top": 2870, "width": 91, "height": 133 },
@@ -1669,7 +1667,7 @@
     { "left": 3752, "top": 4330, "width": 91, "height": 133 },
     { "left": 3663, "top": 3796, "width": 91, "height": 133 }
   ],
-  "zombie/PoleVaultingZombieBoomdie": [
+  "zombie/PoleVaultingBoomdie": [
     { "left": 4962, "top": 970, "width": 79, "height": 113 },
     { "left": 4962, "top": 857, "width": 79, "height": 113 },
     { "left": 4962, "top": 744, "width": 79, "height": 113 },
@@ -1691,7 +1689,7 @@
     { "left": 4963, "top": 2316, "width": 79, "height": 113 },
     { "left": 4963, "top": 0, "width": 79, "height": 113 }
   ],
-  "zombie/PoleVaultingZombieDie": [
+  "zombie/PoleVaultingDie": [
     { "left": 1672, "top": 4096, "width": 149, "height": 114 },
     { "left": 1655, "top": 3754, "width": 149, "height": 114 },
     { "left": 1659, "top": 2221, "width": 149, "height": 114 },
@@ -1702,7 +1700,7 @@
     { "left": 1622, "top": 1372, "width": 149, "height": 114 },
     { "left": 1672, "top": 3868, "width": 149, "height": 114 }
   ],
-  "zombie/PoleVaultingZombieHead": [
+  "zombie/PoleVaultingHead": [
     { "left": 5119, "top": 3398, "width": 76, "height": 160 },
     { "left": 5119, "top": 1052, "width": 76, "height": 160 },
     { "left": 5119, "top": 892, "width": 76, "height": 160 },
@@ -1712,7 +1710,7 @@
     { "left": 5119, "top": 2504, "width": 76, "height": 160 },
     { "left": 5113, "top": 4741, "width": 76, "height": 160 }
   ],
-  "zombie/PoleVaultingZombieJump": [
+  "zombie/PoleVaultingJump": [
     { "left": 0, "top": 4734, "width": 287, "height": 199 },
     { "left": 0, "top": 4535, "width": 287, "height": 199 },
     { "left": 0, "top": 4933, "width": 287, "height": 199 },
@@ -1724,7 +1722,7 @@
     { "left": 287, "top": 4535, "width": 287, "height": 199 },
     { "left": 287, "top": 4336, "width": 287, "height": 199 }
   ],
-  "zombie/PoleVaultingZombieJump2": [
+  "zombie/PoleVaultingJump2": [
     { "left": 1335, "top": 2273, "width": 168, "height": 174 },
     { "left": 1320, "top": 3508, "width": 168, "height": 174 },
     { "left": 1320, "top": 3682, "width": 168, "height": 174 },
@@ -1733,7 +1731,7 @@
     { "left": 1320, "top": 3160, "width": 168, "height": 174 },
     { "left": 1320, "top": 3334, "width": 168, "height": 174 }
   ],
-  "zombie/PoleVaultingZombieLosthead": [
+  "zombie/PoleVaultingLosthead": [
     { "left": 3477, "top": 2817, "width": 93, "height": 110 },
     { "left": 3557, "top": 220, "width": 93, "height": 110 },
     { "left": 3557, "top": 0, "width": 93, "height": 110 },
@@ -1745,7 +1743,7 @@
     { "left": 2886, "top": 3347, "width": 93, "height": 110 },
     { "left": 3477, "top": 2707, "width": 93, "height": 110 }
   ],
-  "zombie/PoleVaultingZombieLostheadattack": [
+  "zombie/PoleVaultingLostheadattack": [
     { "left": 3571, "top": 1948, "width": 91, "height": 119 },
     { "left": 3846, "top": 3425, "width": 91, "height": 119 },
     { "left": 3846, "top": 3306, "width": 91, "height": 119 },
@@ -1761,7 +1759,7 @@
     { "left": 3845, "top": 912, "width": 91, "height": 119 },
     { "left": 3569, "top": 4267, "width": 91, "height": 119 }
   ],
-  "zombie/PoleVaultingZombieLostheadwalk": [
+  "zombie/PoleVaultingLostheadwalk": [
     { "left": 4292, "top": 2393, "width": 88, "height": 107 },
     { "left": 4292, "top": 2286, "width": 88, "height": 107 },
     { "left": 4292, "top": 2179, "width": 88, "height": 107 },
@@ -1792,7 +1790,7 @@
     { "left": 4204, "top": 2508, "width": 88, "height": 107 },
     { "left": 4204, "top": 2615, "width": 88, "height": 107 }
   ],
-  "zombie/PoleVaultingZombieRun": [
+  "zombie/PoleVaultingRun": [
     { "left": 750, "top": 2257, "width": 205, "height": 153 },
     { "left": 695, "top": 765, "width": 205, "height": 153 },
     { "left": 695, "top": 612, "width": 205, "height": 153 },
@@ -1804,7 +1802,7 @@
     { "left": 682, "top": 1951, "width": 205, "height": 153 },
     { "left": 682, "top": 1798, "width": 205, "height": 153 }
   ],
-  "zombie/PoleVaultingZombieWalk": [
+  "zombie/PoleVaultingWalk": [
     { "left": 3834, "top": 4738, "width": 91, "height": 142 },
     { "left": 3834, "top": 4880, "width": 91, "height": 142 },
     { "left": 3755, "top": 1721, "width": 91, "height": 142 },
@@ -1831,7 +1829,7 @@
     { "left": 3843, "top": 4071, "width": 91, "height": 142 },
     { "left": 3843, "top": 4213, "width": 91, "height": 142 }
   ],
-  "zombie/ScreenDoorZombie": [
+  "zombie/ScreenDoor": [
     { "left": 4555, "top": 2323, "width": 85, "height": 122 },
     { "left": 4555, "top": 2323, "width": 85, "height": 122 },
     { "left": 4556, "top": 2701, "width": 85, "height": 122 },
@@ -1841,7 +1839,7 @@
     { "left": 4555, "top": 2201, "width": 85, "height": 122 },
     { "left": 4555, "top": 2201, "width": 85, "height": 122 }
   ],
-  "zombie/ScreenDoorZombieAttack": [
+  "zombie/ScreenDoorAttack": [
     { "left": 4380, "top": 1149, "width": 88, "height": 138 },
     { "left": 4380, "top": 1287, "width": 88, "height": 138 },
     { "left": 4380, "top": 1425, "width": 88, "height": 138 },
@@ -1855,7 +1853,7 @@
     { "left": 4380, "top": 2253, "width": 88, "height": 138 },
     { "left": 4381, "top": 2529, "width": 88, "height": 138 }
   ],
-  "zombie/ScreenDoorZombieHeadattack1": [
+  "zombie/ScreenDoorHeadattack1": [
     { "left": 4380, "top": 1149, "width": 88, "height": 138 },
     { "left": 4380, "top": 1287, "width": 88, "height": 138 },
     { "left": 4380, "top": 1425, "width": 88, "height": 138 },
@@ -1869,7 +1867,7 @@
     { "left": 4380, "top": 2253, "width": 88, "height": 138 },
     { "left": 4381, "top": 2529, "width": 88, "height": 138 }
   ],
-  "zombie/ScreenDoorZombieHeadwalk1": [
+  "zombie/ScreenDoorHeadwalk1": [
     { "left": 2679, "top": 3189, "width": 104, "height": 131 },
     { "left": 2679, "top": 3320, "width": 104, "height": 131 },
     { "left": 2679, "top": 3451, "width": 104, "height": 131 },
@@ -1894,7 +1892,7 @@
     { "left": 2778, "top": 4162, "width": 104, "height": 131 },
     { "left": 2778, "top": 4293, "width": 104, "height": 131 }
   ],
-  "zombie/ScreenDoorZombieLostheadattack1": [
+  "zombie/ScreenDoorLostheadattack1": [
     { "left": 4194, "top": 4823, "width": 89, "height": 111 },
     { "left": 4194, "top": 4934, "width": 89, "height": 111 },
     { "left": 4203, "top": 4251, "width": 89, "height": 111 },
@@ -1908,7 +1906,7 @@
     { "left": 4116, "top": 3428, "width": 89, "height": 111 },
     { "left": 4116, "top": 3317, "width": 89, "height": 111 }
   ],
-  "zombie/ScreenDoorZombieLostheadwalk1": [
+  "zombie/ScreenDoorLostheadwalk1": [
     { "left": 3188, "top": 4169, "width": 97, "height": 103 },
     { "left": 2452, "top": 5053, "width": 97, "height": 103 },
     { "left": 3188, "top": 2469, "width": 97, "height": 103 },
@@ -1925,7 +1923,7 @@
     { "left": 3191, "top": 2958, "width": 97, "height": 103 },
     { "left": 3188, "top": 4272, "width": 97, "height": 103 }
   ],
-  "zombie/ScreenDoorZombieWalk": [
+  "zombie/ScreenDoorWalk": [
     { "left": 2679, "top": 3189, "width": 104, "height": 131 },
     { "left": 2679, "top": 3320, "width": 104, "height": 131 },
     { "left": 2679, "top": 3451, "width": 104, "height": 131 },
@@ -1950,7 +1948,7 @@
     { "left": 2778, "top": 4162, "width": 104, "height": 131 },
     { "left": 2778, "top": 4293, "width": 104, "height": 131 }
   ],
-  "zombie/SnorkelZombie": [
+  "zombie/Snorkel": [
     { "left": 4963, "top": 2176, "width": 79, "height": 140 },
     { "left": 4963, "top": 2036, "width": 79, "height": 140 },
     { "left": 4962, "top": 1896, "width": 79, "height": 140 },
@@ -1967,7 +1965,7 @@
     { "left": 4884, "top": 2208, "width": 79, "height": 140 },
     { "left": 4884, "top": 2068, "width": 79, "height": 140 }
   ],
-  "zombie/SnorkelZombieAttack": [
+  "zombie/SnorkelAttack": [
     { "left": 4194, "top": 5267, "width": 86, "height": 75 },
     { "left": 3846, "top": 2276, "width": 86, "height": 75 },
     { "left": 4026, "top": 3856, "width": 86, "height": 75 },
@@ -1981,7 +1979,7 @@
     { "left": 4116, "top": 3761, "width": 86, "height": 75 },
     { "left": 3845, "top": 3975, "width": 86, "height": 75 }
   ],
-  "zombie/SnorkelZombieDie": [
+  "zombie/SnorkelDie": [
     { "left": 2882, "top": 4644, "width": 88, "height": 54 },
     { "left": 2868, "top": 649, "width": 88, "height": 54 },
     { "left": 2867, "top": 5297, "width": 88, "height": 54 },
@@ -2014,13 +2012,13 @@
     { "left": 3571, "top": 2472, "width": 88, "height": 54 },
     { "left": 3650, "top": 5299, "width": 88, "height": 54 }
   ],
-  "zombie/SnorkelZombieHead": [
+  "zombie/SnorkelHead": [
     { "left": 5264, "top": 3821, "width": 74, "height": 87 },
     { "left": 5188, "top": 5238, "width": 74, "height": 87 },
     { "left": 5264, "top": 3734, "width": 74, "height": 87 },
     { "left": 5262, "top": 5238, "width": 74, "height": 87 }
   ],
-  "zombie/SnorkelZombieJump": [
+  "zombie/SnorkelJump": [
     { "left": 1822, "top": 5142, "width": 142, "height": 187 },
     { "left": 1822, "top": 5142, "width": 142, "height": 187 },
     { "left": 1822, "top": 4955, "width": 142, "height": 187 },
@@ -2038,14 +2036,14 @@
     { "left": 1911, "top": 1667, "width": 142, "height": 187 },
     { "left": 1821, "top": 3935, "width": 142, "height": 187 }
   ],
-  "zombie/SnorkelZombieRisk": [
+  "zombie/SnorkelRisk": [
     { "left": 4883, "top": 2773, "width": 77, "height": 77 },
     { "left": 4371, "top": 136, "width": 77, "height": 77 },
     { "left": 4876, "top": 5160, "width": 77, "height": 77 },
     { "left": 4956, "top": 5048, "width": 77, "height": 77 },
     { "left": 4962, "top": 2856, "width": 77, "height": 77 }
   ],
-  "zombie/SnorkelZombieSink": [
+  "zombie/SnorkelSink": [
     { "left": 4804, "top": 520, "width": 77, "height": 75 },
     { "left": 5035, "top": 4937, "width": 77, "height": 75 },
     { "left": 5041, "top": 1708, "width": 77, "height": 75 },
@@ -2054,7 +2052,7 @@
     { "left": 4626, "top": 5279, "width": 77, "height": 75 },
     { "left": 4380, "top": 4266, "width": 77, "height": 75 }
   ],
-  "zombie/SnorkelZombieWalk1": [
+  "zombie/SnorkelWalk1": [
     { "left": 2457, "top": 2924, "width": 108, "height": 159 },
     { "left": 2566, "top": 2638, "width": 108, "height": 159 },
     { "left": 2567, "top": 1462, "width": 108, "height": 159 },
@@ -2076,7 +2074,7 @@
     { "left": 2466, "top": 3384, "width": 108, "height": 159 },
     { "left": 2466, "top": 3225, "width": 108, "height": 159 }
   ],
-  "zombie/SnorkelZombieWalk2": [
+  "zombie/SnorkelWalk2": [
     { "left": 1591, "top": 2379, "width": 53, "height": 43 },
     { "left": 1659, "top": 2335, "width": 53, "height": 43 },
     { "left": 1221, "top": 1356, "width": 53, "height": 43 },

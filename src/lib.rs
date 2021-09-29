@@ -1,5 +1,3 @@
-#![feature(macro_attributes_in_derive_output)]
-
 use engine::Engine;
 use util::init;
 use wasm_bindgen::prelude::*;

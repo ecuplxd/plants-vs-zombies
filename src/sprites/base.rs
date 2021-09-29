@@ -111,9 +111,9 @@ impl Sprite {
                 let sprite = Sprite::new(
                     SpriteType::from_str(name),
                     artist,
-                    pos.clone(),
+                    *pos,
                     offset,
-                    collision_margin.clone(),
+                    collision_margin,
                     order,
                     normal_shape,
                 );

@@ -33,7 +33,7 @@ impl<'a> Loader<'a> {
         }
     }
 
-    pub async fn load_jsons(&self, paths: &Vec<&'a str>) -> Vec<JsValue> {
+    pub async fn load_jsons(&self, paths: &[&'a str]) -> Vec<JsValue> {
         let mut jsons: Vec<JsValue> = vec![];
 
         for json in paths.iter() {
@@ -54,7 +54,7 @@ impl<'a> Loader<'a> {
         opts.method("GET");
         opts.mode(RequestMode::Cors);
 
-        let request = Request::new_with_str_and_init(&url, &opts)?;
+        let request = Request::new_with_str_and_init(url, &opts)?;
 
         let window = web_sys::window().unwrap();
         let resp_value = JsFuture::from(window.fetch_with_request(&request)).await?;

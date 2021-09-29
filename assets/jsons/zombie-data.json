@@ -1,63 +1,54 @@
 {
-  "zombie/ConeheadZombie": {
+  "zombie/Conehead": {
     "constructor": "ZombieSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
       {
         "name": "Switch",
-        "switch_cells": [
-          "zombie/ConeheadZombieWalk",
-          "zombie/ConeheadZombieAttack"
-        ]
+        "switch_cells": ["zombie/ConeheadWalk", "zombie/ConeheadAttack"]
       },
       { "name": "Walk", "velocit": { "x": -10, "y": 0 }, "duration": 1000 },
       { "name": "Collision" }
     ],
     "collision_margin": { "left": 30, "top": 5, "right": 10, "bottom": 5 }
   },
-  "zombie/BucketheadZombie": {
+  "zombie/Buckethead": {
     "constructor": "ZombieSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
       {
         "name": "Switch",
-        "switch_cells": [
-          "zombie/BucketheadZombieWalk",
-          "zombie/BucketheadZombieAttack"
-        ]
+        "switch_cells": ["zombie/BucketheadWalk", "zombie/BucketheadAttack"]
       },
       { "name": "Walk", "velocit": { "x": -9, "y": 0 }, "duration": 1000 },
       { "name": "Collision" }
     ],
     "collision_margin": { "left": 30, "top": 5, "right": 10, "bottom": 5 }
   },
-  "zombie/FlagZombie": {
+  "zombie/Flag": {
     "constructor": "ZombieSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
       {
         "name": "Switch",
-        "switch_cells": ["zombie/FlagZombieWalk", "zombie/FlagZombieAttack"]
+        "switch_cells": ["zombie/FlagWalk", "zombie/FlagAttack"]
       },
       { "name": "Walk", "velocit": { "x": -8, "y": 0 }, "duration": 1000 },
       { "name": "Collision" }
     ],
     "collision_margin": { "left": 40, "top": 5, "right": 10, "bottom": 5 }
   },
-  "zombie/ScreenDoorZombie": {
+  "zombie/ScreenDoor": {
     "constructor": "ZombieSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
       {
         "name": "Switch",
-        "switch_cells": [
-          "zombie/ScreenDoorZombieWalk",
-          "zombie/ScreenDoorZombieAttack"
-        ]
+        "switch_cells": ["zombie/ScreenDoorWalk", "zombie/ScreenDoorAttack"]
       },
       { "name": "Walk", "velocit": { "x": -12, "y": 0 }, "duration": 1000 },
       { "name": "Collision" }

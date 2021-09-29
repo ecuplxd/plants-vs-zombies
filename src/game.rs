@@ -128,23 +128,23 @@ impl Game {
         canvas.set_width(width);
         canvas.set_height(height);
 
-        return canvas;
+        canvas
     }
 
     pub fn get_canvas_context(canvas: &HtmlCanvasElement) -> CanvasRenderingContext2d {
-        return canvas
+        canvas
             .get_context("2d")
             .unwrap()
             .unwrap()
             .dyn_into::<CanvasRenderingContext2d>()
-            .unwrap();
+            .unwrap()
     }
 
     pub fn init(&mut self) {
         self.time_system.start();
 
-        self.to_home_scene(None);
-        // self.to_level_scene(None);
+        self.goto_home_scene(None);
+        // self.goto_level_scene(None);
 
         // self.debug_start();
     }
@@ -226,7 +226,7 @@ impl Game {
         self.update_draw_order();
     }
 
-    fn remove_sprite_by_indexs(&mut self, indexs: &Vec<usize>) {
+    fn remove_sprite_by_indexs(&mut self, indexs: &[usize]) {
         indexs.iter().for_each(|index| {
             self.sprites.remove(*index);
         });
@@ -290,22 +290,20 @@ impl Game {
     }
 
     pub fn get_callback(&mut self, callback: Callback) -> ErasedFnPointer<SpritePointer> {
-        let pointer = match callback {
+        match callback {
             Callback::HomeButton => ErasedFnPointer::from_associated(self, Game::show_zombie_hand),
-            Callback::ZombieHand => ErasedFnPointer::from_associated(self, Game::to_level_scene),
+            Callback::ZombieHand => ErasedFnPointer::from_associated(self, Game::goto_level_scene),
             Callback::BgScroll => ErasedFnPointer::from_associated(self, Game::show_seed_chooser),
             Callback::Prepare => ErasedFnPointer::from_associated(self, Game::start_battle),
             Callback::SeedClick => ErasedFnPointer::from_associated(self, Game::choose_seed),
             Callback::CardClick => ErasedFnPointer::from_associated(self, Game::grow_or_remove_card),
             Callback::ResetButton => ErasedFnPointer::from_associated(self, Game::reset_cards),
             Callback::OkButton => ErasedFnPointer::from_associated(self, Game::bg_turn_left),
-            Callback::BackButton => ErasedFnPointer::from_associated(self, Game::to_home_scene),
+            Callback::BackButton => ErasedFnPointer::from_associated(self, Game::goto_home_scene),
             Callback::PlantInterval => ErasedFnPointer::from_associated(self, Game::plant_action),
             Callback::SunClick => ErasedFnPointer::from_associated(self, Game::collect_sun),
             Callback::SunInterval => ErasedFnPointer::from_associated(self, Game::sun_disappear),
-        };
-
-        pointer
+        }
     }
 
     fn collect_sun(&mut self, sun: SpritePointer) {
@@ -326,7 +324,7 @@ impl Game {
         }
     }
 
-    fn to_home_scene(&mut self, _back_button: SpritePointer) {
+    fn goto_home_scene(&mut self, _back_button: SpritePointer) {
         self.state.selected_card = false;
         self.clear_sprites();
 
@@ -404,13 +402,10 @@ impl Game {
                             .skip(self.card_cursor)
                             .position(|sprite| sprite.name() == name);
 
-                        match remove_index {
-                            Some(remove_index) => {
-                                self.remove_sprite(remove_index + self.card_cursor);
-                                self.update_card_pos();
-                                self.enable_seed(name);
-                            }
-                            None => (),
+                        if let Some(remove_index) = remove_index {
+                            self.remove_sprite(remove_index + self.card_cursor);
+                            self.update_card_pos();
+                            self.enable_seed(name);
                         }
                     }
                 }
@@ -437,7 +432,6 @@ impl Game {
         let indexs: Vec<usize> = (self.card_cursor..self.sprites.len())
             .into_iter()
             .rev()
-            .map(|index| index)
             .collect();
 
         self.remove_sprite_by_indexs(&indexs);
@@ -473,7 +467,7 @@ impl Game {
     }
 
     /// 僵尸手动画结束回调 转到关卡场景
-    fn to_level_scene(&mut self, _zombie_hand: SpritePointer) {
+    fn goto_level_scene(&mut self, _zombie_hand: SpritePointer) {
         self.clear_sprites();
         self.reset_last_sun_produce();
 
@@ -511,7 +505,7 @@ impl Game {
     }
 
     /// 根据类别删除 sprite
-    fn remove_sprite_by_types(&mut self, sprite_types: &Vec<SpriteType>) {
+    fn remove_sprite_by_types(&mut self, sprite_types: &[SpriteType]) {
         sprite_types.iter().for_each(|sprite_type| {
             let index = self
                 .sprites
@@ -581,7 +575,7 @@ impl Game {
             });
     }
 
-    pub fn toggle_behaviors(&mut self, behavior_types: &Vec<BehaviorType>, run: bool) {
+    pub fn toggle_behaviors(&mut self, behavior_types: &[BehaviorType], run: bool) {
         self.sprites.iter_mut().for_each(|sprite| {
             sprite
                 .get_mut_behaviors()
@@ -617,12 +611,9 @@ impl Game {
     }
 
     fn shovel_plant(&mut self, loc: &Loc, has_plant: Option<usize>) {
-        match (loc.out_of_plant_bound(), has_plant) {
-            (false, Some(index)) => {
-                self.remove_sprite(index);
-                self.toggle_behaviors(&vec![BehaviorType::Collision], true);
-            }
-            _ => (),
+        if let (false, Some(index)) = (loc.out_of_plant_bound(), has_plant) {
+            self.remove_sprite(index);
+            self.toggle_behaviors(&[BehaviorType::Collision], true);
         }
     }
 
@@ -680,7 +671,7 @@ impl Game {
                             );
                         }
 
-                        self.toggle_behaviors(&vec![BehaviorType::Drag], true);
+                        self.toggle_behaviors(&[BehaviorType::Drag], true);
                     }
 
                     dragging.set(true);
@@ -740,23 +731,23 @@ impl Game {
     fn mouseenter_handler(&mut self, _x: f64, _y: f64) {}
 
     fn mousedonw_handler(&mut self, _x: f64, _y: f64) {
-        self.toggle_behaviors(&vec![BehaviorType::Click], true);
+        self.toggle_behaviors(&[BehaviorType::Click], true);
     }
 
     fn mouseup_handler(&mut self, _x: f64, _y: f64) {
         self.be_planted_id = String::from("");
         self.temp_sprites.clear();
-        self.toggle_behaviors(&vec![BehaviorType::Click, BehaviorType::Drag], false);
+        self.toggle_behaviors(&[BehaviorType::Click, BehaviorType::Drag], false);
 
         set_sprite_clicked("");
     }
 
     fn mousemove_handler(&mut self, _x: f64, _y: f64) {
-        self.toggle_behaviors(&vec![BehaviorType::Hover], true);
+        self.toggle_behaviors(&[BehaviorType::Hover], true);
     }
 
     fn mouseleave_handler(&mut self, _x: f64, _y: f64) {
-        self.toggle_behaviors(&vec![BehaviorType::Hover], false);
+        self.toggle_behaviors(&[BehaviorType::Hover], false);
     }
 
     fn free_sun(&mut self) {

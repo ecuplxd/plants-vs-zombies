@@ -37,8 +37,8 @@ impl Behavior for CollisionBehavior {
         _mouse_pos: &Pos,
         _context: &CanvasRenderingContext2d,
     ) {
-        match (self.sprite, self.game) {
-            (Some(mut sprite), Some(mut game)) => unsafe {
+        if let (Some(mut sprite), Some(mut game)) = (self.sprite, self.game) {
+            unsafe {
                 self.collided = false;
 
                 let sprite_ref = sprite.as_ref();
@@ -77,8 +77,7 @@ impl Behavior for CollisionBehavior {
                 if !self.collided {
                     zombie.change_to_walk(now);
                 }
-            },
-            _ => (),
+            }
         }
     }
 

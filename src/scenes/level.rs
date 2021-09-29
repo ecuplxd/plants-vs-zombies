@@ -253,7 +253,7 @@ impl LevelScene {
             bullet.update_pos(pos);
             bullet.start_all_behavior(game.now);
 
-            game.toggle_behaviors(&vec![BehaviorType::Collision], true);
+            game.toggle_behaviors(&[BehaviorType::Collision], true);
             game.add_sprite(bullet);
         }
     }
