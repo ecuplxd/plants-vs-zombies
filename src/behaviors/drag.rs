@@ -1,24 +1,21 @@
-use std::ptr::NonNull;
-
+use derives::{derive_behavior, WithoutCallback};
 use web_sys::CanvasRenderingContext2d;
 
-use super::{Behavior, BehaviorType};
+use super::{Behavior, BehaviorState, BehaviorType};
 use crate::sprites::{Pos, SpritePointer, Update};
 
+#[derive_behavior("no_callback")]
+#[derive(Default, WithoutCallback)]
 pub struct DragBehavior {
     name: BehaviorType,
-    running: bool,
     last_pos: Option<Pos>,
-    sprite: SpritePointer,
 }
 
 impl DragBehavior {
     pub fn new() -> DragBehavior {
         DragBehavior {
             name: BehaviorType::Drag,
-            running: false,
-            last_pos: None,
-            sprite: None,
+            ..Default::default()
         }
     }
 
@@ -39,11 +36,7 @@ impl DragBehavior {
     }
 }
 
-impl Behavior for DragBehavior {
-    fn name(&self) -> BehaviorType {
-        self.name
-    }
-
+impl BehaviorState for DragBehavior {
     fn start(&mut self, _now: f64) {
         self.last_pos = None;
         self.running = true;
@@ -56,6 +49,12 @@ impl Behavior for DragBehavior {
 
     fn is_running(&self) -> bool {
         self.running
+    }
+}
+
+impl Behavior for DragBehavior {
+    fn name(&self) -> BehaviorType {
+        self.name
     }
 
     fn execute(
@@ -75,9 +74,5 @@ impl Behavior for DragBehavior {
                 }
             }
         }
-    }
-
-    fn set_sprite(&mut self, sprite: *mut dyn Update) {
-        self.sprite = NonNull::new(sprite);
     }
 }

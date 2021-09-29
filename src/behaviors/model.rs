@@ -28,6 +28,12 @@ pub enum BehaviorType {
     Interval,
 }
 
+impl Default for BehaviorType {
+    fn default() -> BehaviorType {
+        BehaviorType::Cycle
+    }
+}
+
 #[derive(Debug, Clone, Deserialize)]
 pub struct BehaviorData {
     pub name: BehaviorType,

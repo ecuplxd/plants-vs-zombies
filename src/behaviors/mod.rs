@@ -21,6 +21,6 @@ pub use interval::IntervalBehavior;
 pub use model::{BehaviorData, BehaviorType, Direction};
 pub use scroll::ScrollBehavior;
 pub use switch::SwitchBehavior;
-pub use traits::Behavior;
+pub use traits::{Behavior, BehaviorCallback, BehaviorState};
 pub use util::BehaviorFactory;
 pub use walk::WalkBehavior;

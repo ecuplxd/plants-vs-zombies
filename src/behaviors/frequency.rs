@@ -1,9 +1,13 @@
+use derives::{WithCallback, WithTimer};
+
 use super::{Behavior, BehaviorType, CycleBehavior};
 use crate::artists::{Artist, Draw};
 use crate::callback::ErasedFnPointer;
 use crate::sprites::{BaseUpdate, Sprite, SpritePointer, Update};
 use crate::timer::Elapsed;
 
+#[derive(WithTimer, WithCallback)]
+#[behavior(cycle)]
 pub struct FrequencyBehavior {
     name: BehaviorType,
     total: usize,
@@ -31,13 +35,6 @@ impl FrequencyBehavior {
         self.count == self.total - 1
     }
 
-    fn execute_callback(&self) {
-        match self.cb {
-            Some(cb) => cb.call(self.cycle.sprite),
-            _ => (),
-        }
-    }
-
     fn should_execute_callback(&self, now: f64) -> bool {
         now - self.cycle.last_advance > self.delay_execute_callback
     }
@@ -52,18 +49,6 @@ impl FrequencyBehavior {
 impl Behavior for FrequencyBehavior {
     fn name(&self) -> BehaviorType {
         self.name
-    }
-
-    fn start(&mut self, now: f64) {
-        self.cycle.start(now);
-    }
-
-    fn stop(&mut self, now: f64) {
-        self.cycle.stop(now);
-    }
-
-    fn is_running(&self) -> bool {
-        self.cycle.is_running()
     }
 
     fn execute(
@@ -102,13 +87,5 @@ impl Behavior for FrequencyBehavior {
                 }
             }
         }
-    }
-
-    fn set_sprite(&mut self, sprite: *mut dyn Update) {
-        self.cycle.set_sprite(sprite);
-    }
-
-    fn set_cb(&mut self, cb: ErasedFnPointer<SpritePointer>) {
-        self.cb = Some(cb);
     }
 }

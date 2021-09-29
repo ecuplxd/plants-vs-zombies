@@ -178,6 +178,10 @@ impl ZombieSprite {
 
         lawn_cleaner.toggle_behavior(BehaviorType::Walk, true, now);
     }
+
+    pub fn process_plant_collision(&mut self, _plant: &mut Box<dyn Update>, now: f64) {
+        self.change_to_attack(now);
+    }
 }
 
 // TODO：优化

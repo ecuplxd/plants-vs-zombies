@@ -1,22 +1,20 @@
-use std::ptr::NonNull;
-
+use derives::{derive_behavior, WithCallback, WithoutTimer};
 use web_sys::CanvasRenderingContext2d;
 
 use super::{Behavior, BehaviorType};
 use crate::callback::ErasedFnPointer;
 use crate::sprites::{Pos, SpriteCell, SpritePointer, Update};
 
+#[derive_behavior("default")]
+#[derive(Default, WithoutTimer, WithCallback)]
 pub struct SwitchBehavior {
     name: BehaviorType,
     switched: bool,
     switch_index: usize,
     cells: Vec<Vec<SpriteCell>>,
     infinite: bool,
-    sprite: SpritePointer,
     last_finished_time: f64,
     duration: f64,
-    running: bool,
-    cb: Option<ErasedFnPointer<SpritePointer>>,
 }
 
 impl SwitchBehavior {
@@ -26,12 +24,8 @@ impl SwitchBehavior {
             switch_index: 99,
             infinite,
             cells,
-            switched: false,
-            sprite: None,
             duration,
-            last_finished_time: 0.0,
-            running: false,
-            cb: None,
+            ..Default::default()
         }
     }
 
@@ -74,30 +68,11 @@ impl SwitchBehavior {
     fn is_finished(&self, now: f64) -> bool {
         now - self.last_finished_time > self.duration
     }
-
-    fn execute_callback(&self) {
-        match self.cb {
-            Some(cb) => cb.call(self.sprite),
-            _ => (),
-        }
-    }
 }
 
 impl Behavior for SwitchBehavior {
     fn name(&self) -> BehaviorType {
         self.name
-    }
-
-    fn start(&mut self, _now: f64) {
-        self.running = true;
-    }
-
-    fn stop(&mut self, _now: f64) {
-        self.running = false;
-    }
-
-    fn is_running(&self) -> bool {
-        self.running
     }
 
     fn execute(
@@ -120,13 +95,5 @@ impl Behavior for SwitchBehavior {
                 }
             }
         }
-    }
-
-    fn set_sprite(&mut self, sprite: *mut dyn Update) {
-        self.sprite = NonNull::new(sprite);
-    }
-
-    fn set_cb(&mut self, cb: ErasedFnPointer<SpritePointer>) {
-        self.cb = Some(cb);
     }
 }

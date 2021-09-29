@@ -617,8 +617,11 @@ impl Game {
     }
 
     fn shovel_plant(&mut self, loc: &Loc, has_plant: Option<usize>) {
-        match (loc.out_of_bound(), has_plant) {
-            (false, Some(index)) => self.remove_sprite(index),
+        match (loc.out_of_plant_bound(), has_plant) {
+            (false, Some(index)) => {
+                self.remove_sprite(index);
+                self.toggle_behaviors(&vec![BehaviorType::Collision], true);
+            }
             _ => (),
         }
     }
@@ -702,7 +705,7 @@ impl Game {
         let plant_index = self.find_sprite_by_id(self.be_planted_id.clone());
 
         // 不满足种植条件就移除掉
-        if loc.out_of_bound() || has_plant.is_some() {
+        if loc.out_of_plant_bound() || has_plant.is_some() {
             self.remove_sprite(plant_index);
 
             return;

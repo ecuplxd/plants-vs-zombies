@@ -1,5 +1,4 @@
-use std::ptr::NonNull;
-
+use derives::{derive_behavior, WithCallback, WithoutTimer};
 use web_sys::CanvasRenderingContext2d;
 
 use super::{Behavior, BehaviorType};
@@ -7,33 +6,22 @@ use crate::callback::ErasedFnPointer;
 use crate::fps::Fps;
 use crate::sprites::{Pos, Sprite, SpritePointer, Update};
 
+#[derive_behavior("default")]
+#[derive(Default, WithoutTimer, WithCallback)]
 pub struct ScrollBehavior {
     name: BehaviorType,
     rate: f64,
     distance: f64,
     offset: f64,
-    running: bool,
-    cb: Option<ErasedFnPointer<SpritePointer>>,
-    sprite: SpritePointer,
 }
 
 impl ScrollBehavior {
     pub fn new(distance: f64, rate: f64) -> ScrollBehavior {
         ScrollBehavior {
             name: BehaviorType::Scroll,
-            running: false,
             rate,
             distance,
-            offset: 0.0,
-            sprite: None,
-            cb: None,
-        }
-    }
-
-    fn execute_callback(&self) {
-        match self.cb {
-            Some(cb) => cb.call(self.sprite),
-            _ => (),
+            ..Default::default()
         }
     }
 
@@ -53,18 +41,6 @@ impl ScrollBehavior {
 impl Behavior for ScrollBehavior {
     fn name(&self) -> super::BehaviorType {
         self.name
-    }
-
-    fn start(&mut self, _now: f64) {
-        self.running = true;
-    }
-
-    fn stop(&mut self, _now: f64) {
-        self.running = false;
-    }
-
-    fn is_running(&self) -> bool {
-        self.running
     }
 
     fn execute(
@@ -92,13 +68,5 @@ impl Behavior for ScrollBehavior {
                 sprite.update_offset(new_offset);
             }
         }
-    }
-
-    fn set_sprite(&mut self, sprite: *mut dyn Update) {
-        self.sprite = NonNull::new(sprite);
-    }
-
-    fn set_cb(&mut self, cb: ErasedFnPointer<SpritePointer>) {
-        self.cb = Some(cb);
     }
 }

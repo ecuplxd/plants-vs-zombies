@@ -1,5 +1,4 @@
-use std::ptr::NonNull;
-
+use derives::{derive_behavior, WithCallback, WithoutTimer};
 use web_sys::CanvasRenderingContext2d;
 
 use super::{Behavior, BehaviorType};
@@ -7,27 +6,17 @@ use crate::callback::ErasedFnPointer;
 use crate::sprites::{Pos, SpritePointer, Update};
 use crate::util::{has_sprite_clicked, set_sprite_clicked};
 
+#[derive_behavior("default")]
+#[derive(Default, WithoutTimer, WithCallback)]
 pub struct ClickBehavior {
-    running: bool,
     name: BehaviorType,
-    sprite: SpritePointer,
-    cb: Option<ErasedFnPointer<SpritePointer>>,
 }
 
 impl ClickBehavior {
     pub fn new() -> ClickBehavior {
         ClickBehavior {
-            running: false,
             name: BehaviorType::Click,
-            sprite: None,
-            cb: None,
-        }
-    }
-
-    fn execute_callback(&self) {
-        match self.cb {
-            Some(cb) => cb.call(self.sprite),
-            _ => (),
+            ..Default::default()
         }
     }
 }
@@ -64,25 +53,5 @@ impl Behavior for ClickBehavior {
                 }
             }
         }
-    }
-
-    fn start(&mut self, _now: f64) {
-        self.running = true;
-    }
-
-    fn stop(&mut self, _now: f64) {
-        self.running = false;
-    }
-
-    fn is_running(&self) -> bool {
-        self.running
-    }
-
-    fn set_sprite(&mut self, sprite: *mut dyn Update) {
-        self.sprite = NonNull::new(sprite);
-    }
-
-    fn set_cb(&mut self, cb: ErasedFnPointer<SpritePointer>) {
-        self.cb = Some(cb);
     }
 }

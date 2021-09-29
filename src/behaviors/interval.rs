@@ -1,5 +1,4 @@
-use std::ptr::NonNull;
-
+use derives::{WithCallback, WithTimer};
 use web_sys::CanvasRenderingContext2d;
 
 use super::{Behavior, BehaviorType};
@@ -7,6 +6,7 @@ use crate::callback::ErasedFnPointer;
 use crate::sprites::{Pos, SpritePointer, Update};
 use crate::timer::{AnimationTimer, Time};
 
+#[derive(WithTimer, WithCallback)]
 pub struct IntervalBehavior {
     name: BehaviorType,
     timer: AnimationTimer,
@@ -23,38 +23,11 @@ impl IntervalBehavior {
             cb: None,
         }
     }
-
-    fn execute_callback(&self) {
-        match self.cb {
-            Some(cb) => cb.call(self.sprite),
-            _ => (),
-        }
-    }
 }
 
 impl Behavior for IntervalBehavior {
     fn name(&self) -> BehaviorType {
         self.name
-    }
-
-    fn start(&mut self, now: f64) {
-        self.timer.start(now);
-    }
-
-    fn stop(&mut self, now: f64) {
-        self.timer.stop(now);
-    }
-
-    fn is_running(&self) -> bool {
-        self.timer.is_running()
-    }
-
-    fn set_sprite(&mut self, sprite: *mut dyn Update) {
-        self.sprite = NonNull::new(sprite);
-    }
-
-    fn set_cb(&mut self, cb: ErasedFnPointer<SpritePointer>) {
-        self.cb = Some(cb);
     }
 
     fn execute(

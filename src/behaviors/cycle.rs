@@ -1,5 +1,4 @@
-use std::ptr::NonNull;
-
+use derives::{WithTimer, WithoutCallback};
 use web_sys::CanvasRenderingContext2d;
 
 use super::{Behavior, BehaviorType};
@@ -7,6 +6,7 @@ use crate::artists::Draw;
 use crate::sprites::{Pos, SpritePointer, Update};
 use crate::timer::{AnimationTimer, Time};
 
+#[derive(WithTimer, WithoutCallback)]
 pub struct CycleBehavior {
     name: BehaviorType,
     interval: Option<f64>,
@@ -63,21 +63,5 @@ impl Behavior for CycleBehavior {
                 }
             }
         }
-    }
-
-    fn start(&mut self, now: f64) {
-        self.timer.start(now);
-    }
-
-    fn stop(&mut self, now: f64) {
-        self.timer.stop(now);
-    }
-
-    fn is_running(&self) -> bool {
-        self.timer.is_running()
-    }
-
-    fn set_sprite(&mut self, sprite: *mut dyn Update) {
-        self.sprite = NonNull::new(sprite);
     }
 }

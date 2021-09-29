@@ -5,12 +5,12 @@ use crate::callback::ErasedFnPointer;
 use crate::game::Game;
 use crate::sprites::{Pos, SpritePointer, Update};
 
-pub trait Behavior {
-    fn name(&self) -> BehaviorType;
-
+pub trait BehaviorState {
     fn start(&mut self, _now: f64);
 
     fn stop(&mut self, _now: f64);
+
+    fn is_running(&self) -> bool;
 
     fn toggle(&mut self, run: bool, now: f64) {
         match run {
@@ -18,8 +18,18 @@ pub trait Behavior {
             false => self.stop(now),
         }
     }
+}
 
-    fn is_running(&self) -> bool;
+pub trait BehaviorCallback {
+    fn set_sprite(&mut self, sprite: *mut dyn Update);
+
+    fn set_cb(&mut self, _cb: ErasedFnPointer<SpritePointer>) {}
+
+    fn execute_callback(&self) {}
+}
+
+pub trait Behavior: BehaviorState + BehaviorCallback {
+    fn name(&self) -> BehaviorType;
 
     fn execute(
         &mut self,
@@ -28,10 +38,6 @@ pub trait Behavior {
         mouse_pos: &Pos,
         context: &CanvasRenderingContext2d,
     );
-
-    fn set_cb(&mut self, _cb: ErasedFnPointer<SpritePointer>) {}
-
-    fn set_sprite(&mut self, sprite: *mut dyn Update);
 
     fn set_game(&mut self, _game: *mut Game) {}
 }

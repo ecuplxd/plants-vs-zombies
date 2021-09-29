@@ -80,7 +80,7 @@ impl Loc {
 
         match col {
             Some(col) if col > 0 => col - 1,
-            _ => 99,
+            _ => 0,
         }
     }
 
@@ -89,7 +89,7 @@ impl Loc {
 
         match row {
             Some(row) if row > 0 => row - 1,
-            _ => 99,
+            _ => 0,
         }
     }
 
@@ -101,7 +101,7 @@ impl Loc {
     }
 
     #[inline]
-    pub fn out_of_bound(&self) -> bool {
+    pub fn out_of_plant_bound(&self) -> bool {
         self.col == 0 || self.col > 9 || self.row > 4
     }
 }

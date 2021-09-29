@@ -1,5 +1,4 @@
-use std::ptr::NonNull;
-
+use derives::{derive_behavior, WithCallback, WithoutTimer};
 use web_sys::CanvasRenderingContext2d;
 
 use super::{Behavior, BehaviorType};
@@ -9,11 +8,10 @@ use crate::log;
 use crate::model::SpriteType;
 use crate::sprites::{Pos, SpritePointer, Update, ZombieSprite};
 
+#[derive_behavior("default")]
+#[derive(Default, WithoutTimer, WithCallback)]
 pub struct CollisionBehavior {
     name: BehaviorType,
-    running: bool,
-    sprite: SpritePointer,
-    cb: Option<ErasedFnPointer<SpritePointer>>,
     game: Option<NonNull<Game>>,
     collided: bool,
 }
@@ -22,18 +20,7 @@ impl CollisionBehavior {
     pub fn new() -> CollisionBehavior {
         CollisionBehavior {
             name: BehaviorType::Collision,
-            running: false,
-            sprite: None,
-            cb: None,
-            game: None,
-            collided: false,
-        }
-    }
-
-    fn execute_callback(&self) {
-        match self.cb {
-            Some(cb) => cb.call(self.sprite),
-            _ => (),
+            ..Default::default()
         }
     }
 }
@@ -41,18 +28,6 @@ impl CollisionBehavior {
 impl Behavior for CollisionBehavior {
     fn name(&self) -> BehaviorType {
         self.name
-    }
-
-    fn start(&mut self, _now: f64) {
-        self.running = true;
-    }
-
-    fn stop(&mut self, _now: f64) {
-        self.running = false;
-    }
-
-    fn is_running(&self) -> bool {
-        self.running
     }
 
     fn execute(
@@ -82,6 +57,7 @@ impl Behavior for CollisionBehavior {
                             && sprite_ref.did_collide(target.as_ref())
                     })
                     .for_each(|target| {
+                        self.stop(now);
                         log!("{:?} 和 {:?} 发生碰撞", sprite_ref.id(), target.id());
 
                         self.collided = true;
@@ -94,7 +70,7 @@ impl Behavior for CollisionBehavior {
                         } else if is_lawn_cleaner {
                             zombie.process_lawn_cleaner_collision(target, now);
                         } else if !zombie.attacking {
-                            zombie.change_to_attack(now);
+                            zombie.process_plant_collision(target, now);
                         }
                     });
 
@@ -106,15 +82,7 @@ impl Behavior for CollisionBehavior {
         }
     }
 
-    fn set_sprite(&mut self, sprite: *mut dyn Update) {
-        self.sprite = NonNull::new(sprite);
-    }
-
     fn set_game(&mut self, game: *mut Game) {
         self.game = NonNull::new(game);
-    }
-
-    fn set_cb(&mut self, cb: ErasedFnPointer<SpritePointer>) {
-        self.cb = Some(cb);
     }
 }

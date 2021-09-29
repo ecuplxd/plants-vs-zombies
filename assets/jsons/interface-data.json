@@ -104,7 +104,7 @@
       { "left": 65, "top": 508 }
     ],
     "behaviors": [
-      { "name": "Walk", "velocit": { "x": 300, "y": 0 }, "duration": 1000 }
+      { "name": "Walk", "velocit": { "x": 1000, "y": 0 }, "duration": 1000 }
     ],
     "collision_margin": { "left": 0, "top": 0, "right": 0, "bottom": 0 },
     "order": 1

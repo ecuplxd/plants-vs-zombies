@@ -1,5 +1,5 @@
 use crate::artists::Draw;
-use crate::behaviors::{Behavior, BehaviorType, DragBehavior, WalkBehavior};
+use crate::behaviors::{Behavior, BehaviorCallback, BehaviorType, DragBehavior, WalkBehavior};
 use crate::game::Game;
 use crate::loc::Loc;
 use crate::model::{Callback, Plant, SpriteType, Text, CARD, INTERFACE, PLANT, ZOMBIE};
@@ -253,6 +253,7 @@ impl LevelScene {
             bullet.update_pos(pos);
             bullet.start_all_behavior(game.now);
 
+            game.toggle_behaviors(&vec![BehaviorType::Collision], true);
             game.add_sprite(bullet);
         }
     }

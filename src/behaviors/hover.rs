@@ -1,24 +1,21 @@
-use std::ptr::NonNull;
-
+use derives::{derive_behavior, WithoutCallback, WithoutTimer};
 use web_sys::CanvasRenderingContext2d;
 
 use super::{Behavior, BehaviorType};
 use crate::sprites::{Pos, Sprite, SpritePointer, Update};
 
+#[derive_behavior("no_callback")]
+#[derive(Default, WithoutTimer, WithoutCallback)]
 pub struct HoverBehavior {
-    running: bool,
     name: BehaviorType,
     moving: bool,
-    sprite: SpritePointer,
 }
 
 impl HoverBehavior {
     pub fn new() -> HoverBehavior {
         HoverBehavior {
-            running: false,
             name: BehaviorType::Hover,
-            moving: false,
-            sprite: None,
+            ..Default::default()
         }
     }
 }
@@ -55,21 +52,5 @@ impl Behavior for HoverBehavior {
                 }
             }
         }
-    }
-
-    fn start(&mut self, _now: f64) {
-        self.running = true;
-    }
-
-    fn stop(&mut self, _now: f64) {
-        self.running = false;
-    }
-
-    fn is_running(&self) -> bool {
-        self.running
-    }
-
-    fn set_sprite(&mut self, sprite: *mut dyn Update) {
-        self.sprite = NonNull::new(sprite);
     }
 }
