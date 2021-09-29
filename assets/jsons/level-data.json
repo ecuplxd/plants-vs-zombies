@@ -1,0 +1,32 @@
+[
+  {
+    "name": "1-1",
+    "flag_num": 3,
+    "scenes": [
+      "Background1",
+      "ShovelBack",
+      "Shovel",
+      "Button",
+      "LawnCleaner",
+      "PrepareGrowPlants"
+    ],
+    "plant_cards": [
+      "SunFlower",
+      "Peashooter",
+      "SnowPea",
+      "WallNut",
+      "Torchwood",
+      "PumpkinHead",
+      "TallNut"
+    ],
+    "zombie_cards": [
+      "BucketheadZombie",
+      "ConeheadZombie",
+      "ScreenDoorZombie",
+      "ConeheadZombie",
+      "ConeheadZombie",
+      "Zombie1",
+      "FlagZombie"
+    ]
+  }
+]

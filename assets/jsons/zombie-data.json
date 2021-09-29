@@ -1,0 +1,79 @@
+{
+  "zombie/ConeheadZombie": {
+    "constructor": "ZombieSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [
+      { "name": "Cycle", "duration": 120 },
+      {
+        "name": "Switch",
+        "switch_cells": [
+          "zombie/ConeheadZombieWalk",
+          "zombie/ConeheadZombieAttack"
+        ]
+      },
+      { "name": "Walk", "velocit": { "x": -10, "y": 0 }, "duration": 1000 },
+      { "name": "Collision" }
+    ],
+    "collision_margin": { "left": 30, "top": 5, "right": 10, "bottom": 5 }
+  },
+  "zombie/BucketheadZombie": {
+    "constructor": "ZombieSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [
+      { "name": "Cycle", "duration": 120 },
+      {
+        "name": "Switch",
+        "switch_cells": [
+          "zombie/BucketheadZombieWalk",
+          "zombie/BucketheadZombieAttack"
+        ]
+      },
+      { "name": "Walk", "velocit": { "x": -9, "y": 0 }, "duration": 1000 },
+      { "name": "Collision" }
+    ],
+    "collision_margin": { "left": 30, "top": 5, "right": 10, "bottom": 5 }
+  },
+  "zombie/FlagZombie": {
+    "constructor": "ZombieSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [
+      { "name": "Cycle", "duration": 120 },
+      {
+        "name": "Switch",
+        "switch_cells": ["zombie/FlagZombieWalk", "zombie/FlagZombieAttack"]
+      },
+      { "name": "Walk", "velocit": { "x": -8, "y": 0 }, "duration": 1000 },
+      { "name": "Collision" }
+    ],
+    "collision_margin": { "left": 40, "top": 5, "right": 10, "bottom": 5 }
+  },
+  "zombie/ScreenDoorZombie": {
+    "constructor": "ZombieSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [
+      { "name": "Cycle", "duration": 120 },
+      {
+        "name": "Switch",
+        "switch_cells": [
+          "zombie/ScreenDoorZombieWalk",
+          "zombie/ScreenDoorZombieAttack"
+        ]
+      },
+      { "name": "Walk", "velocit": { "x": -12, "y": 0 }, "duration": 1000 },
+      { "name": "Collision" }
+    ]
+  },
+  "zombie/Zombie1": {
+    "constructor": "ZombieSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [
+      { "name": "Cycle", "duration": 120 },
+      {
+        "name": "Switch",
+        "switch_cells": ["zombie/ZombieWalk1", "zombie/ZombieAttack"]
+      },
+      { "name": "Walk", "velocit": { "x": -5, "y": 0 }, "duration": 1000 },
+      { "name": "Collision" }
+    ]
+  }
+}

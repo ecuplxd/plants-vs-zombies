@@ -1,2 +1,0 @@
-- Rust 编写的 WASM Canvas 游戏 Demo
-- 涵盖了使用 Rust 开发 WASM 应用的方方面面

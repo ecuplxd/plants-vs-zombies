@@ -1,0 +1,44 @@
+{
+  "card/SunFlower": {
+    "constructor": "Sprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Click" }],
+    "scale": 0.725
+  },
+  "card/Peashooter": {
+    "constructor": "Sprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Click" }],
+    "scale": 0.725
+  },
+  "card/SnowPea": {
+    "constructor": "Sprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Click" }],
+    "scale": 0.725
+  },
+  "card/WallNut": {
+    "constructor": "Sprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Click" }],
+    "scale": 0.725
+  },
+  "card/Torchwood": {
+    "constructor": "Sprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Click" }],
+    "scale": 0.725
+  },
+  "card/PumpkinHead": {
+    "constructor": "Sprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Click" }],
+    "scale": 0.725
+  },
+  "card/TallNut": {
+    "constructor": "Sprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Click" }],
+    "scale": 0.725
+  }
+}
