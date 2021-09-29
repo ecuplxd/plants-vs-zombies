@@ -3,6 +3,7 @@ use std::ptr::NonNull;
 use web_sys::CanvasRenderingContext2d;
 
 use super::{Behavior, BehaviorType};
+use crate::callback::ErasedFnPointer;
 use crate::sprites::{Pos, SpriteCell, SpritePointer, Update};
 
 pub struct SwitchBehavior {
@@ -15,6 +16,7 @@ pub struct SwitchBehavior {
     last_finished_time: f64,
     duration: f64,
     running: bool,
+    cb: Option<ErasedFnPointer<SpritePointer>>,
 }
 
 impl SwitchBehavior {
@@ -29,6 +31,7 @@ impl SwitchBehavior {
             duration,
             last_finished_time: 0.0,
             running: false,
+            cb: None,
         }
     }
 
@@ -51,6 +54,7 @@ impl SwitchBehavior {
             artist.revert();
 
             self.update(99, false, now);
+            self.execute_callback();
         }
     }
 
@@ -69,6 +73,13 @@ impl SwitchBehavior {
 
     fn is_finished(&self, now: f64) -> bool {
         now - self.last_finished_time > self.duration
+    }
+
+    fn execute_callback(&self) {
+        match self.cb {
+            Some(cb) => cb.call(self.sprite),
+            _ => (),
+        }
     }
 }
 
@@ -113,5 +124,9 @@ impl Behavior for SwitchBehavior {
 
     fn set_sprite(&mut self, sprite: *mut dyn Update) {
         self.sprite = NonNull::new(sprite);
+    }
+
+    fn set_cb(&mut self, cb: ErasedFnPointer<SpritePointer>) {
+        self.cb = Some(cb);
     }
 }

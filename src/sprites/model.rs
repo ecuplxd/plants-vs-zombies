@@ -226,3 +226,8 @@ impl Velocit {
         Velocit { x, y }
     }
 }
+
+#[derive(Debug, Clone, Copy)]
+pub enum PlantCallback {
+    Switch,
+}

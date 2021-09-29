@@ -44,6 +44,12 @@
     "pos": [{ "left": 100, "top": 150 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
+      {
+        "name": "Switch",
+        "switch_cells": ["plant/PeaBulletHit"],
+        "duration": 80,
+        "infinite": false
+      },
       { "name": "Walk", "velocit": { "x": 250, "y": 0 }, "duration": 1000 }
     ],
     "collision_margin": { "left": 25, "top": 2, "right": 2, "bottom": 5 }
@@ -53,6 +59,12 @@
     "pos": [{ "left": 100, "top": 250 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
+      {
+        "name": "Switch",
+        "switch_cells": ["plant/PeaBulletHit"],
+        "duration": 80,
+        "infinite": false
+      },
       { "name": "Walk", "velocit": { "x": 200, "y": 0 }, "duration": 1000 }
     ],
     "collision_margin": { "left": 25, "top": 2, "right": 2, "bottom": 5 }

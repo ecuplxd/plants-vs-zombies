@@ -3,9 +3,11 @@ use std::any::Any;
 use derives::{BaseUpdate, Draw};
 
 use crate::behaviors::{Behavior, BehaviorType};
+use crate::callback::ErasedFnPointer;
 use crate::loc::Loc;
 use crate::model::Zombie;
-use crate::sprites::{BaseUpdate, Pos, Sprite, Update};
+use crate::sprites::{BaseUpdate, PlantCallback, PlantSprite, Pos, Sprite, SpritePointer, Update};
+use crate::timer::Timer;
 use crate::util::get_random_int_inclusive;
 
 #[derive(BaseUpdate, Draw)]
@@ -123,6 +125,58 @@ impl ZombieSprite {
         }
 
         self.sprite.update_pos(new_pos);
+    }
+
+    pub fn toggle_bullet(&mut self, plant: SpritePointer) {
+        if let Some(mut bullet) = plant {
+            unsafe {
+                bullet.as_mut().toggle();
+
+                self.sprite.global_alpha = 1.0;
+                self.toggle_behavior(BehaviorType::Collision, true, Timer::get_current_time());
+            }
+        }
+    }
+
+    fn get_callback(&mut self, callback: PlantCallback) -> ErasedFnPointer<SpritePointer> {
+        let pointer = match callback {
+            PlantCallback::Switch => {
+                ErasedFnPointer::from_associated(self, ZombieSprite::toggle_bullet)
+            }
+        };
+
+        pointer
+    }
+
+    pub fn register_callback(&mut self, behavior: &mut Box<dyn Behavior>, callback: PlantCallback) {
+        let pointer = self.get_callback(callback);
+
+        behavior.set_cb(pointer);
+    }
+
+    fn before_process_collision(&mut self, now: f64) {
+        self.toggle_behavior(BehaviorType::Collision, false, now);
+    }
+
+    pub fn process_bullet_collision(&mut self, bullet: &mut Box<dyn Update>, now: f64) {
+        self.before_process_collision(now);
+
+        let switch = bullet.find_behavior(BehaviorType::Switch).unwrap();
+
+        self.sprite.global_alpha = 0.5;
+        self.register_callback(switch, PlantCallback::Switch);
+
+        let bullet = bullet.as_any().downcast_mut::<PlantSprite>().unwrap();
+
+        bullet.switch = true;
+    }
+
+    pub fn process_lawn_cleaner_collision(&mut self, lawn_cleaner: &mut Box<dyn Update>, now: f64) {
+        self.before_process_collision(now);
+
+        self.change_to_dieing(now);
+
+        lawn_cleaner.toggle_behavior(BehaviorType::Walk, true, now);
     }
 }
 

@@ -90,12 +90,9 @@ impl Behavior for CollisionBehavior {
                         let is_lawn_cleaner = SpriteType::is_lawn_cleaner(target.name());
 
                         if is_bullet {
-                            target.toggle();
+                            zombie.process_bullet_collision(target, now);
                         } else if is_lawn_cleaner {
-                            self.stop(now);
-
-                            zombie.change_to_dieing(now);
-                            target.toggle_behavior(BehaviorType::Walk, true, now);
+                            zombie.process_lawn_cleaner_collision(target, now);
                         } else if !zombie.attacking {
                             zombie.change_to_attack(now);
                         }

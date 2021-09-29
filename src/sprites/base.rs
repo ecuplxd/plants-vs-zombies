@@ -25,6 +25,7 @@ pub struct Sprite {
     pub loc: Loc,
     pub clicked: bool,
     normal_shape: bool,
+    pub global_alpha: f64,
 }
 
 impl Sprite {
@@ -58,6 +59,7 @@ impl Sprite {
             loc: Default::default(),
             clicked: false,
             normal_shape,
+            global_alpha: 1.0,
         }
     }
 
@@ -147,6 +149,8 @@ impl Draw for Sprite {
     fn draw(&self, context: &CanvasRenderingContext2d) {
         let Pos { left, top } = self.offset;
 
+        context.save();
+        context.set_global_alpha(self.global_alpha);
         context.translate(-left, -top).unwrap();
 
         self.artist.draw_image(context, &self.pos);
@@ -159,6 +163,7 @@ impl Draw for Sprite {
         );
 
         context.translate(left, top).unwrap();
+        context.restore();
     }
 }
 

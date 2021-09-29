@@ -258,11 +258,7 @@ impl Game {
         behavior_type: BehaviorType,
         callback: Callback,
     ) {
-        let behavior = sprite
-            .get_mut_behaviors()
-            .iter_mut()
-            .find(|behavior| behavior.name() == behavior_type)
-            .unwrap();
+        let behavior = sprite.find_behavior(behavior_type).unwrap();
         let pointer = self.get_callback(callback);
 
         behavior.set_cb(pointer);
@@ -282,12 +278,7 @@ impl Game {
             .iter()
             .enumerate()
             .for_each(|(index, behavior_type)| {
-                let behavior_type = *behavior_type;
-                let behavior = sprite
-                    .get_mut_behaviors()
-                    .iter_mut()
-                    .find(|behavior| behavior.name() == behavior_type)
-                    .unwrap();
+                let behavior = sprite.find_behavior(*behavior_type).unwrap();
                 let pointer = self.get_callback(callbacks[index]);
 
                 behavior.set_cb(pointer);
@@ -453,7 +444,7 @@ impl Game {
     }
 
     fn enable_seed(&mut self, name: SpriteType) {
-        let seed = self.sprites.iter_mut().find(|sprite| sprite.name() == name);
+        let seed = self.find_sprite(name);
 
         if let Some(seed) = seed {
             let seed = seed.as_any().downcast_mut::<Sprite>().unwrap();
@@ -566,13 +557,11 @@ impl Game {
     }
 
     fn scroll_bg_to_left(&mut self) {
-        let bg = self
-            .sprites
-            .iter_mut()
-            .find(|sprite| sprite.name() == SpriteType::Interface(Interface::Background1));
+        let now = self.now;
+        let bg = self.find_sprite(SpriteType::Interface(Interface::Background1));
 
         if let Some(bg) = bg {
-            bg.toggle_behavior(BehaviorType::Scroll, true, self.now);
+            bg.toggle_behavior(BehaviorType::Scroll, true, now);
         }
     }
 
@@ -903,8 +892,10 @@ impl Game {
         let num = self.format_sun_num();
 
         self.context.save();
+
         self.context.set_font("32px 黑体");
         self.context.fill_text(&num, 138.0, 30.0).unwrap();
+
         self.context.restore();
     }
 }

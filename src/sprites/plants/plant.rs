@@ -12,6 +12,7 @@ pub struct PlantSprite {
     pub life: f64,
     pub attack: f64,
     pub switch_index: usize,
+    pub switch: bool,
 }
 
 impl PlantSprite {
@@ -21,6 +22,7 @@ impl PlantSprite {
             life: 100.0,
             attack: 1.0,
             switch_index: 0,
+            switch: false,
         }
     }
 
@@ -48,6 +50,6 @@ impl Update for PlantSprite {
     }
 
     fn tirgger_switch(&self) -> (bool, usize) {
-        (false, self.switch_index)
+        (self.switch, self.switch_index)
     }
 }

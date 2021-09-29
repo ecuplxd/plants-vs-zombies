@@ -67,10 +67,15 @@ pub trait BaseUpdate {
     }
 
     fn has_behavior(&mut self, behavior_type: BehaviorType) -> bool {
+        let behavior = self.find_behavior(behavior_type);
+
+        behavior.is_some()
+    }
+
+    fn find_behavior(&mut self, behavior_type: BehaviorType) -> Option<&mut Box<dyn Behavior>> {
         self.get_mut_behaviors()
-            .iter()
+            .iter_mut()
             .find(|behavior| behavior.name() == behavior_type)
-            .is_some()
     }
 
     fn can_candidate_for_collision(&self) -> bool {
@@ -105,10 +110,7 @@ pub trait BaseUpdate {
     }
 
     fn toggle_behavior(&mut self, behavior_type: BehaviorType, run: bool, now: f64) {
-        let behavior = self
-            .get_mut_behaviors()
-            .iter_mut()
-            .find(|behavior| behavior.name() == behavior_type);
+        let behavior = self.find_behavior(behavior_type);
 
         if let Some(behavior) = behavior {
             behavior.toggle(run, now);
