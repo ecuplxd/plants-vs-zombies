@@ -23,7 +23,7 @@ pub trait BehaviorState {
 pub trait BehaviorCallback {
     fn set_sprite(&mut self, sprite: *mut dyn Update);
 
-    fn set_cb(&mut self, _cb: ErasedFnPointer<SpritePointer>) {}
+    fn add_callback(&mut self, _callback: ErasedFnPointer<SpritePointer>) {}
 
     fn execute_callback(&self) {}
 }

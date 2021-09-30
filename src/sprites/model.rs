@@ -224,3 +224,13 @@ impl Velocit {
 pub enum PlantCallback {
     Switch,
 }
+
+#[repr(u8)]
+#[derive(Debug)]
+pub enum ZombieState {
+    Waiting = 0,
+    Walking,
+    Attacking,
+    Dieing,
+    Died,
+}

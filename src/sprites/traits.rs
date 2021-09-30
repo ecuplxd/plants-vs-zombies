@@ -8,6 +8,30 @@ use crate::behaviors::{Behavior, BehaviorType};
 use crate::loc::Loc;
 use crate::model::SpriteType;
 
+pub trait Life {
+    fn get_life(&self) -> f64 {
+        99999.0
+    }
+
+    fn set_life(&mut self, _life: f64) {}
+
+    fn is_die(&self) -> bool {
+        self.get_life() <= 0.0
+    }
+
+    fn being_attacked(&mut self, attack: &impl Attack) {
+        let life = self.get_life() - attack.get_hurt();
+
+        self.set_life(life);
+    }
+}
+
+pub trait Attack {
+    fn get_hurt(&self) -> f64 {
+        0.0
+    }
+}
+
 pub trait BaseUpdate {
     fn id(&self) -> String {
         self.name().to_string()
@@ -16,6 +40,8 @@ pub trait BaseUpdate {
     fn name(&self) -> SpriteType {
         SpriteType::Unknown
     }
+
+    fn as_any(&mut self) -> &mut dyn Any;
 
     fn get_loc(&self) -> Loc {
         Default::default()
@@ -58,7 +84,9 @@ pub trait BaseUpdate {
         true
     }
 
-    fn toggle(&mut self) {}
+    fn show(&mut self) {}
+
+    fn hide(&mut self) {}
 
     fn add_behavior(&mut self, _behavior: Box<dyn Behavior>) {}
 
@@ -142,7 +170,11 @@ pub trait Update: BaseUpdate + Draw {
             .for_each(|behavior| behavior.start(now));
     }
 
-    fn as_any(&mut self) -> &mut dyn Any;
+    fn stop_all_behavior(&mut self, now: f64) {
+        self.get_mut_behaviors()
+            .iter_mut()
+            .for_each(|behavior| behavior.stop(now));
+    }
 
     fn tirgger_switch(&self) -> (bool, usize) {
         (false, 0)

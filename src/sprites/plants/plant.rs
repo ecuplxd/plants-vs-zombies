@@ -1,16 +1,14 @@
-use std::any::Any;
-
-use derives::{BaseUpdate, Draw};
+use derives::{BaseUpdate, Draw, Life};
 
 use crate::behaviors::Behavior;
 use crate::loc::Loc;
-use crate::sprites::{BaseUpdate, Pos, Sprite, Update};
+use crate::sprites::{Pos, Sprite, Update};
 
-#[derive(BaseUpdate, Draw)]
+#[derive(Life, BaseUpdate, Draw)]
 pub struct PlantSprite {
     pub sprite: Sprite,
     pub life: f64,
-    pub attack: f64,
+    pub hurt: f64,
     pub switch_index: usize,
     pub switch: bool,
 }
@@ -20,7 +18,7 @@ impl PlantSprite {
         PlantSprite {
             sprite,
             life: 100.0,
-            attack: 1.0,
+            hurt: 1.0,
             switch_index: 0,
             switch: false,
         }
@@ -43,10 +41,6 @@ impl PlantSprite {
 impl Update for PlantSprite {
     fn update_pos(&mut self, pos: Pos) {
         self.sprite.update_pos(pos);
-    }
-
-    fn as_any(&mut self) -> &mut dyn Any {
-        self
     }
 
     fn tirgger_switch(&self) -> (bool, usize) {

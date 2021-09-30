@@ -261,7 +261,7 @@ impl Game {
         let behavior = sprite.find_behavior(behavior_type).unwrap();
         let pointer = self.get_callback(callback);
 
-        behavior.set_cb(pointer);
+        behavior.add_callback(pointer);
 
         BehaviorFactory::whether_to_enable(behavior, self.now);
 
@@ -281,7 +281,7 @@ impl Game {
                 let behavior = sprite.find_behavior(*behavior_type).unwrap();
                 let pointer = self.get_callback(callbacks[index]);
 
-                behavior.set_cb(pointer);
+                behavior.add_callback(pointer);
 
                 BehaviorFactory::whether_to_enable(behavior, self.now);
             });
@@ -311,7 +311,7 @@ impl Game {
             unsafe {
                 self.state.sun += 150;
 
-                sun.as_mut().toggle()
+                sun.as_mut().hide()
             }
         }
     }
@@ -319,7 +319,7 @@ impl Game {
     fn sun_disappear(&mut self, sun: SpritePointer) {
         if let Some(mut sun) = sun {
             unsafe {
-                sun.as_mut().toggle();
+                sun.as_mut().hide();
             }
         }
     }

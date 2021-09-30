@@ -6,7 +6,7 @@ use crate::callback::ErasedFnPointer;
 use crate::game::Game;
 use crate::log;
 use crate::model::SpriteType;
-use crate::sprites::{Pos, SpritePointer, Update, ZombieSprite};
+use crate::sprites::{Life, Pos, SpritePointer, Update, ZombieSprite, ZombieState};
 
 #[derive_behavior("default")]
 #[derive(Default, WithoutTimer, WithCallback)]
@@ -39,14 +39,19 @@ impl Behavior for CollisionBehavior {
     ) {
         if let (Some(mut sprite), Some(mut game)) = (self.sprite, self.game) {
             unsafe {
-                self.collided = false;
-
-                let sprite_ref = sprite.as_ref();
                 let zombie = sprite
                     .as_mut()
                     .as_any()
                     .downcast_mut::<ZombieSprite>()
                     .unwrap();
+
+                // TODO：更好的放置位置？
+                if zombie.is_die() {
+                    return;
+                }
+
+                self.collided = false;
+                let sprite_ref = sprite.as_ref();
 
                 game.as_mut()
                     .sprites
@@ -69,7 +74,7 @@ impl Behavior for CollisionBehavior {
                             zombie.process_bullet_collision(target, now);
                         } else if is_lawn_cleaner {
                             zombie.process_lawn_cleaner_collision(target, now);
-                        } else if !zombie.attacking {
+                        } else if !zombie.in_state(ZombieState::Attacking) {
                             zombie.process_plant_collision(target, now);
                         }
                     });

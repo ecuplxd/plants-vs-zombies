@@ -55,7 +55,7 @@ impl Behavior for WalkBehavior {
                 }
 
                 match new_pos.out_of_bound() {
-                    true => sprite.as_mut().toggle(),
+                    true => sprite.as_mut().hide(),
                     false => {
                         let loc = Loc::get_row_col_by_pos(&new_pos);
 

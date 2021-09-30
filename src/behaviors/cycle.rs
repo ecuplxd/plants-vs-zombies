@@ -52,7 +52,6 @@ impl Behavior for CycleBehavior {
                 let artist = sprite.as_mut().get_mut_artist();
 
                 match self.interval {
-                    // TODO：优化 添加到 trait 方法中
                     Some(interval) => match artist.in_last_cell() {
                         true if now - last_advance > interval => self.advance(artist, now),
                         false if one_frame_passed => self.advance(artist, now),

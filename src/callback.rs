@@ -6,8 +6,8 @@ use core::ptr::null_mut;
 use std::marker::PhantomData;
 
 pub struct ErasedFnPointer<T, Ret = ()> {
-    struct_pointer: *mut c_void,
-    fp: *const (),
+    pub struct_pointer: *mut c_void,
+    pub fp: *const (),
     phantom_sp: PhantomData<()>,
     phantom_fp: PhantomData<fn(T) -> Ret>,
 }

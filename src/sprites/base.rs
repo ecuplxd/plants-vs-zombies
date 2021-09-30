@@ -192,8 +192,12 @@ impl BaseUpdate for Sprite {
         self.collision_margin
     }
 
-    fn toggle(&mut self) {
-        self.visible = !self.visible;
+    fn show(&mut self) {
+        self.visible = true;
+    }
+
+    fn hide(&mut self) {
+        self.visible = false;
     }
 
     fn is_visible(&self) -> bool {
@@ -260,13 +264,13 @@ impl BaseUpdate for Sprite {
     fn is_clicked(&self) -> bool {
         self.clicked
     }
-}
 
-impl Update for Sprite {
     fn as_any(&mut self) -> &mut dyn Any {
         self
     }
+}
 
+impl Update for Sprite {
     fn update_pos(&mut self, pos: Pos) {
         self.pos = pos;
     }

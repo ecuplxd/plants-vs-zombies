@@ -15,7 +15,7 @@ pub struct FrequencyBehavior {
     count: usize,
     delay_start: f64,
     delay_execute_callback: f64,
-    cb: Option<ErasedFnPointer<SpritePointer>>,
+    callbacks: Vec<ErasedFnPointer<SpritePointer>>,
 }
 
 impl FrequencyBehavior {
@@ -27,7 +27,7 @@ impl FrequencyBehavior {
             cycle: CycleBehavior::new(duration, None),
             delay_execute_callback: 1000.0,
             delay_start,
-            cb: None,
+            callbacks: vec![],
         }
     }
 
@@ -68,7 +68,7 @@ impl Behavior for FrequencyBehavior {
 
                 match self.finished() {
                     true if self.should_execute_callback(now) => {
-                        sprite.toggle();
+                        sprite.hide();
 
                         self.stop(now);
                         self.execute_callback();

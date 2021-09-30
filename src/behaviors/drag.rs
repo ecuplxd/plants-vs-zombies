@@ -4,7 +4,7 @@ use web_sys::CanvasRenderingContext2d;
 use super::{Behavior, BehaviorState, BehaviorType};
 use crate::sprites::{Pos, SpritePointer, Update};
 
-#[derive_behavior("no_callback")]
+#[derive_behavior("without_callback")]
 #[derive(Default, WithoutCallback)]
 pub struct DragBehavior {
     name: BehaviorType,

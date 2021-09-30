@@ -1,5 +1,6 @@
 use super::{Easing, Elapsed, Time, Timer};
 
+#[derive(Default)]
 pub struct AnimationTimer {
     pub duration: f64,
     pub timer: Timer,

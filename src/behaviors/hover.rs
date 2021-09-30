@@ -4,7 +4,7 @@ use web_sys::CanvasRenderingContext2d;
 use super::{Behavior, BehaviorType};
 use crate::sprites::{Pos, Sprite, SpritePointer, Update};
 
-#[derive_behavior("no_callback")]
+#[derive_behavior("without_callback")]
 #[derive(Default, WithoutTimer, WithoutCallback)]
 pub struct HoverBehavior {
     name: BehaviorType,

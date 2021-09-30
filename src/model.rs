@@ -326,6 +326,10 @@ impl SpriteType {
         matches!(name, SpriteType::Plant(Plant::LawnCleaner))
     }
 
+    pub fn is_screen_door(name: SpriteType) -> bool {
+        matches!(name, SpriteType::Zombie(Zombie::ScreenDoor))
+    }
+
     pub fn from_str(name: &str) -> SpriteType {
         match name {
             // Text

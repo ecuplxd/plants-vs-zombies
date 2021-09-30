@@ -79,6 +79,10 @@ impl BaseUpdate for Guideline {
     fn get_mut_behaviors(&mut self) -> &mut Vec<Box<dyn Behavior>> {
         &mut self.behaviors
     }
+
+    fn as_any(&mut self) -> &mut dyn Any {
+        self
+    }
 }
 
 impl Draw for Guideline {
@@ -87,8 +91,4 @@ impl Draw for Guideline {
     }
 }
 
-impl Update for Guideline {
-    fn as_any(&mut self) -> &mut dyn Any {
-        self
-    }
-}
+impl Update for Guideline {}

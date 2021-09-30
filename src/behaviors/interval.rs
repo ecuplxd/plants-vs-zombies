@@ -1,4 +1,4 @@
-use derives::{WithCallback, WithTimer};
+use derives::{derive_behavior, WithCallback, WithTimer};
 use web_sys::CanvasRenderingContext2d;
 
 use super::{Behavior, BehaviorType};
@@ -6,12 +6,11 @@ use crate::callback::ErasedFnPointer;
 use crate::sprites::{Pos, SpritePointer, Update};
 use crate::timer::{AnimationTimer, Time};
 
-#[derive(WithTimer, WithCallback)]
+#[derive_behavior("with_callback")]
+#[derive(Default, WithTimer, WithCallback)]
 pub struct IntervalBehavior {
     name: BehaviorType,
     timer: AnimationTimer,
-    sprite: SpritePointer,
-    cb: Option<ErasedFnPointer<SpritePointer>>,
 }
 
 impl IntervalBehavior {
@@ -19,8 +18,7 @@ impl IntervalBehavior {
         IntervalBehavior {
             name: BehaviorType::Interval,
             timer: AnimationTimer::new(interval),
-            sprite: None,
-            cb: None,
+            ..Default::default()
         }
     }
 }

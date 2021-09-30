@@ -96,10 +96,10 @@ impl BaseUpdate for TextSprite {
     fn get_mut_behaviors(&mut self) -> &mut Vec<Box<dyn Behavior>> {
         &mut self.behaviors
     }
-}
 
-impl Update for TextSprite {
     fn as_any(&mut self) -> &mut dyn Any {
         self
     }
 }
+
+impl Update for TextSprite {}

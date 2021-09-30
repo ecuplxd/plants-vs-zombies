@@ -37,7 +37,7 @@ pub fn get_random_int_inclusive(min: f64, max: f64) -> f64 {
 
 #[inline]
 pub fn get_random_string(prefix: String) -> String {
-    format!("{}_{}", prefix, Math::random().to_string())
+    format!("{}_{}", prefix, &Math::random().to_string()[2..12])
 }
 
 #[macro_export]
