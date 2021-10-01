@@ -79,10 +79,6 @@ impl Artist {
             .unwrap();
     }
 
-    pub fn goto(&mut self, index: usize) {
-        self.cell_index = index;
-    }
-
     fn in_cell(&self, index: usize) -> bool {
         self.cell_index == index
     }
@@ -135,5 +131,13 @@ impl Draw for Artist {
 
     fn get_current_cell(&self) -> Option<&SpriteCell> {
         self.cells.get(self.cell_index)
+    }
+
+    fn update_scale(&mut self, scale: f64) {
+        self.scale = scale;
+    }
+
+    fn goto(&mut self, index: usize) {
+        self.cell_index = index;
     }
 }

@@ -107,7 +107,8 @@
       { "name": "Walk", "velocit": { "x": 1000, "y": 0 }, "duration": 1000 }
     ],
     "collision_margin": { "left": 0, "top": 0, "right": 0, "bottom": 0 },
-    "order": 1
+    "order": 1,
+    "hurt": 99999
   },
   "interface/PrepareGrowPlants": {
     "constructor": "Sprite",

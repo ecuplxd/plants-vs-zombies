@@ -40,6 +40,8 @@ pub struct SpriteData {
     pub collision_margin: CollisionMargin,
     #[serde(default = "default_normal_shape")]
     pub normal_shape: bool,
+    #[serde(default = "default_hurt")]
+    pub hurt: f64,
 }
 
 fn default_normal_shape() -> bool {
@@ -54,6 +56,10 @@ fn default_order() -> usize {
     2
 }
 
+fn default_hurt() -> f64 {
+    20.0
+}
+
 impl SpriteData {
     pub fn new(pos: Vec<Pos>, behaviors: Vec<BehaviorData>) -> SpriteData {
         SpriteData {
@@ -65,6 +71,7 @@ impl SpriteData {
             order: 2,
             collision_margin: Default::default(),
             normal_shape: true,
+            hurt: 20.0,
         }
     }
 
@@ -223,6 +230,7 @@ impl Velocit {
 #[derive(Debug, Clone, Copy)]
 pub enum PlantCallback {
     Switch,
+    Interval,
 }
 
 #[repr(u8)]

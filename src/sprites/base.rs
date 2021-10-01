@@ -91,6 +91,7 @@ impl Sprite {
             behaviors,
             order,
             normal_shape,
+            hurt,
             ..
         } = resouce.get_data(&cell_name);
 
@@ -119,8 +120,8 @@ impl Sprite {
                 );
 
                 let mut sprite: Box<dyn Update> = match constructor {
-                    "ZombieSprite" => Box::new(ZombieSprite::new(sprite)),
-                    "PlantSprite" => Box::new(PlantSprite::new(sprite)),
+                    "ZombieSprite" => Box::new(ZombieSprite::new(hurt, sprite)),
+                    "PlantSprite" => Box::new(PlantSprite::new(hurt, sprite)),
                     _ => Box::new(sprite),
                 };
 

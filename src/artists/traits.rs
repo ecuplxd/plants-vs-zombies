@@ -22,6 +22,10 @@ pub trait Draw {
     fn get_current_cell(&self) -> Option<&SpriteCell> {
         None
     }
+
+    fn update_scale(&mut self, _scale: f64) {}
+
+    fn goto(&mut self, _index: usize) {}
 }
 
 pub trait Stroke {

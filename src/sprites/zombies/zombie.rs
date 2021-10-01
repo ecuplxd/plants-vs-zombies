@@ -1,6 +1,6 @@
 use derives::{BaseUpdate, Draw, Life};
 
-use crate::behaviors::{Behavior, BehaviorType};
+use crate::behaviors::{Behavior, BehaviorType, IntervalBehavior};
 use crate::callback::ErasedFnPointer;
 use crate::loc::Loc;
 use crate::sprites::{PlantCallback, PlantSprite, Pos, Sprite, SpritePointer, Update, ZombieState};
@@ -17,11 +17,11 @@ pub struct ZombieSprite {
 }
 
 impl ZombieSprite {
-    pub fn new(sprite: Sprite) -> ZombieSprite {
+    pub fn new(hurt: f64, sprite: Sprite) -> ZombieSprite {
         ZombieSprite {
             sprite,
             life: 100.0,
-            hurt: 1.0,
+            hurt,
             switch_index: 0,
             state: 1 << ZombieState::Waiting as u8,
         }
@@ -76,6 +76,7 @@ impl ZombieSprite {
     pub fn change_to_dieing(&mut self, now: f64) {
         self.change_state(ZombieState::Dieing);
         self.toggle_behavior(BehaviorType::Walk, false, now);
+        self.toggle_behavior(BehaviorType::Collision, false, now);
     }
 
     pub fn change_to_died(&mut self, now: f64) {
@@ -129,6 +130,25 @@ impl ZombieSprite {
         }
     }
 
+    fn attack_plant(&mut self, plant: SpritePointer) {
+        if let Some(mut plant) = plant {
+            unsafe {
+                let now = Timer::get_current_time();
+                let plant = plant
+                    .as_mut()
+                    .as_any()
+                    .downcast_mut::<PlantSprite>()
+                    .unwrap();
+                let died = plant.process_attacked(self, now);
+
+                if died {
+                    self.change_to_walk(now);
+                    self.toggle_behavior(BehaviorType::Collision, true, now);
+                }
+            }
+        }
+    }
+
     fn process_attacked(&mut self, attack: &impl Attack, now: f64) {
         self.being_attacked(attack);
 
@@ -141,6 +161,9 @@ impl ZombieSprite {
         match callback {
             PlantCallback::Switch => {
                 ErasedFnPointer::from_associated(self, ZombieSprite::hide_bullet)
+            }
+            PlantCallback::Interval => {
+                ErasedFnPointer::from_associated(self, ZombieSprite::attack_plant)
             }
         }
     }
@@ -170,14 +193,27 @@ impl ZombieSprite {
     }
 
     pub fn process_lawn_cleaner_collision(&mut self, lawn_cleaner: &mut Box<dyn Update>, now: f64) {
-        self.before_process_collision(now);
+        let lawn_cleaner = lawn_cleaner
+            .as_mut()
+            .as_any()
+            .downcast_mut::<PlantSprite>()
+            .unwrap();
 
-        self.change_to_dieing(now);
+        self.before_process_collision(now);
+        self.process_attacked(lawn_cleaner, now);
 
         lawn_cleaner.toggle_behavior(BehaviorType::Walk, true, now);
     }
 
-    pub fn process_plant_collision(&mut self, _plant: &mut Box<dyn Update>, now: f64) {
+    pub fn process_plant_collision(&mut self, plant: &mut Box<dyn Update>, now: f64) {
+        let mut interval: Box<dyn Behavior> = Box::new(IntervalBehavior::new(2000.0));
+
+        self.register_callback(&mut interval, PlantCallback::Interval);
+
+        interval.set_sprite(plant.as_mut());
+        interval.start(now);
+        plant.add_behavior(interval);
+
         self.change_to_attack(now);
     }
 }

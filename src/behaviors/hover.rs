@@ -2,7 +2,7 @@ use derives::{derive_behavior, WithoutCallback, WithoutTimer};
 use web_sys::CanvasRenderingContext2d;
 
 use super::{Behavior, BehaviorType};
-use crate::sprites::{Pos, Sprite, SpritePointer, Update};
+use crate::sprites::{Pos, SpritePointer, Update};
 
 #[derive_behavior("without_callback")]
 #[derive(Default, WithoutTimer, WithoutCallback)]
@@ -35,19 +35,19 @@ impl Behavior for HoverBehavior {
         if let Some(mut sprite) = self.sprite {
             unsafe {
                 let inpath = sprite.as_ref().point_in_path(mouse_pos, context);
-                let sprite = sprite.as_mut().as_any().downcast_mut::<Sprite>().unwrap();
+                let artist = sprite.as_mut().get_mut_artist();
 
                 match inpath {
                     true if !self.moving => {
                         self.moving = true;
 
-                        sprite.artist.goto(1);
+                        artist.goto(1);
                     }
                     true => (),
                     false => {
                         self.moving = false;
 
-                        sprite.artist.goto(0);
+                        artist.goto(0);
                     }
                 }
             }

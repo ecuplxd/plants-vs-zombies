@@ -14,11 +14,11 @@ pub struct PlantSprite {
 }
 
 impl PlantSprite {
-    pub fn new(sprite: Sprite) -> PlantSprite {
+    pub fn new(hurt: f64, sprite: Sprite) -> PlantSprite {
         PlantSprite {
             sprite,
             life: 100.0,
-            hurt: 1.0,
+            hurt,
             switch_index: 0,
             switch: false,
         }
@@ -35,6 +35,20 @@ impl PlantSprite {
         let delta = Pos::new(73.0, -37.0);
 
         pos + delta
+    }
+
+    // TODO：放到 Attack trait
+    pub fn process_attacked(&mut self, attack: &impl Attack, now: f64) -> bool {
+        self.being_attacked(attack);
+
+        let die = self.is_die();
+
+        if die {
+            self.hide();
+            self.stop_all_behavior(now);
+        }
+
+        die
     }
 }
 

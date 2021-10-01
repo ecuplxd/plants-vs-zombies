@@ -370,9 +370,9 @@ impl Game {
         if let Some(mut seed) = seed {
             unsafe {
                 let name = seed.as_ref().name().short_name();
-                let seed_sprite = seed.as_mut().as_any().downcast_mut::<Sprite>().unwrap();
+                let artist = seed.as_mut().get_mut_artist();
 
-                if !LevelScene::is_seed_disabled(seed_sprite) {
+                if !LevelScene::is_seed_disabled(artist) {
                     LevelScene::build_plant_card(self, name, self.get_card_pos());
                 }
             }
@@ -441,9 +441,7 @@ impl Game {
         let seed = self.find_sprite(name);
 
         if let Some(seed) = seed {
-            let seed = seed.as_any().downcast_mut::<Sprite>().unwrap();
-
-            seed.artist.goto(0);
+            seed.get_mut_artist().goto(0);
         }
     }
 
@@ -488,7 +486,7 @@ impl Game {
         if let Some(sun_back) = sun_back {
             let sun_back = sun_back.as_any().downcast_mut::<Sprite>().unwrap();
 
-            sun_back.offset = Pos::new(0.0, 0.0);
+            sun_back.update_offset(Pos::new(0.0, 0.0));
         }
     }
 
@@ -572,6 +570,7 @@ impl Game {
 
                 zombie.change_to_walk(self.now);
                 zombie.start_all_behavior(self.now);
+                zombie.toggle_behavior(BehaviorType::Interval, false, self.now);
             });
     }
 
@@ -868,10 +867,11 @@ impl Game {
             .iter_mut()
             .filter(|sprite| SpriteType::is_zombie(sprite.name()))
             .for_each(|sprite| {
-                let zombie = sprite.as_any().downcast_mut::<ZombieSprite>().unwrap();
-                let new_offset = Pos::new(offset, 0.0);
-
-                zombie.update_offset(new_offset);
+                sprite
+                    .as_any()
+                    .downcast_mut::<ZombieSprite>()
+                    .unwrap()
+                    .update_offset(Pos::new(offset, 0.0));
             });
     }
 

@@ -183,21 +183,20 @@ impl LevelScene {
     /// 左边植物卡片
     pub fn build_plant_card(game: &mut Game, name: String, pos: Pos) {
         let mut card = Sprite::from_data_one(&game.resource, CARD, &name);
-        let card_sprite = card.as_any().downcast_mut::<Sprite>().unwrap();
 
-        card_sprite.artist.scale = 1.0;
-        card_sprite.update_loc(Loc::new(99, 99));
-        card_sprite.update_pos(pos);
-        card_sprite.update_outlines();
+        card.get_mut_artist().update_scale(1.0);
+        card.update_loc(Loc::new(99, 99));
+        card.update_pos(pos);
+        card.update_outlines();
 
         game.register_callback(card, BehaviorType::Click, Callback::CardClick);
     }
 
-    pub fn is_seed_disabled(sprite: &mut Sprite) -> bool {
-        let in_last_cell = sprite.artist.in_last_cell();
+    pub fn is_seed_disabled(artist: &mut dyn Draw) -> bool {
+        let in_last_cell = artist.in_last_cell();
 
         if !in_last_cell {
-            sprite.artist.goto(1);
+            artist.goto(1);
         }
 
         in_last_cell
@@ -215,11 +214,10 @@ impl LevelScene {
                 let zombie_sprite = zombie.as_any().downcast_mut::<ZombieSprite>().unwrap();
 
                 zombie_sprite.init_pos(index);
-                // TODO：优化 其实只有碰撞检测需要 set_game
                 zombie_sprite
-                    .get_mut_behaviors()
-                    .iter_mut()
-                    .for_each(|behavior| behavior.set_game(game));
+                    .find_behavior(BehaviorType::Collision)
+                    .unwrap()
+                    .set_game(game);
                 zombie.toggle_behavior(BehaviorType::Cycle, true, game.now);
 
                 game.add_sprite(zombie);

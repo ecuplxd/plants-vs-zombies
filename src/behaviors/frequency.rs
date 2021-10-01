@@ -1,9 +1,9 @@
 use derives::{WithCallback, WithTimer};
 
 use super::{Behavior, BehaviorType, CycleBehavior};
-use crate::artists::{Artist, Draw};
+use crate::artists::Draw;
 use crate::callback::ErasedFnPointer;
-use crate::sprites::{BaseUpdate, Sprite, SpritePointer, Update};
+use crate::sprites::{SpritePointer, Update};
 use crate::timer::Elapsed;
 
 #[derive(WithTimer, WithCallback)]
@@ -39,7 +39,7 @@ impl FrequencyBehavior {
         now - self.cycle.last_advance > self.delay_execute_callback
     }
 
-    fn cycle_finished(&self, now: f64, artist: &Artist) -> bool {
+    fn cycle_finished(&self, now: f64, artist: &dyn Draw) -> bool {
         let one_frame_passed = now - self.cycle.last_advance > self.cycle.timer.duration;
 
         artist.in_last_cell() && one_frame_passed
@@ -64,18 +64,18 @@ impl Behavior for FrequencyBehavior {
 
         if let Some(mut sprite) = self.cycle.sprite {
             unsafe {
-                let sprite = sprite.as_mut().as_any().downcast_mut::<Sprite>().unwrap();
-
                 match self.finished() {
                     true if self.should_execute_callback(now) => {
-                        sprite.hide();
+                        sprite.as_mut().hide();
 
                         self.stop(now);
                         self.execute_callback();
                     }
                     true => (),
                     false => {
-                        if self.cycle_finished(now, &sprite.artist) {
+                        let artist = sprite.as_ref().get_ref_artist();
+
+                        if self.cycle_finished(now, artist) {
                             self.count += 1;
                         }
 
