@@ -58,12 +58,12 @@ pub fn impl_base_update_derive(parsed_input: DeriveInput) -> TokenStream {
                         self.sprite.update_outlines();
                     }
 
-                    fn update_loc(&mut self, loc: Loc) {
-                        self.sprite.update_loc(loc);
-                    }
-
                     fn get_order(&self) -> usize {
                         self.sprite.get_order()
+                    }
+
+                    fn set_order(&mut self, order: usize) {
+                        self.sprite.set_order(order);
                     }
 
                     fn get_rect(&self) -> SpriteCell {
@@ -76,6 +76,10 @@ pub fn impl_base_update_derive(parsed_input: DeriveInput) -> TokenStream {
 
                     fn get_loc(&self) -> Loc {
                         self.sprite.get_loc()
+                    }
+
+                    fn update_loc(&mut self, loc: Loc) {
+                        self.sprite.update_loc(loc);
                     }
 
                     fn get_collision_margin(&self) -> CollisionMargin {

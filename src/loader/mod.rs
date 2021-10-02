@@ -11,19 +11,21 @@ use crate::engine::EngineError;
 
 mod image;
 
+type Path<'a> = (&'a str, &'a str);
+
 pub struct Loader<'a> {
-    pub cells: Vec<&'a str>,
-    pub data: Vec<&'a str>,
-    pub level: Vec<&'a str>,
-    images: Vec<(&'a str, &'a str)>,
+    pub cells: Vec<Path<'a>>,
+    pub data: Vec<Path<'a>>,
+    pub level: Vec<Path<'a>>,
+    images: Vec<Path<'a>>,
 }
 
 impl<'a> Loader<'a> {
     pub fn new(
-        cells: Vec<&'a str>,
-        data: Vec<&'a str>,
-        level: Vec<&'a str>,
-        images: Vec<(&'a str, &'a str)>,
+        cells: Vec<Path<'a>>,
+        data: Vec<Path<'a>>,
+        level: Vec<Path<'a>>,
+        images: Vec<Path<'a>>,
     ) -> Loader<'a> {
         Loader {
             cells,
@@ -33,8 +35,9 @@ impl<'a> Loader<'a> {
         }
     }
 
-    pub async fn load_jsons(&self, paths: &[&'a str]) -> Vec<JsValue> {
-        let mut jsons: Vec<JsValue> = vec![];
+    // https://rustwiki.org/zh-CN/edition-guide/rust-2018/ownership-and-lifetimes/the-anonymous-lifetime.html
+    pub async fn load_jsons(&self, paths: &[Path<'_>]) -> Vec<(String, JsValue)> {
+        let mut jsons: Vec<(String, JsValue)> = vec![];
 
         for json in paths.iter() {
             let result = self.load_json(json).await;
@@ -47,14 +50,14 @@ impl<'a> Loader<'a> {
         jsons
     }
 
-    pub async fn load_json(&self, url: &str) -> Result<JsValue, EngineError> {
+    pub async fn load_json(&self, path: &Path<'_>) -> Result<(String, JsValue), EngineError> {
         // https://rustwasm.github.io/wasm-bindgen/examples/fetch.html
         let mut opts = RequestInit::new();
 
         opts.method("GET");
         opts.mode(RequestMode::Cors);
 
-        let request = Request::new_with_str_and_init(url, &opts)?;
+        let request = Request::new_with_str_and_init(path.0, &opts)?;
 
         let window = web_sys::window().unwrap();
         let resp_value = JsFuture::from(window.fetch_with_request(&request)).await?;
@@ -64,7 +67,7 @@ impl<'a> Loader<'a> {
 
         let json = JsFuture::from(resp.json()?).await?;
 
-        Ok(json)
+        Ok((path.1.to_string(), json))
     }
 
     pub async fn load_images(&self) -> HashMap<String, Rc<HtmlImageElement>> {

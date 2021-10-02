@@ -81,7 +81,7 @@ impl Sprite {
     }
 
     pub fn from_data(resouce: &Resource, sheet_kind: SheetKind, name: &str) -> Vec<Box<dyn Update>> {
-        let (cell_name, sheet_kind) = Resource::get_name(sheet_kind, name);
+        let (cell_name, sheet_name, sheet_kind) = Resource::get_name(sheet_kind, name);
         let SpriteData {
             constructor,
             pos,
@@ -91,6 +91,7 @@ impl Sprite {
             behaviors,
             order,
             normal_shape,
+            life,
             hurt,
             ..
         } = resouce.get_data(&cell_name);
@@ -106,7 +107,7 @@ impl Sprite {
         let sprites = pos
             .iter()
             .map(|pos| {
-                let image = resouce.get_sheet(&sheet_kind);
+                let image = resouce.get_sheet(&sheet_name);
                 let cell = resouce.get_cell(&cell_name);
                 let artist = Artist::new(image, cell.to_vec(), scale);
                 let sprite = Sprite::new(
@@ -120,13 +121,13 @@ impl Sprite {
                 );
 
                 let mut sprite: Box<dyn Update> = match constructor {
-                    "ZombieSprite" => Box::new(ZombieSprite::new(hurt, sprite)),
-                    "PlantSprite" => Box::new(PlantSprite::new(hurt, sprite)),
+                    "ZombieSprite" => Box::new(ZombieSprite::new(life, hurt, sprite)),
+                    "PlantSprite" => Box::new(PlantSprite::new(life, hurt, sprite)),
                     _ => Box::new(sprite),
                 };
 
                 behaviors.iter().for_each(|behavior| {
-                    let mut behavior = BehaviorFactory::create(resouce, behavior);
+                    let mut behavior = BehaviorFactory::create(resouce, behavior, &sheet_kind);
 
                     behavior.set_sprite(sprite.as_mut());
                     sprite.add_behavior(behavior);
@@ -233,12 +234,12 @@ impl BaseUpdate for Sprite {
         };
     }
 
-    fn update_loc(&mut self, loc: Loc) {
-        self.loc = loc;
-    }
-
     fn get_order(&self) -> usize {
         self.order
+    }
+
+    fn set_order(&mut self, order: usize) {
+        self.order = order;
     }
 
     fn get_rect(&self) -> SpriteCell {
@@ -256,6 +257,10 @@ impl BaseUpdate for Sprite {
 
     fn get_loc(&self) -> Loc {
         self.loc
+    }
+
+    fn update_loc(&mut self, loc: Loc) {
+        self.loc = loc;
     }
 
     fn set_clicked(&mut self, clicked: bool) {

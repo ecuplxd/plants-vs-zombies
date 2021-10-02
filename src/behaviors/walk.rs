@@ -54,8 +54,13 @@ impl Behavior for WalkBehavior {
                     _ => (),
                 }
 
-                match new_pos.out_of_bound() {
-                    true => sprite.as_mut().hide(),
+                let cell = &sprite.as_ref().get_rect();
+
+                match new_pos.out_of_bound(&cell.into()) {
+                    true => {
+                        sprite.as_mut().update_pos(new_pos);
+                        sprite.as_mut().hide();
+                    }
                     false => {
                         let loc = Loc::get_row_col_by_pos(&new_pos);
 

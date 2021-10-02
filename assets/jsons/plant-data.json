@@ -1,5 +1,5 @@
 {
-  "plant/Peashooter": {
+  "Peashooter": {
     "constructor": "PlantSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
@@ -7,17 +7,17 @@
       { "name": "Interval", "interval": 4500 }
     ]
   },
-  "plant/Torchwood": {
+  "Torchwood": {
     "constructor": "PlantSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [{ "name": "Cycle", "duration": 120 }]
   },
-  "plant/WallNut": {
+  "WallNut": {
     "constructor": "PlantSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [{ "name": "Cycle", "duration": 120 }]
   },
-  "plant/SunFlower": {
+  "SunFlower": {
     "constructor": "PlantSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
@@ -27,11 +27,11 @@
         "name": "Switch",
         "infinite": false,
         "duration": 1800,
-        "switch_cells": ["plant/SunFlower1"]
+        "switch_cells": ["SunFlower1"]
       }
     ]
   },
-  "plant/SnowPea": {
+  "SnowPea": {
     "constructor": "PlantSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
@@ -39,14 +39,14 @@
       { "name": "Interval", "interval": 6000 }
     ]
   },
-  "plant/PB100": {
+  "PB100": {
     "constructor": "PlantSprite",
     "pos": [{ "left": 100, "top": 150 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
       {
         "name": "Switch",
-        "switch_cells": ["plant/PeaBulletHit"],
+        "switch_cells": ["PeaBulletHit"],
         "duration": 80,
         "infinite": false
       },
@@ -54,14 +54,14 @@
     ],
     "collision_margin": { "left": 25, "top": 2, "right": 2, "bottom": 5 }
   },
-  "plant/PB00": {
+  "PB00": {
     "constructor": "PlantSprite",
     "pos": [{ "left": 100, "top": 250 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
       {
         "name": "Switch",
-        "switch_cells": ["plant/PeaBulletHit"],
+        "switch_cells": ["PeaBulletHit"],
         "duration": 80,
         "infinite": false
       },
@@ -69,7 +69,7 @@
     ],
     "collision_margin": { "left": 25, "top": 2, "right": 2, "bottom": 5 }
   },
-  "plant/PB01": {
+  "PB01": {
     "constructor": "PlantSprite",
     "pos": [{ "left": 100, "top": 350 }],
     "behaviors": [
@@ -78,7 +78,7 @@
     ],
     "collision_margin": { "left": 2, "top": 2, "right": 25, "bottom": 5 }
   },
-  "plant/PB10": {
+  "PB10": {
     "constructor": "PlantSprite",
     "pos": [{ "left": 100, "top": 450 }],
     "behaviors": [
@@ -87,7 +87,7 @@
     ],
     "collision_margin": { "left": 30, "top": 2, "right": 2, "bottom": 5 }
   },
-  "plant/PB11": {
+  "PB11": {
     "constructor": "PlantSprite",
     "pos": [{ "left": 100, "top": 550 }],
     "behaviors": [

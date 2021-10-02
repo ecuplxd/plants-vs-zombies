@@ -49,8 +49,8 @@ macro_rules! log {
 
 #[macro_export]
 macro_rules! asset_json {
-    ($name:tt) => {
-        concat!("assets/jsons/", $name, ".json")
+    ($name:tt, $kind:tt) => {
+        (concat!("assets/jsons/", $name, "-", $kind, ".json"), $name)
     };
 }
 

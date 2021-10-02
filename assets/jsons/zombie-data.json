@@ -1,70 +1,123 @@
 {
-  "zombie/Conehead": {
+  "Conehead": {
     "constructor": "ZombieSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
       {
         "name": "Switch",
-        "switch_cells": ["zombie/ConeheadWalk", "zombie/ConeheadAttack"]
+        "switch_cells": [
+          "ConeheadWalk",
+          "ConeheadAttack",
+          "ZombieWalk1",
+          "ZombieAttack",
+          "ZombieLostHead",
+          "ZombieLostHeadAttack",
+          "ZombieDie",
+          "ZombieBoomdie"
+        ]
       },
       { "name": "Walk", "velocit": { "x": -10, "y": 0 }, "duration": 1000 },
       { "name": "Collision" }
     ],
-    "collision_margin": { "left": 30, "top": 5, "right": 10, "bottom": 5 }
+    "collision_margin": { "left": 30, "top": 5, "right": 10, "bottom": 5 },
+    "life": 200
   },
-  "zombie/Buckethead": {
+  "Buckethead": {
     "constructor": "ZombieSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
       {
         "name": "Switch",
-        "switch_cells": ["zombie/BucketheadWalk", "zombie/BucketheadAttack"]
+        "switch_cells": [
+          "BucketheadWalk",
+          "BucketheadAttack",
+          "ZombieWalk1",
+          "ZombieAttack",
+          "ZombieLostHead",
+          "ZombieLostHeadAttack",
+          "ZombieDie",
+          "ZombieBoomdie"
+        ]
       },
       { "name": "Walk", "velocit": { "x": -9, "y": 0 }, "duration": 1000 },
       { "name": "Collision" }
     ],
+    "life": 200,
     "collision_margin": { "left": 30, "top": 5, "right": 10, "bottom": 5 }
   },
-  "zombie/Flag": {
+  "Flag": {
     "constructor": "ZombieSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
       {
         "name": "Switch",
-        "switch_cells": ["zombie/FlagWalk", "zombie/FlagAttack"]
+        "switch_cells": [
+          "FlagWalk",
+          "FlagAttack",
+          "FlagWalk",
+          "FlagAttack",
+          "FlagLostHead",
+          "FlagLostHeadattack",
+          "ZombieDie",
+          "ZombieBoomdie"
+        ]
       },
       { "name": "Walk", "velocit": { "x": -8, "y": 0 }, "duration": 1000 },
       { "name": "Collision" }
     ],
     "collision_margin": { "left": 40, "top": 5, "right": 10, "bottom": 5 }
   },
-  "zombie/ScreenDoor": {
+  "ScreenDoor": {
     "constructor": "ZombieSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
       {
         "name": "Switch",
-        "switch_cells": ["zombie/ScreenDoorWalk", "zombie/ScreenDoorAttack"]
+        "switch_cells": [
+          "ScreenDoorWalk",
+          "ScreenDoorAttack",
+          "ZombieWalk1",
+          "ZombieAttack",
+          "ScreenDoorLostHeadWalk1",
+          "ScreenDoorLostHeadAttack1",
+          "ZombieDie",
+          "ZombieBoomdie"
+        ]
       },
       { "name": "Walk", "velocit": { "x": -12, "y": 0 }, "duration": 1000 },
       { "name": "Collision" }
-    ]
+    ],
+    "life": 200
   },
-  "zombie/Zombie1": {
+  "Zombie1": {
     "constructor": "ZombieSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
       {
         "name": "Switch",
-        "switch_cells": ["zombie/ZombieWalk1", "zombie/ZombieAttack"]
+        "switch_cells": [
+          "ZombieWalk1",
+          "ZombieAttack",
+          "ZombieWalk1",
+          "ZombieAttack",
+          "ZombieLostHead",
+          "ZombieLostHeadAttack",
+          "ZombieDie",
+          "ZombieBoomdie"
+        ]
       },
       { "name": "Walk", "velocit": { "x": -5, "y": 0 }, "duration": 1000 },
       { "name": "Collision" }
     ]
+  },
+  "ZombieHead": {
+    "constructor": "ZombieSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Frequency", "duration": 120 }]
   }
 }

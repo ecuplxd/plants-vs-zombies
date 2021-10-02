@@ -12,18 +12,22 @@ pub struct ZombieSprite {
     pub sprite: Sprite,
     pub life: f64,
     pub hurt: f64,
-    pub switch_index: usize,
+    pub switch_index: u8,
     state: u8,
+    stage: u8,
+    pub loss_head: bool,
 }
 
 impl ZombieSprite {
-    pub fn new(hurt: f64, sprite: Sprite) -> ZombieSprite {
+    pub fn new(life: f64, hurt: f64, sprite: Sprite) -> ZombieSprite {
         ZombieSprite {
             sprite,
-            life: 100.0,
+            life,
             hurt,
-            switch_index: 0,
-            state: 1 << ZombieState::Waiting as u8,
+            switch_index: ZombieState::Wait as u8,
+            state: 1 << ZombieState::Wait as u8,
+            stage: (life / 100.0) as u8,
+            loss_head: false,
         }
     }
 
@@ -48,40 +52,44 @@ impl ZombieSprite {
         self.sprite.update_pos(pos);
     }
 
-    pub fn change_state(&mut self, state: ZombieState) {
-        self.state = 1 << state as u8;
+    pub fn change_state(&mut self, state: ZombieState, switch: bool) {
+        self.state = 1 << state.clone() as u8;
+
+        if switch {
+            self.switch_index = state as u8 - 1;
+        }
     }
 
     pub fn in_state(&self, state: ZombieState) -> bool {
         self.state == (1 << state as u8)
     }
 
-    pub fn change_to_waiting(&mut self, now: f64) {
-        self.change_state(ZombieState::Waiting);
-        self.toggle_behavior(BehaviorType::Walk, false, now);
-    }
-
     pub fn change_to_walk(&mut self, now: f64) {
-        self.change_state(ZombieState::Walking);
-        self.switch_index = 0;
+        if self.in_walking() {
+            return;
+        }
+
+        match self.life < 100.0 {
+            true => self.change_state(ZombieState::LostArmorWalk, true),
+            false => self.change_state(ZombieState::Walk, true),
+        }
+
         self.toggle_behavior(BehaviorType::Walk, true, now);
     }
 
     pub fn change_to_attack(&mut self, now: f64) {
-        self.change_state(ZombieState::Attacking);
-        self.switch_index = 1;
+        match self.life < 100.0 {
+            true => self.change_state(ZombieState::LostArmorAttack, true),
+            false => self.change_state(ZombieState::Attack, true),
+        }
+
         self.toggle_behavior(BehaviorType::Walk, false, now);
     }
 
-    pub fn change_to_dieing(&mut self, now: f64) {
-        self.change_state(ZombieState::Dieing);
+    pub fn change_to_die(&mut self, now: f64) {
+        self.change_state(ZombieState::Die, true);
         self.toggle_behavior(BehaviorType::Walk, false, now);
         self.toggle_behavior(BehaviorType::Collision, false, now);
-    }
-
-    pub fn change_to_died(&mut self, now: f64) {
-        self.change_state(ZombieState::Died);
-        self.toggle_behavior(BehaviorType::Walk, false, now);
     }
 
     fn align_plant_pos(&mut self, pos: Option<Pos>, size: Option<Size>) {
@@ -102,7 +110,7 @@ impl ZombieSprite {
         self.sprite.size = size;
         self.sprite.update_loc(loc);
 
-        if SpriteType::is_screen_door(self.name()) && self.in_state(ZombieState::Attacking) {
+        if SpriteType::is_screen_door(self.name()) && self.in_state(ZombieState::Attack) {
             new_pos.top += 18.0;
         }
 
@@ -149,11 +157,32 @@ impl ZombieSprite {
         }
     }
 
+    fn in_walking(&mut self) -> bool {
+        self.in_state(ZombieState::Walk) || self.in_state(ZombieState::LostArmorWalk)
+    }
+
+    pub fn in_attacking(&mut self) -> bool {
+        self.in_state(ZombieState::Attack) || self.in_state(ZombieState::LostArmorAttack)
+    }
+
+    fn process_life_stage(&mut self, now: f64) {
+        if self.life < 100.0 && self.stage == 2 {
+            if self.in_walking() {
+                self.change_state(ZombieState::LostArmorWalk, true);
+            } else if self.in_state(ZombieState::Attack) {
+                self.change_to_attack(now);
+            }
+
+            self.stage = 1;
+        }
+    }
+
     fn process_attacked(&mut self, attack: &impl Attack, now: f64) {
         self.being_attacked(attack);
+        self.process_life_stage(now);
 
         if self.is_die() {
-            self.change_to_dieing(now);
+            self.change_to_die(now);
         }
     }
 
@@ -227,7 +256,7 @@ impl Update for ZombieSprite {
         self.align_plant_pos(Some(pos), Some(size));
     }
 
-    fn tirgger_switch(&self) -> (bool, usize) {
+    fn tirgger_switch(&self) -> (bool, u8) {
         (self.state != 0, self.switch_index)
     }
 }

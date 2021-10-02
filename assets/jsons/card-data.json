@@ -1,44 +1,51 @@
 {
-  "card/SunFlower": {
+  "SunFlower": {
     "constructor": "Sprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [{ "name": "Click" }],
-    "scale": 0.725
+    "scale": 0.725,
+    "order": 3
   },
-  "card/Peashooter": {
+  "Peashooter": {
     "constructor": "Sprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [{ "name": "Click" }],
-    "scale": 0.725
+    "scale": 0.725,
+    "order": 3
   },
-  "card/SnowPea": {
+  "SnowPea": {
     "constructor": "Sprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [{ "name": "Click" }],
-    "scale": 0.725
+    "scale": 0.725,
+    "order": 3
   },
-  "card/WallNut": {
+  "WallNut": {
     "constructor": "Sprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [{ "name": "Click" }],
-    "scale": 0.725
+    "scale": 0.725,
+    "order": 3
   },
-  "card/Torchwood": {
+  "Torchwood": {
     "constructor": "Sprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [{ "name": "Click" }],
-    "scale": 0.725
+    "scale": 0.725,
+    "order": 3
   },
-  "card/PumpkinHead": {
+  "PumpkinHead": {
     "constructor": "Sprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [{ "name": "Click" }],
-    "scale": 0.725
+    "scale": 0.725,
+    "order": 3
   },
-  "card/TallNut": {
+  "TallNut": {
     "constructor": "Sprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [{ "name": "Click" }],
-    "scale": 0.725
+    "scale": 0.725,
+    "order": 3
   }
 }

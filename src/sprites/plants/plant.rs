@@ -9,15 +9,15 @@ pub struct PlantSprite {
     pub sprite: Sprite,
     pub life: f64,
     pub hurt: f64,
-    pub switch_index: usize,
+    pub switch_index: u8,
     pub switch: bool,
 }
 
 impl PlantSprite {
-    pub fn new(hurt: f64, sprite: Sprite) -> PlantSprite {
+    pub fn new(life: f64, hurt: f64, sprite: Sprite) -> PlantSprite {
         PlantSprite {
             sprite,
-            life: 100.0,
+            life,
             hurt,
             switch_index: 0,
             switch: false,
@@ -57,7 +57,7 @@ impl Update for PlantSprite {
         self.sprite.update_pos(pos);
     }
 
-    fn tirgger_switch(&self) -> (bool, usize) {
+    fn tirgger_switch(&self) -> (bool, u8) {
         (self.switch, self.switch_index)
     }
 }

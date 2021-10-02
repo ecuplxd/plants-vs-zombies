@@ -100,6 +100,14 @@ impl Loc {
         Loc::new(row, col)
     }
 
+    pub fn in_same_row(&self, loc: &Loc) -> bool {
+        self.row == loc.row
+    }
+
+    pub fn in_same_col(&self, loc: &Loc) -> bool {
+        self.col == loc.col
+    }
+
     #[inline]
     pub fn out_of_plant_bound(&self) -> bool {
         self.col == 0 || self.col > 9 || self.row > 4

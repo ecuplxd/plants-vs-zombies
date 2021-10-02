@@ -16,7 +16,7 @@ use crate::model::{
 };
 use crate::scenes::{HomeScene, LevelScene};
 use crate::sprites::{
-    BaseUpdate, Guideline, PlantSprite, Pos, Sprite, SpritePointer, Update, ZombieSprite,
+    BaseUpdate, Guideline, Life, PlantSprite, Pos, Sprite, SpritePointer, Update, ZombieSprite,
 };
 use crate::time_system::TimeSystem;
 use crate::util::{set_sprite_clicked, window};
@@ -63,6 +63,8 @@ pub struct Game {
 
     sun_produce_rate: f64,
     last_sun_produce: f64,
+
+    over: bool,
 }
 
 impl Game {
@@ -114,6 +116,8 @@ impl Game {
 
             sun_produce_rate: 10000.0,
             last_sun_produce: 0.0,
+
+            over: false,
         }
     }
 
@@ -331,6 +335,7 @@ impl Game {
         HomeScene::build(self);
     }
 
+    // TODO：移到 plant
     fn plant_action(&mut self, plant: SpritePointer) {
         if let Some(mut plant) = plant {
             unsafe {
@@ -348,14 +353,32 @@ impl Game {
                         LevelScene::build_sun(Some(sun_pos), self);
                     }
                     SpriteType::Plant(Plant::Peashooter) | SpriteType::Plant(Plant::SnowPea) => {
-                        let bullet_pos = plant.get_bullet_pos();
+                        let loc = plant.get_loc();
 
-                        LevelScene::build_bullet(name, bullet_pos, self)
+                        if self.row_has_zombie(&loc) {
+                            let bullet_pos = plant.get_bullet_pos();
+
+                            LevelScene::build_bullet(name, bullet_pos, self);
+                        }
                     }
                     _ => (),
                 }
             }
         }
+    }
+
+    // TODO：有优化空间，不用每个 plant 都进行判断
+    fn row_has_zombie(&mut self, loc: &Loc) -> bool {
+        self.sprites
+            .iter_mut()
+            .any(|zombie| match SpriteType::is_zombie(zombie.name()) {
+                true if loc.in_same_row(&zombie.get_loc()) => !zombie
+                    .as_any()
+                    .downcast_mut::<ZombieSprite>()
+                    .unwrap()
+                    .is_die(),
+                _ => false,
+            })
     }
 
     #[inline]
@@ -593,7 +616,7 @@ impl Game {
 
     fn sprite_had_moved(&mut self, sheet_kind: SheetKind, name: &str) -> bool {
         let mut moved = false;
-        let (cell_name, _) = Resource::get_name(sheet_kind, name);
+        let (cell_name, ..) = Resource::get_name(sheet_kind, name);
         let sprite_data = self.resource.get_data(&cell_name);
 
         let sprite = self.find_sprite(SpriteType::from_str(name));
@@ -705,6 +728,7 @@ impl Game {
         let rect = &plant.get_rect();
         let pos = Loc::put_on_cell_bottom(loc, &rect.into());
 
+        plant.set_order(1);
         plant.update_loc(*loc);
         plant.update_pos(pos);
         // 最后一个是 DragBehavior 种植后已经不需要了
@@ -891,5 +915,20 @@ impl Game {
         self.context.fill_text(&num, 138.0, 30.0).unwrap();
 
         self.context.restore();
+    }
+
+    pub fn game_over(&mut self) {
+        self.over = true;
+        self.toggle_behaviors(
+            &[
+                BehaviorType::Walk,
+                BehaviorType::Switch,
+                BehaviorType::Collision,
+                BehaviorType::Interval,
+            ],
+            false,
+        );
+
+        LevelScene::build_zombies_won(self);
     }
 }

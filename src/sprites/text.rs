@@ -90,7 +90,7 @@ impl BaseUpdate for TextSprite {
     }
 
     fn get_order(&self) -> usize {
-        3
+        4
     }
 
     fn get_mut_behaviors(&mut self) -> &mut Vec<Box<dyn Behavior>> {

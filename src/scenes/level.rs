@@ -224,6 +224,16 @@ impl LevelScene {
             });
     }
 
+    /// 僵尸头
+    pub fn build_zombie_head(game: &mut Game, pos: Pos) {
+        let mut zombie_head = Sprite::from_data_one(&game.resource, ZOMBIE, "ZombieHead");
+
+        zombie_head.update_pos(pos);
+        zombie_head.start_all_behavior(game.now);
+
+        game.add_sprite(zombie_head);
+    }
+
     pub fn build_plant(game: &mut Game, name: &str, pos: Pos) -> Box<dyn Update> {
         let mut plant = Sprite::from_data_one(&game.resource, PLANT, name);
         let mut drag: Box<dyn Behavior> = Box::new(DragBehavior::new());
@@ -232,10 +242,12 @@ impl LevelScene {
         plant.add_behavior(drag);
         plant.update_pos(pos);
         plant.set_clicked(true);
+        plant.set_order(99);
 
         plant
     }
 
+    /// 子弹
     pub fn build_bullet(shooter: SpriteType, pos: Pos, game: &mut Game) {
         let bullet = match shooter {
             SpriteType::Plant(Plant::Peashooter) => Some("PB00"),
@@ -256,6 +268,7 @@ impl LevelScene {
         }
     }
 
+    /// 阳光
     pub fn build_sun(pos: Option<Pos>, game: &mut Game) {
         let (pos, distance) = match pos {
             Some(pos) => (pos, 50.0),
@@ -288,5 +301,12 @@ impl LevelScene {
         let index = game.find_sprite_by_id(id);
 
         game.sprites[index].start_all_behavior(game.now);
+    }
+
+    /// 僵尸吃了你的脑子
+    pub fn build_zombies_won(game: &mut Game) {
+        let zombies_won = Sprite::from_data_one(&game.resource, INTERFACE, "ZombiesWon");
+
+        game.add_sprite(zombies_won);
     }
 }

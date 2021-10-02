@@ -42,18 +42,18 @@ impl Engine {
         spawn_local(async move {
             let loader = Loader::new(
                 vec![
-                    asset_json!("interface-cell"),
-                    asset_json!("card-cell"),
-                    asset_json!("plant-cell"),
-                    asset_json!("zombie-cell"),
+                    asset_json!("interface", "cell"),
+                    asset_json!("card", "cell"),
+                    asset_json!("plant", "cell"),
+                    asset_json!("zombie", "cell"),
                 ],
                 vec![
-                    asset_json!("interface-data"),
-                    asset_json!("card-data"),
-                    asset_json!("plant-data"),
-                    asset_json!("zombie-data"),
+                    asset_json!("interface", "data"),
+                    asset_json!("card", "data"),
+                    asset_json!("plant", "data"),
+                    asset_json!("zombie", "data"),
                 ],
-                vec![asset_json!("level-data")],
+                vec![asset_json!("level", "data")],
                 vec![
                     asset_image!("interface"),
                     asset_image!("card"),
@@ -74,21 +74,21 @@ impl Engine {
                     .load_jsons(&loader.cells)
                     .await
                     .iter()
-                    .map(|json| SpriteCell::from_json(json))
+                    .map(|(prefix, json)| SpriteCell::from_json(prefix, json))
                     .for_each(|cell| game.resource.cells.extend(cell));
 
                 loader
                     .load_jsons(&loader.data)
                     .await
                     .iter()
-                    .map(|json| SpriteData::from_json(json))
+                    .map(|(prefix, json)| SpriteData::from_json(prefix, json))
                     .for_each(|data| game.resource.data.extend(data));
 
                 loader
                     .load_jsons(&loader.level)
                     .await
                     .iter()
-                    .map(|json| LevelData::new_from_json(json))
+                    .map(|(_, json)| LevelData::new_from_json(json))
                     .for_each(|level| game.leval_data.extend(level));
 
                 game.select_level(0);

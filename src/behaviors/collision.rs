@@ -6,7 +6,8 @@ use crate::callback::ErasedFnPointer;
 use crate::game::Game;
 use crate::log;
 use crate::model::SpriteType;
-use crate::sprites::{Life, Pos, SpritePointer, Update, ZombieSprite, ZombieState};
+use crate::scenes::LevelScene;
+use crate::sprites::{BaseUpdate, Life, Pos, SpritePointer, Update, ZombieSprite};
 
 #[derive_behavior("default")]
 #[derive(Default, WithoutTimer, WithCallback)]
@@ -21,6 +22,18 @@ impl CollisionBehavior {
         CollisionBehavior {
             name: BehaviorType::Collision,
             ..Default::default()
+        }
+    }
+
+    fn after_zombie_die(&mut self, zombie: &mut ZombieSprite, game: &mut Game) {
+        if !zombie.loss_head {
+            zombie.loss_head = true;
+
+            // LevelScene::build_zombie_head(game, zombie.get_pos());
+        }
+
+        if zombie.get_ref_artist().in_last_cell() {
+            zombie.hide();
         }
     }
 }
@@ -45,8 +58,15 @@ impl Behavior for CollisionBehavior {
                     .downcast_mut::<ZombieSprite>()
                     .unwrap();
 
-                // TODO：更好的放置位置？
                 if zombie.is_die() {
+                    self.after_zombie_die(zombie, game.as_mut());
+
+                    return;
+                }
+
+                if zombie.get_pos().left < 0.0 {
+                    game.as_mut().game_over();
+
                     return;
                 }
 
@@ -74,7 +94,7 @@ impl Behavior for CollisionBehavior {
                             zombie.process_bullet_collision(target, now);
                         } else if is_lawn_cleaner {
                             zombie.process_lawn_cleaner_collision(target, now);
-                        } else if !zombie.in_state(ZombieState::Attacking) {
+                        } else if !zombie.in_attacking() {
                             zombie.process_plant_collision(target, now);
                         }
                     });

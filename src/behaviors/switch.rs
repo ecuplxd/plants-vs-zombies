@@ -10,7 +10,7 @@ use crate::sprites::{Pos, SpriteCell, SpritePointer, Update};
 pub struct SwitchBehavior {
     name: BehaviorType,
     switched: bool,
-    switch_index: usize,
+    switch_index: u8,
     cells: Vec<Vec<SpriteCell>>,
     infinite: bool,
     last_finished_time: f64,
@@ -29,12 +29,12 @@ impl SwitchBehavior {
         }
     }
 
-    fn switch(&mut self, switch_index: usize, now: f64) {
+    fn switch(&mut self, switch_index: u8, now: f64) {
         unsafe {
             let sprite = self.sprite.unwrap().as_mut();
             let artist = sprite.get_mut_artist();
 
-            artist.switch(&self.cells[switch_index]);
+            artist.switch(&self.cells[switch_index as usize]);
 
             self.update(switch_index, false, now);
         }
@@ -52,7 +52,7 @@ impl SwitchBehavior {
         }
     }
 
-    fn update(&mut self, switch_index: usize, switched: bool, now: f64) {
+    fn update(&mut self, switch_index: u8, switched: bool, now: f64) {
         unsafe {
             let sprite = self.sprite.unwrap().as_mut();
 

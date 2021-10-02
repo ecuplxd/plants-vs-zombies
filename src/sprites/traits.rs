@@ -74,6 +74,8 @@ pub trait BaseUpdate {
 
     fn update_loc(&mut self, _loc: Loc) {}
 
+    fn set_order(&mut self, _order: usize) {}
+
     fn is_clicked(&self) -> bool {
         false
     }
@@ -112,16 +114,11 @@ pub trait BaseUpdate {
 
     /// 需要在同一行/当前列 - 1
     fn is_candidate_for_collision(&self, other_sprite: &dyn Update) -> bool {
-        let Loc { row, col } = self.get_loc();
-        let Loc {
-            row: o_row,
-            col: o_col,
-        } = other_sprite.get_loc();
-        let same_row = row == o_row;
-        let same_col = col == o_col;
-        let pre_col = col != 0 && o_col == col - 1;
+        let loc = self.get_loc();
+        let o_loc = other_sprite.get_loc();
+        let pre_col = loc.col != 0 && o_loc.col == loc.col - 1;
 
-        same_row && (same_col || pre_col)
+        loc.in_same_row(&o_loc) && (loc.in_same_col(&o_loc) || pre_col)
     }
 
     fn did_collide(&self, other_sprite: &dyn Update) -> bool {
@@ -176,7 +173,7 @@ pub trait Update: BaseUpdate + Draw {
             .for_each(|behavior| behavior.stop(now));
     }
 
-    fn tirgger_switch(&self) -> (bool, usize) {
+    fn tirgger_switch(&self) -> (bool, u8) {
         (false, 0)
     }
 }

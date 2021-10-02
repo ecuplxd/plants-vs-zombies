@@ -10,7 +10,11 @@ use crate::sprites::SpriteCell;
 pub struct BehaviorFactory;
 
 impl BehaviorFactory {
-    pub fn create(resource: &Resource, behavior_data: &BehaviorData) -> Box<dyn Behavior> {
+    pub fn create(
+        resource: &Resource,
+        behavior_data: &BehaviorData,
+        sheet_kind: &str,
+    ) -> Box<dyn Behavior> {
         let BehaviorData {
             name,
             duration,
@@ -29,7 +33,7 @@ impl BehaviorFactory {
             BehaviorType::Cycle => Box::new(CycleBehavior::new(*duration, *interval)),
             BehaviorType::Walk => Box::new(WalkBehavior::new(*velocit, *duration, *distance)),
             BehaviorType::Switch => Box::new(SwitchBehavior::new(
-                BehaviorFactory::get_switch_cells(resource, switch_cells),
+                BehaviorFactory::get_switch_cells(resource, switch_cells, sheet_kind),
                 *duration,
                 *infinite,
             )),
@@ -44,12 +48,16 @@ impl BehaviorFactory {
         behavior
     }
 
-    fn get_switch_cells(resource: &Resource, switch_cells: &[String]) -> Vec<Vec<SpriteCell>> {
+    fn get_switch_cells(
+        resource: &Resource,
+        switch_cells: &[String],
+        sheet_kind: &str,
+    ) -> Vec<Vec<SpriteCell>> {
         let cells: Vec<Vec<SpriteCell>> = switch_cells
             .iter()
             .filter_map(|switch_cell| {
                 resource
-                    .get_cells_may_not_exit(switch_cell)
+                    .get_cells_may_not_exit(&format!("{}/{}", sheet_kind, switch_cell))
                     .map(|cell| cell.to_vec())
             })
             .collect();

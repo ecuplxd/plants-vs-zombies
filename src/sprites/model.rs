@@ -8,7 +8,7 @@ use web_sys::TextMetrics;
 
 use super::Update;
 use crate::behaviors::BehaviorData;
-use crate::model::{CANVAS_HEIGHT_F64, CANVAS_WIDTH_F64};
+use crate::model::{Resource, CANVAS_HEIGHT_F64, CANVAS_WIDTH_F64};
 use crate::util::get_random_int_inclusive;
 
 #[derive(Debug, Default, Clone, Deserialize)]
@@ -20,8 +20,8 @@ pub struct SpriteCell {
 }
 
 impl SpriteCell {
-    pub fn from_json(json: &JsValue) -> HashMap<String, Vec<SpriteCell>> {
-        json.into_serde().unwrap()
+    pub fn from_json(prefix: &str, json: &JsValue) -> HashMap<String, Vec<SpriteCell>> {
+        Resource::add_prefix(prefix, json.into_serde().unwrap())
     }
 }
 
@@ -29,6 +29,7 @@ impl SpriteCell {
 pub struct SpriteData {
     pub constructor: String,
     pub pos: Vec<Pos>,
+    #[serde(default)]
     pub behaviors: Vec<BehaviorData>,
     #[serde(default)]
     pub offset: Pos,
@@ -40,6 +41,8 @@ pub struct SpriteData {
     pub collision_margin: CollisionMargin,
     #[serde(default = "default_normal_shape")]
     pub normal_shape: bool,
+    #[serde(default = "default_life")]
+    pub life: f64,
     #[serde(default = "default_hurt")]
     pub hurt: f64,
 }
@@ -53,11 +56,15 @@ fn default_scale() -> f64 {
 }
 
 fn default_order() -> usize {
-    2
+    1
 }
 
 fn default_hurt() -> f64 {
     20.0
+}
+
+fn default_life() -> f64 {
+    100.0
 }
 
 impl SpriteData {
@@ -68,15 +75,16 @@ impl SpriteData {
             behaviors,
             offset: Default::default(),
             scale: 1.0,
-            order: 2,
+            order: 1,
             collision_margin: Default::default(),
             normal_shape: true,
+            life: 100.0,
             hurt: 20.0,
         }
     }
 
-    pub fn from_json(json: &JsValue) -> HashMap<String, SpriteData> {
-        json.into_serde().unwrap()
+    pub fn from_json(prefix: &str, json: &JsValue) -> HashMap<String, SpriteData> {
+        Resource::add_prefix(prefix, json.into_serde().unwrap())
     }
 }
 
@@ -122,8 +130,12 @@ impl Pos {
         ]
     }
 
-    pub fn out_of_bound(&self) -> bool {
-        self.left < 0.0 || self.left > CANVAS_WIDTH_F64 || self.top > CANVAS_HEIGHT_F64
+    pub fn out_of_bound(&self, size: &Size) -> bool {
+        let Size { width, height } = size;
+
+        self.left < -width
+            || self.left > (CANVAS_WIDTH_F64 + width)
+            || self.top > (CANVAS_HEIGHT_F64 + height)
     }
 
     pub fn distance(&self) -> f64 {
@@ -234,11 +246,15 @@ pub enum PlantCallback {
 }
 
 #[repr(u8)]
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub enum ZombieState {
-    Waiting = 0,
-    Walking,
-    Attacking,
-    Dieing,
-    Died,
+    Wait = 0,        // 待机 XX
+    Walk,            // 行走 XXWalk
+    Attack,          // 攻击 XXAttack
+    LostArmorWalk,   // 成为普通僵尸进行行走 ZombieWalk1
+    LostArmorAttack, // 成为普通僵尸进行攻击 ZombieAttack
+    LostHead,        // 无头行走 ZombieLostHead
+    LostHeadAttack,  // 无头攻击 ZombieLostHeadAttack
+    Die,             // 死亡 ZombieDie
+    BoomDie,         // 被炸死 ZombieBoomdie
 }

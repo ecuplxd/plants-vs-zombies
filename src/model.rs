@@ -104,12 +104,23 @@ impl Resource {
         self.cells.get(name)
     }
 
-    pub fn get_name(sheet_kind: SheetKind, name: &str) -> (String, String) {
-        let sheet_name = sheet_kind.to_string().to_lowercase();
-        let cell_name = format!("{}/{}", sheet_name, name);
-        let sheet_name = format!("assets/images/{}", sheet_name);
+    pub fn get_name(sheet_kind: SheetKind, name: &str) -> (String, String, String) {
+        let sheet_kind = sheet_kind.to_string().to_lowercase();
+        let cell_name = format!("{}/{}", sheet_kind, name);
+        let sheet_name = format!("assets/images/{}", sheet_kind);
 
-        (cell_name, sheet_name)
+        (cell_name, sheet_name, sheet_kind)
+    }
+
+    pub fn add_prefix<T>(prefix: &str, mut items: HashMap<String, T>) -> HashMap<String, T> {
+        let mut result = HashMap::new();
+        let keys: Vec<String> = items.keys().map(|key| key.to_string()).collect();
+
+        keys.iter().for_each(|key| {
+            result.insert(format!("{}/{}", prefix, key), items.remove(key).unwrap());
+        });
+
+        result
     }
 }
 
