@@ -227,8 +227,9 @@ impl LevelScene {
     /// 僵尸头
     pub fn build_zombie_head(game: &mut Game, pos: Pos) {
         let mut zombie_head = Sprite::from_data_one(&game.resource, ZOMBIE, "ZombieHead");
+        let new_pos = pos + Pos::new(5.0, -15.0);
 
-        zombie_head.update_pos(pos);
+        zombie_head.update_pos(new_pos);
         zombie_head.start_all_behavior(game.now);
 
         game.add_sprite(zombie_head);

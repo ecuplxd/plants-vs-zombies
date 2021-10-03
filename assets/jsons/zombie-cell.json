@@ -2153,8 +2153,6 @@
   "ZombieHead": [
     { "left": 1944, "top": 3256, "width": 140, "height": 185 },
     { "left": 1916, "top": 642, "width": 140, "height": 185 },
-    { "left": 1916, "top": 827, "width": 140, "height": 185 },
-    { "left": 1916, "top": 1012, "width": 140, "height": 185 },
     { "left": 1920, "top": 0, "width": 140, "height": 185 },
     { "left": 1943, "top": 3486, "width": 140, "height": 185 },
     { "left": 1947, "top": 2595, "width": 140, "height": 185 },
@@ -2162,7 +2160,9 @@
     { "left": 1952, "top": 2142, "width": 140, "height": 185 },
     { "left": 1944, "top": 3071, "width": 140, "height": 185 },
     { "left": 1955, "top": 1854, "width": 140, "height": 185 },
-    { "left": 1944, "top": 2886, "width": 140, "height": 185 }
+    { "left": 1944, "top": 2886, "width": 140, "height": 185 },
+    { "left": 1916, "top": 827, "width": 140, "height": 185 },
+    { "left": 1916, "top": 1012, "width": 140, "height": 185 }
   ],
   "ZombieLostHead": [
     { "left": 4796, "top": 4750, "width": 80, "height": 95 },

@@ -29,7 +29,7 @@ impl CollisionBehavior {
         if !zombie.loss_head {
             zombie.loss_head = true;
 
-            // LevelScene::build_zombie_head(game, zombie.get_pos());
+            LevelScene::build_zombie_head(game, zombie.loss_head_pos);
         }
 
         if zombie.get_ref_artist().in_last_cell() {

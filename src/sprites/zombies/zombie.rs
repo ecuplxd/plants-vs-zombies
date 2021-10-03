@@ -16,6 +16,7 @@ pub struct ZombieSprite {
     state: u8,
     stage: u8,
     pub loss_head: bool,
+    pub loss_head_pos: Pos,
 }
 
 impl ZombieSprite {
@@ -28,6 +29,7 @@ impl ZombieSprite {
             state: 1 << ZombieState::Wait as u8,
             stage: (life / 100.0) as u8,
             loss_head: false,
+            loss_head_pos: Pos::new(999.0, 999.0),
         }
     }
 
@@ -87,19 +89,28 @@ impl ZombieSprite {
     }
 
     pub fn change_to_die(&mut self, now: f64) {
+        self.loss_head_pos = self.get_pos();
         self.change_state(ZombieState::Die, true);
         self.toggle_behavior(BehaviorType::Walk, false, now);
-        self.toggle_behavior(BehaviorType::Collision, false, now);
+        // 僵尸死亡动作需要点时间
+        self.toggle_behavior(BehaviorType::Collision, true, now);
     }
 
     fn align_plant_pos(&mut self, pos: Option<Pos>, size: Option<Size>) {
-        let size = match size {
-            Some(size) => size,
-            None => self.sprite.size,
-        };
         let pos = match pos {
             Some(pos) => pos,
             None => self.sprite.pos,
+        };
+
+        if SpriteType::is_zombie_hand(self.name()) {
+            self.sprite.update_pos(pos);
+
+            return;
+        }
+
+        let size = match size {
+            Some(size) => size,
+            None => self.sprite.size,
         };
         let zombie_center_pos = pos + Pos::new(size.width / 2.0, size.height / 2.0);
         let loc = Loc::get_row_col_by_pos(&zombie_center_pos);
@@ -110,14 +121,28 @@ impl ZombieSprite {
         self.sprite.size = size;
         self.sprite.update_loc(loc);
 
-        if SpriteType::is_screen_door(self.name()) && self.in_state(ZombieState::Attack) {
-            new_pos.top += 18.0;
+        match self.is_die() {
+            true => new_pos.left -= self.get_die_zombie_pos(),
+            false => {
+                if SpriteType::is_screen_door(self.name()) && self.in_state(ZombieState::Attack) {
+                    new_pos.top += 18.0;
+                }
+            }
         }
 
         self.sprite.update_pos(new_pos);
     }
 
-    pub fn hide_bullet(&mut self, plant: SpritePointer) {
+    // Fix：有些僵尸死亡位置不对
+    fn get_die_zombie_pos(&self) -> f64 {
+        let cell = self.get_ref_artist().get_current_cell().unwrap();
+        let o_cell = &self.sprite.artist.original_cells[0];
+        let width_delta = cell.width - o_cell.width;
+
+        width_delta
+    }
+
+    pub fn process_bullet_attack(&mut self, plant: SpritePointer) {
         self.sprite.global_alpha = 1.0;
 
         if let Some(mut bullet) = plant {
@@ -189,7 +214,7 @@ impl ZombieSprite {
     fn get_callback(&mut self, callback: PlantCallback) -> ErasedFnPointer<SpritePointer> {
         match callback {
             PlantCallback::Switch => {
-                ErasedFnPointer::from_associated(self, ZombieSprite::hide_bullet)
+                ErasedFnPointer::from_associated(self, ZombieSprite::process_bullet_attack)
             }
             PlantCallback::Interval => {
                 ErasedFnPointer::from_associated(self, ZombieSprite::attack_plant)

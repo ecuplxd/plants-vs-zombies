@@ -118,6 +118,20 @@
   "ZombieHead": {
     "constructor": "ZombieSprite",
     "pos": [{ "left": 0, "top": 0 }],
-    "behaviors": [{ "name": "Frequency", "duration": 120 }]
+    "behaviors": [
+      { "name": "Frequency", "duration": 100 },
+      {
+        "name": "Walk",
+        "velocit": { "x": 20, "y": -45 },
+        "distance": 45
+      }
+    ],
+    "life": 0.0
+  },
+  "ZombieDie": {
+    "constructor": "ZombieSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Cycle", "duration": 120 }],
+    "life": 0.0
   }
 }

@@ -4,7 +4,7 @@
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
-      { "name": "Interval", "interval": 4500 }
+      { "name": "Interval", "interval": 500 }
     ]
   },
   "Torchwood": {
@@ -36,7 +36,7 @@
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
-      { "name": "Interval", "interval": 6000 }
+      { "name": "Interval", "interval": 500 }
     ]
   },
   "PB100": {

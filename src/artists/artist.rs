@@ -13,7 +13,7 @@ pub struct Artist {
     image: Weak<HtmlImageElement>,
     cell_index: usize,
     cells: Vec<SpriteCell>,
-    original_cells: Vec<SpriteCell>,
+    pub original_cells: Vec<SpriteCell>,
     original_index: usize,
 }
 

@@ -306,6 +306,7 @@ pub enum Zombie {
     Jump,
     Zomboni,
     Zombie1,
+    ZombieHead,
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]
@@ -339,6 +340,10 @@ impl SpriteType {
 
     pub fn is_screen_door(name: SpriteType) -> bool {
         matches!(name, SpriteType::Zombie(Zombie::ScreenDoor))
+    }
+
+    pub fn is_zombie_hand(name: SpriteType) -> bool {
+        matches!(name, SpriteType::Zombie(Zombie::ZombieHead))
     }
 
     pub fn from_str(name: &str) -> SpriteType {
@@ -459,6 +464,7 @@ impl SpriteType {
             "Jump" => SpriteType::Zombie(Zombie::Jump),
             "Zomboni" => SpriteType::Zombie(Zombie::Zomboni),
             "Zombie1" => SpriteType::Zombie(Zombie::Zombie1),
+            "ZombieHead" => SpriteType::Zombie(Zombie::ZombieHead),
             _ => SpriteType::Unknown,
         }
     }
