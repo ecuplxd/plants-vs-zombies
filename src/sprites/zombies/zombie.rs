@@ -1,14 +1,16 @@
 use derives::{BaseUpdate, Draw, Life};
 
-use crate::behaviors::{Behavior, BehaviorType, IntervalBehavior};
+use crate::behaviors::{Behavior, BehaviorType, Interval};
 use crate::callback::ErasedFnPointer;
 use crate::loc::Loc;
+use crate::log;
+use crate::model::Plant;
 use crate::sprites::{PlantCallback, PlantSprite, Pos, Sprite, SpritePointer, Update, ZombieState};
 use crate::timer::Timer;
 use crate::util::get_random_int_inclusive;
 
 #[derive(Life, BaseUpdate, Draw)]
-pub struct ZombieSprite {
+pub struct Zombie {
     pub sprite: Sprite,
     pub life: f64,
     pub hurt: f64,
@@ -19,9 +21,9 @@ pub struct ZombieSprite {
     pub loss_head_pos: Pos,
 }
 
-impl ZombieSprite {
-    pub fn new(life: f64, hurt: f64, sprite: Sprite) -> ZombieSprite {
-        ZombieSprite {
+impl Zombie {
+    pub fn new(life: f64, hurt: f64, sprite: Sprite) -> Zombie {
+        Zombie {
             sprite,
             life,
             hurt,
@@ -43,12 +45,8 @@ impl ZombieSprite {
         (loc, pos)
     }
 
-    pub fn update_offset(&mut self, offset: Pos) {
-        self.sprite.update_offset(offset);
-    }
-
     pub fn init_pos(&mut self, index: usize) {
-        let (loc, pos) = ZombieSprite::get_random_pos(index, &self.sprite.size);
+        let (loc, pos) = Zombie::get_random_pos(index, &self.sprite.size);
 
         self.sprite.update_loc(loc);
         self.sprite.update_pos(pos);
@@ -93,7 +91,7 @@ impl ZombieSprite {
         self.change_state(ZombieState::Die, true);
         self.toggle_behavior(BehaviorType::Walk, false, now);
         // 僵尸死亡动作需要点时间
-        self.toggle_behavior(BehaviorType::Collision, true, now);
+        self.toggle_behavior(BehaviorType::ZombieCollision, true, now);
     }
 
     fn align_plant_pos(&mut self, pos: Option<Pos>, size: Option<Size>) {
@@ -158,7 +156,7 @@ impl ZombieSprite {
                 bullet.stop_all_behavior(now);
 
                 self.process_attacked(bullet, now);
-                self.toggle_behavior(BehaviorType::Collision, true, now);
+                self.toggle_behavior(BehaviorType::ZombieCollision, true, now);
             }
         }
     }
@@ -176,7 +174,7 @@ impl ZombieSprite {
 
                 if died {
                     self.change_to_walk(now);
-                    self.toggle_behavior(BehaviorType::Collision, true, now);
+                    self.toggle_behavior(BehaviorType::ZombieCollision, true, now);
                 }
             }
         }
@@ -214,11 +212,9 @@ impl ZombieSprite {
     fn get_callback(&mut self, callback: PlantCallback) -> ErasedFnPointer<SpritePointer> {
         match callback {
             PlantCallback::Switch => {
-                ErasedFnPointer::from_associated(self, ZombieSprite::process_bullet_attack)
+                ErasedFnPointer::from_associated(self, Zombie::process_bullet_attack)
             }
-            PlantCallback::Interval => {
-                ErasedFnPointer::from_associated(self, ZombieSprite::attack_plant)
-            }
+            PlantCallback::Interval => ErasedFnPointer::from_associated(self, Zombie::attack_plant),
         }
     }
 
@@ -229,21 +225,39 @@ impl ZombieSprite {
     }
 
     fn before_process_collision(&mut self, now: f64) {
-        self.toggle_behavior(BehaviorType::Collision, false, now);
+        self.toggle_behavior(BehaviorType::ZombieCollision, false, now);
+    }
+
+    pub fn process_collision(&mut self, target: &mut Box<dyn Update>, now: f64) {
+        let is_bullet = SpriteType::is_bullet(target.name());
+        let is_lawn_cleaner = SpriteType::is_lawn_cleaner(target.name());
+
+        log!("{:?} 和 {:?} 发生碰撞", self.id(), target.id());
+
+        match is_bullet {
+            true => self.process_bullet_collision(target, now),
+            false if is_lawn_cleaner => self.process_lawn_cleaner_collision(target, now),
+            false if !self.in_attacking() => self.process_plant_collision(target, now),
+            _ => (),
+        }
     }
 
     pub fn process_bullet_collision(&mut self, bullet: &mut Box<dyn Update>, now: f64) {
         self.sprite.global_alpha = 0.5;
         self.before_process_collision(now);
-        bullet.toggle_behavior(BehaviorType::Walk, false, now);
 
         let switch = bullet.find_behavior(BehaviorType::Switch).unwrap();
 
         self.register_callback(switch, PlantCallback::Switch);
 
-        let bullet = bullet.as_any().downcast_mut::<PlantSprite>().unwrap();
+        // TODO：僵尸减速
+        if bullet.name() == SpriteType::Plant(Plant::PB100) {}
 
-        bullet.switch = true;
+        bullet
+            .as_any()
+            .downcast_mut::<PlantSprite>()
+            .unwrap()
+            .change_to_hit_bullet(now);
     }
 
     pub fn process_lawn_cleaner_collision(&mut self, lawn_cleaner: &mut Box<dyn Update>, now: f64) {
@@ -260,7 +274,7 @@ impl ZombieSprite {
     }
 
     pub fn process_plant_collision(&mut self, plant: &mut Box<dyn Update>, now: f64) {
-        let mut interval: Box<dyn Behavior> = Box::new(IntervalBehavior::new(2000.0));
+        let mut interval: Box<dyn Behavior> = Box::new(Interval::new(2000.0));
 
         self.register_callback(&mut interval, PlantCallback::Interval);
 
@@ -273,7 +287,7 @@ impl ZombieSprite {
 }
 
 // TODO：优化
-impl Update for ZombieSprite {
+impl Update for Zombie {
     fn update_pos(&mut self, pos: Pos) {
         let cell = self.sprite.artist.get_current_cell().unwrap();
         let size = cell.into();

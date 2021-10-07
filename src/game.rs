@@ -12,11 +12,11 @@ use crate::loc::Loc;
 use crate::log;
 use crate::model::{
     Callback, Event, Interface, LevelData, Order, Plant, Resource, SheetKind, SpriteType, State,
-    Text, CANVAS_HEIGHT, CANVAS_HEIGHT_F64, CANVAS_WIDTH, CANVAS_WIDTH_F64, INTERFACE,
+    Text, CANVAS_HEIGHT, CANVAS_HEIGHT_F64, CANVAS_WIDTH, CANVAS_WIDTH_F64, INTERFACE, PLANT,
 };
 use crate::scenes::{HomeScene, LevelScene};
 use crate::sprites::{
-    BaseUpdate, Guideline, Life, PlantSprite, Pos, Sprite, SpritePointer, Update, ZombieSprite,
+    BaseUpdate, Guideline, Life, PlantSprite, Pos, Sprite, SpritePointer, Update, Zombie,
 };
 use crate::time_system::TimeSystem;
 use crate::util::{set_sprite_clicked, window};
@@ -185,6 +185,24 @@ impl Game {
             self.update_card_cursor();
             self.grow_plant(&loc, None);
         });
+
+        self.build_test_torchwood();
+    }
+
+    fn build_test_torchwood(&mut self) {
+        let mut torchwood = Sprite::from_data_one(&self.resource, PLANT, "Torchwood");
+        let loc = Loc::new(0, 5);
+        let rect = &torchwood.get_rect();
+        let pos = Loc::put_on_cell_bottom(&loc, &rect.into());
+
+        self.be_planted_id = torchwood.id();
+
+        torchwood.update_loc(loc);
+        torchwood.update_pos(pos);
+        torchwood.start_all_behavior(self.now);
+
+        self.add_sprite(torchwood);
+        self.update_card_cursor();
     }
 
     fn build_test_plant_card(&mut self) {
@@ -202,7 +220,7 @@ impl Game {
     pub fn select_level(&mut self, index: usize) {
         let scale = 0.725;
 
-        self.cur_level = self.leval_data.get(index).unwrap().clone();
+        self.cur_level = self.leval_data[index].clone();
         self.cur_level_index = index;
         self.seed_pos = Loc::put_increase_x(
             30.0,
@@ -262,12 +280,13 @@ impl Game {
         behavior_type: BehaviorType,
         callback: Callback,
     ) {
-        let behavior = sprite.find_behavior(behavior_type).unwrap();
-        let pointer = self.get_callback(callback);
+        if let Some(behavior) = sprite.find_behavior(behavior_type) {
+            let pointer = self.get_callback(callback);
 
-        behavior.add_callback(pointer);
+            behavior.add_callback(pointer);
 
-        BehaviorFactory::whether_to_enable(behavior, self.now);
+            BehaviorFactory::whether_to_enable(behavior, self.now);
+        }
 
         self.add_sprite(sprite);
     }
@@ -282,12 +301,13 @@ impl Game {
             .iter()
             .enumerate()
             .for_each(|(index, behavior_type)| {
-                let behavior = sprite.find_behavior(*behavior_type).unwrap();
-                let pointer = self.get_callback(callbacks[index]);
+                if let Some(behavior) = sprite.find_behavior(*behavior_type) {
+                    let pointer = self.get_callback(callbacks[index]);
 
-                behavior.add_callback(pointer);
+                    behavior.add_callback(pointer);
 
-                BehaviorFactory::whether_to_enable(behavior, self.now);
+                    BehaviorFactory::whether_to_enable(behavior, self.now);
+                }
             });
 
         self.add_sprite(sprite);
@@ -372,11 +392,9 @@ impl Game {
         self.sprites
             .iter_mut()
             .any(|zombie| match SpriteType::is_zombie(zombie.name()) {
-                true if loc.in_same_row(&zombie.get_loc()) => !zombie
-                    .as_any()
-                    .downcast_mut::<ZombieSprite>()
-                    .unwrap()
-                    .is_die(),
+                true if loc.in_same_row(&zombie.get_loc()) => {
+                    !zombie.as_any().downcast_mut::<Zombie>().unwrap().is_die()
+                }
                 _ => false,
             })
     }
@@ -504,11 +522,7 @@ impl Game {
 
     // TODO：优化 使用删除后重新创建而不是查找
     fn update_sunback_offset(&mut self) {
-        let sun_back = self.find_sprite(SpriteType::Interface(Interface::SunBack));
-
-        if let Some(sun_back) = sun_back {
-            let sun_back = sun_back.as_any().downcast_mut::<Sprite>().unwrap();
-
+        if let Some(sun_back) = self.find_sprite(SpriteType::Interface(Interface::SunBack)) {
             sun_back.update_offset(Pos::new(0.0, 0.0));
         }
     }
@@ -589,7 +603,7 @@ impl Game {
             .iter_mut()
             .filter(|sprite| SpriteType::is_zombie(sprite.name()))
             .for_each(|zombie| {
-                let zombie = zombie.as_any().downcast_mut::<ZombieSprite>().unwrap();
+                let zombie = zombie.as_any().downcast_mut::<Zombie>().unwrap();
 
                 zombie.change_to_walk(self.now);
                 zombie.start_all_behavior(self.now);
@@ -635,7 +649,7 @@ impl Game {
     fn shovel_plant(&mut self, loc: &Loc, has_plant: Option<usize>) {
         if let (false, Some(index)) = (loc.out_of_plant_bound(), has_plant) {
             self.remove_sprite(index);
-            self.toggle_behaviors(&[BehaviorType::Collision], true);
+            self.toggle_behaviors(&[BehaviorType::ZombieCollision], true);
         }
     }
 
@@ -704,6 +718,7 @@ impl Game {
         };
     }
 
+    // TODO：铲掉火炬树有问题 fix
     pub fn find_sprite_by_id(&self, id: String) -> usize {
         let index = self
             .sprites
@@ -890,13 +905,7 @@ impl Game {
         self.sprites
             .iter_mut()
             .filter(|sprite| SpriteType::is_zombie(sprite.name()))
-            .for_each(|sprite| {
-                sprite
-                    .as_any()
-                    .downcast_mut::<ZombieSprite>()
-                    .unwrap()
-                    .update_offset(Pos::new(offset, 0.0));
-            });
+            .for_each(|sprite| sprite.update_offset(Pos::new(offset, 0.0)));
     }
 
     pub fn format_sun_num(&self) -> String {
@@ -923,7 +932,7 @@ impl Game {
             &[
                 BehaviorType::Walk,
                 BehaviorType::Switch,
-                BehaviorType::Collision,
+                BehaviorType::ZombieCollision,
                 BehaviorType::Interval,
             ],
             false,

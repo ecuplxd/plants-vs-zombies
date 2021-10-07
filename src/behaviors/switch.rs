@@ -7,7 +7,7 @@ use crate::sprites::{Pos, SpriteCell, SpritePointer, Update};
 
 #[derive_behavior("default")]
 #[derive(Default, WithoutTimer, WithCallback)]
-pub struct SwitchBehavior {
+pub struct Switch {
     name: BehaviorType,
     switched: bool,
     switch_index: u8,
@@ -17,9 +17,9 @@ pub struct SwitchBehavior {
     duration: f64,
 }
 
-impl SwitchBehavior {
-    pub fn new(cells: Vec<Vec<SpriteCell>>, duration: f64, infinite: bool) -> SwitchBehavior {
-        SwitchBehavior {
+impl Switch {
+    pub fn new(cells: Vec<Vec<SpriteCell>>, duration: f64, infinite: bool) -> Switch {
+        Switch {
             name: BehaviorType::Switch,
             switch_index: 99,
             infinite,
@@ -70,7 +70,7 @@ impl SwitchBehavior {
     }
 }
 
-impl Behavior for SwitchBehavior {
+impl Behavior for Switch {
     fn name(&self) -> BehaviorType {
         self.name
     }
@@ -95,5 +95,9 @@ impl Behavior for SwitchBehavior {
                 }
             }
         }
+    }
+
+    fn set_infinite(&mut self, infinite: bool) {
+        self.infinite = infinite;
     }
 }

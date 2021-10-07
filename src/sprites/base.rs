@@ -2,7 +2,7 @@ use std::any::Any;
 
 use web_sys::CanvasRenderingContext2d;
 
-use super::zombies::ZombieSprite;
+use super::zombies::Zombie;
 use super::{BaseUpdate, CollisionMargin, PlantSprite, Pos, Size, SpriteCell, SpriteData, Update};
 use crate::artists::{Artist, Draw, Stroke};
 use crate::behaviors::{Behavior, BehaviorFactory};
@@ -99,7 +99,7 @@ impl Sprite {
         let constructor = constructor.as_str();
         // TODO：使用枚举
         let collision_margin = match constructor {
-            "ZombieSprite" => collision_margin,
+            "Zombie" => collision_margin,
             "PlantSprite" => collision_margin,
             _ => CollisionMargin::no_collision(),
         };
@@ -121,7 +121,7 @@ impl Sprite {
                 );
 
                 let mut sprite: Box<dyn Update> = match constructor {
-                    "ZombieSprite" => Box::new(ZombieSprite::new(life, hurt, sprite)),
+                    "Zombie" => Box::new(Zombie::new(life, hurt, sprite)),
                     "PlantSprite" => Box::new(PlantSprite::new(life, hurt, sprite)),
                     _ => Box::new(sprite),
                 };
@@ -138,10 +138,6 @@ impl Sprite {
             .collect();
 
         sprites
-    }
-
-    pub fn update_offset(&mut self, offset: Pos) {
-        self.offset = offset;
     }
 }
 
@@ -261,6 +257,14 @@ impl BaseUpdate for Sprite {
 
     fn update_loc(&mut self, loc: Loc) {
         self.loc = loc;
+    }
+
+    fn get_offset(&self) -> Pos {
+        self.pos
+    }
+
+    fn update_offset(&mut self, offset: Pos) {
+        self.offset = offset;
     }
 
     fn set_clicked(&mut self, clicked: bool) {

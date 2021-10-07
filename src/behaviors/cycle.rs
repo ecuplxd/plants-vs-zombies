@@ -7,7 +7,7 @@ use crate::sprites::{Pos, SpritePointer, Update};
 use crate::timer::{AnimationTimer, Time};
 
 #[derive(WithTimer, WithoutCallback)]
-pub struct CycleBehavior {
+pub struct Cycle {
     name: BehaviorType,
     interval: Option<f64>,
     pub sprite: SpritePointer,
@@ -15,9 +15,9 @@ pub struct CycleBehavior {
     pub last_advance: f64,
 }
 
-impl CycleBehavior {
-    pub fn new(duration: f64, interval: Option<f64>) -> CycleBehavior {
-        CycleBehavior {
+impl Cycle {
+    pub fn new(duration: f64, interval: Option<f64>) -> Cycle {
+        Cycle {
             name: BehaviorType::Cycle,
             interval,
             sprite: None,
@@ -33,7 +33,7 @@ impl CycleBehavior {
     }
 }
 
-impl Behavior for CycleBehavior {
+impl Behavior for Cycle {
     fn name(&self) -> BehaviorType {
         self.name
     }

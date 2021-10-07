@@ -4,20 +4,20 @@ use web_sys::CanvasRenderingContext2d;
 use super::{Behavior, BehaviorType};
 use crate::callback::ErasedFnPointer;
 use crate::fps::Fps;
-use crate::sprites::{Pos, Sprite, SpritePointer, Update};
+use crate::sprites::{Pos, SpritePointer, Update};
 
 #[derive_behavior("default")]
 #[derive(Default, WithoutTimer, WithCallback)]
-pub struct ScrollBehavior {
+pub struct Scroll {
     name: BehaviorType,
     rate: f64,
     distance: f64,
     offset: f64,
 }
 
-impl ScrollBehavior {
-    pub fn new(distance: f64, rate: f64) -> ScrollBehavior {
-        ScrollBehavior {
+impl Scroll {
+    pub fn new(distance: f64, rate: f64) -> Scroll {
+        Scroll {
             name: BehaviorType::Scroll,
             rate,
             distance,
@@ -38,7 +38,7 @@ impl ScrollBehavior {
     }
 }
 
-impl Behavior for ScrollBehavior {
+impl Behavior for Scroll {
     fn name(&self) -> super::BehaviorType {
         self.name
     }
@@ -52,7 +52,6 @@ impl Behavior for ScrollBehavior {
     ) {
         if let Some(mut sprite) = self.sprite {
             unsafe {
-                let sprite = sprite.as_mut().as_any().downcast_mut::<Sprite>().unwrap();
                 let frame_offset = Fps::cal_pixel_frame(self.rate, now, last_animation_frame_time);
 
                 self.offset += frame_offset;
@@ -63,9 +62,9 @@ impl Behavior for ScrollBehavior {
                     false => (),
                 }
 
-                let new_offset = sprite.offset + frame_offset;
+                let new_offset = sprite.as_ref().get_offset() + frame_offset;
 
-                sprite.update_offset(new_offset);
+                sprite.as_mut().update_offset(new_offset);
             }
         }
     }

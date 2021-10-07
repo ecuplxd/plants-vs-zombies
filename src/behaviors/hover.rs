@@ -6,21 +6,21 @@ use crate::sprites::{Pos, SpritePointer, Update};
 
 #[derive_behavior("without_callback")]
 #[derive(Default, WithoutTimer, WithoutCallback)]
-pub struct HoverBehavior {
+pub struct Hover {
     name: BehaviorType,
     moving: bool,
 }
 
-impl HoverBehavior {
-    pub fn new() -> HoverBehavior {
-        HoverBehavior {
+impl Hover {
+    pub fn new() -> Hover {
+        Hover {
             name: BehaviorType::Hover,
             ..Default::default()
         }
     }
 }
 
-impl Behavior for HoverBehavior {
+impl Behavior for Hover {
     fn name(&self) -> BehaviorType {
         self.name
     }

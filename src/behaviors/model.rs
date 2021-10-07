@@ -23,7 +23,8 @@ pub enum BehaviorType {
     Frequency,
     Click,
     Scroll,
-    Collision,
+    ZombieCollision,
+    PlantCollision,
     Drag,
     Interval,
 }

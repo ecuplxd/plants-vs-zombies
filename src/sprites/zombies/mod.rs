@@ -1,3 +1,3 @@
 mod zombie;
 
-pub use zombie::ZombieSprite;
+pub use zombie::Zombie;

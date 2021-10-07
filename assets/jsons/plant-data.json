@@ -4,7 +4,7 @@
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
-      { "name": "Interval", "interval": 500 }
+      { "name": "Interval", "interval": 2000 }
     ]
   },
   "Torchwood": {
@@ -13,6 +13,16 @@
     "behaviors": [{ "name": "Cycle", "duration": 120 }]
   },
   "WallNut": {
+    "constructor": "PlantSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Cycle", "duration": 120 }]
+  },
+  "TallNut": {
+    "constructor": "PlantSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Cycle", "duration": 120 }]
+  },
+  "PumpkinHead": {
     "constructor": "PlantSprite",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [{ "name": "Cycle", "duration": 120 }]
@@ -36,7 +46,7 @@
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
-      { "name": "Interval", "interval": 500 }
+      { "name": "Interval", "interval": 3000 }
     ]
   },
   "PB100": {
@@ -46,11 +56,11 @@
       { "name": "Cycle", "duration": 120 },
       {
         "name": "Switch",
-        "switch_cells": ["PeaBulletHit"],
-        "duration": 80,
-        "infinite": false
+        "switch_cells": ["PeaBulletHit", "PB10"],
+        "duration": 80
       },
-      { "name": "Walk", "velocit": { "x": 250, "y": 0 }, "duration": 1000 }
+      { "name": "Walk", "velocit": { "x": 250, "y": 0 }, "duration": 1000 },
+      { "name": "PlantCollision" }
     ],
     "collision_margin": { "left": 25, "top": 2, "right": 2, "bottom": 5 }
   },
@@ -61,11 +71,11 @@
       { "name": "Cycle", "duration": 120 },
       {
         "name": "Switch",
-        "switch_cells": ["PeaBulletHit"],
-        "duration": 80,
-        "infinite": false
+        "switch_cells": ["PeaBulletHit", "PB10"],
+        "duration": 80
       },
-      { "name": "Walk", "velocit": { "x": 200, "y": 0 }, "duration": 1000 }
+      { "name": "Walk", "velocit": { "x": 200, "y": 0 }, "duration": 1000 },
+      { "name": "PlantCollision" }
     ],
     "collision_margin": { "left": 25, "top": 2, "right": 2, "bottom": 5 }
   },

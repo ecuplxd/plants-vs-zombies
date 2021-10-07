@@ -2,7 +2,7 @@ use std::any::Any;
 
 use web_sys::CanvasRenderingContext2d;
 
-use super::{CollisionMargin, Pos, SpriteCell};
+use super::{ColCheck, CollisionMargin, Pos, SpriteCell};
 use crate::artists::Draw;
 use crate::behaviors::{Behavior, BehaviorType};
 use crate::loc::Loc;
@@ -74,6 +74,12 @@ pub trait BaseUpdate {
 
     fn update_loc(&mut self, _loc: Loc) {}
 
+    fn get_offset(&self) -> Pos {
+        Pos::new(0.0, 0.0)
+    }
+
+    fn update_offset(&mut self, _offset: Pos) {}
+
     fn set_order(&mut self, _order: usize) {}
 
     fn is_clicked(&self) -> bool {
@@ -112,13 +118,27 @@ pub trait BaseUpdate {
         self.is_visible() && SpriteType::is_plant(self.name())
     }
 
-    /// 需要在同一行/当前列 - 1
-    fn is_candidate_for_collision(&self, other_sprite: &dyn Update) -> bool {
+    /// 需要在同一行/当前列 - 1/当前列 + 1
+    fn is_candidate_for_collision(&self, other_sprite: &dyn Update, col_check: ColCheck) -> bool {
         let loc = self.get_loc();
         let o_loc = other_sprite.get_loc();
-        let pre_col = loc.col != 0 && o_loc.col == loc.col - 1;
 
-        loc.in_same_row(&o_loc) && (loc.in_same_col(&o_loc) || pre_col)
+        if self.id() == other_sprite.id() {
+            return false;
+        }
+
+        match col_check {
+            ColCheck::PrevCol => {
+                let pre_col = loc.col != 0 && o_loc.col == loc.col - 1;
+
+                loc.in_same_row(&o_loc) && (loc.in_same_col(&o_loc) || pre_col)
+            }
+            ColCheck::NextCol => {
+                let nex_col = loc.col != 0 && o_loc.col == loc.col + 1;
+
+                loc.in_same_row(&o_loc) && nex_col
+            }
+        }
     }
 
     fn did_collide(&self, other_sprite: &dyn Update) -> bool {

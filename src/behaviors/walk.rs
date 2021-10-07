@@ -8,7 +8,7 @@ use crate::sprites::{Pos, SpritePointer, Update, Velocit};
 use crate::timer::{AnimationTimer, Time};
 
 #[derive(WithTimer, WithoutCallback)]
-pub struct WalkBehavior {
+pub struct Walk {
     name: BehaviorType,
     velocit: Velocit,
     timer: AnimationTimer,
@@ -17,9 +17,9 @@ pub struct WalkBehavior {
     walked_distance: f64,
 }
 
-impl WalkBehavior {
-    pub fn new(velocit: Velocit, duration: f64, distance: Option<f64>) -> WalkBehavior {
-        WalkBehavior {
+impl Walk {
+    pub fn new(velocit: Velocit, duration: f64, distance: Option<f64>) -> Walk {
+        Walk {
             name: BehaviorType::Walk,
             velocit,
             timer: AnimationTimer::new(duration),
@@ -30,7 +30,7 @@ impl WalkBehavior {
     }
 }
 
-impl Behavior for WalkBehavior {
+impl Behavior for Walk {
     fn name(&self) -> BehaviorType {
         self.name
     }

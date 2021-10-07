@@ -1,6 +1,6 @@
 use derives::{BaseUpdate, Draw, Life};
 
-use crate::behaviors::Behavior;
+use crate::behaviors::{Behavior, BehaviorType};
 use crate::loc::Loc;
 use crate::sprites::{Pos, Sprite, Update};
 
@@ -49,6 +49,25 @@ impl PlantSprite {
         }
 
         die
+    }
+
+    // TODO：优化
+    pub fn change_to_fire_bullet(&mut self) {
+        self.switch = true;
+        self.switch_index = 1;
+        self.hurt *= 1.5;
+    }
+
+    // TODO：优化 switch_index 使用枚举
+    pub fn change_to_hit_bullet(&mut self, now: f64) {
+        self.switch = true;
+        self.switch_index = 0;
+
+        let switch = self.find_behavior(BehaviorType::Switch).unwrap();
+
+        switch.set_infinite(false);
+
+        self.toggle_behavior(BehaviorType::Walk, false, now);
     }
 }
 

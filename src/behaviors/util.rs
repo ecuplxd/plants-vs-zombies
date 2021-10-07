@@ -1,8 +1,7 @@
-use super::{BehaviorData, CycleBehavior, IntervalBehavior};
-use crate::behaviors::collision::CollisionBehavior;
+use super::{BehaviorData, Cycle, Interval};
 use crate::behaviors::{
-    Behavior, BehaviorType, ClickBehavior, DragBehavior, FrequencyBehavior, HoverBehavior,
-    ScrollBehavior, SwitchBehavior, WalkBehavior,
+    Behavior, BehaviorType, Click, Drag, Frequency, Hover, PlantCollision, Scroll, Switch, Walk,
+    ZombieCollision,
 };
 use crate::model::Resource;
 use crate::sprites::SpriteCell;
@@ -29,20 +28,21 @@ impl BehaviorFactory {
         } = behavior_data;
 
         let behavior: Box<dyn Behavior> = match name {
-            BehaviorType::Hover => Box::new(HoverBehavior::new()),
-            BehaviorType::Cycle => Box::new(CycleBehavior::new(*duration, *interval)),
-            BehaviorType::Walk => Box::new(WalkBehavior::new(*velocit, *duration, *distance)),
-            BehaviorType::Switch => Box::new(SwitchBehavior::new(
+            BehaviorType::Click => Box::new(Click::new()),
+            BehaviorType::Cycle => Box::new(Cycle::new(*duration, *interval)),
+            BehaviorType::Drag => Box::new(Drag::new()),
+            BehaviorType::Frequency => Box::new(Frequency::new(*duration, *delay)),
+            BehaviorType::Hover => Box::new(Hover::new()),
+            BehaviorType::Interval => Box::new(Interval::new(interval.unwrap())),
+            BehaviorType::PlantCollision => Box::new(PlantCollision::new()),
+            BehaviorType::Scroll => Box::new(Scroll::new(distance.unwrap(), *rate)),
+            BehaviorType::Switch => Box::new(Switch::new(
                 BehaviorFactory::get_switch_cells(resource, switch_cells, sheet_kind),
                 *duration,
                 *infinite,
             )),
-            BehaviorType::Frequency => Box::new(FrequencyBehavior::new(*duration, *delay)),
-            BehaviorType::Click => Box::new(ClickBehavior::new()),
-            BehaviorType::Scroll => Box::new(ScrollBehavior::new(distance.unwrap(), *rate)),
-            BehaviorType::Collision => Box::new(CollisionBehavior::new()),
-            BehaviorType::Drag => Box::new(DragBehavior::new()),
-            BehaviorType::Interval => Box::new(IntervalBehavior::new(interval.unwrap())),
+            BehaviorType::Walk => Box::new(Walk::new(*velocit, *duration, *distance)),
+            BehaviorType::ZombieCollision => Box::new(ZombieCollision::new()),
         };
 
         behavior

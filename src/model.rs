@@ -338,6 +338,10 @@ impl SpriteType {
         matches!(name, SpriteType::Plant(Plant::LawnCleaner))
     }
 
+    pub fn is_torchwood(name: SpriteType) -> bool {
+        matches!(name, SpriteType::Plant(Plant::Torchwood))
+    }
+
     pub fn is_screen_door(name: SpriteType) -> bool {
         matches!(name, SpriteType::Zombie(Zombie::ScreenDoor))
     }

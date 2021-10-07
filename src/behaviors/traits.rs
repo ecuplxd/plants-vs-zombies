@@ -40,4 +40,6 @@ pub trait Behavior: BehaviorState + BehaviorCallback {
     );
 
     fn set_game(&mut self, _game: *mut Game) {}
+
+    fn set_infinite(&mut self, _infinite: bool) {}
 }

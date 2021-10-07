@@ -82,6 +82,14 @@ pub fn impl_base_update_derive(parsed_input: DeriveInput) -> TokenStream {
                         self.sprite.update_loc(loc);
                     }
 
+                    fn get_offset(&self) -> Pos {
+                        self.sprite.get_offset()
+                    }
+
+                    fn update_offset(&mut self, offset: Pos) {
+                        self.sprite.update_offset(offset);
+                    }
+
                     fn get_collision_margin(&self) -> CollisionMargin {
                         self.sprite.get_collision_margin()
                     }

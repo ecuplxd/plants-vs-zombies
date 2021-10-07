@@ -8,14 +8,14 @@ use crate::timer::{AnimationTimer, Time};
 
 #[derive_behavior("with_callback")]
 #[derive(Default, WithTimer, WithCallback)]
-pub struct IntervalBehavior {
+pub struct Interval {
     name: BehaviorType,
     timer: AnimationTimer,
 }
 
-impl IntervalBehavior {
-    pub fn new(interval: f64) -> IntervalBehavior {
-        IntervalBehavior {
+impl Interval {
+    pub fn new(interval: f64) -> Interval {
+        Interval {
             name: BehaviorType::Interval,
             timer: AnimationTimer::new(interval),
             ..Default::default()
@@ -23,7 +23,7 @@ impl IntervalBehavior {
     }
 }
 
-impl Behavior for IntervalBehavior {
+impl Behavior for Interval {
     fn name(&self) -> BehaviorType {
         self.name
     }

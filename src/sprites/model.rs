@@ -186,6 +186,7 @@ impl From<TextMetrics> for Size {
     }
 }
 
+/// 这里是相对位置：上下左右偏移量
 #[derive(Debug, Clone, Copy, Deserialize)]
 pub struct CollisionMargin {
     pub left: f64,
@@ -257,4 +258,10 @@ pub enum ZombieState {
     LostHeadAttack,  // 无头攻击 ZombieLostHeadAttack
     Die,             // 死亡 ZombieDie
     BoomDie,         // 被炸死 ZombieBoomdie
+}
+
+#[derive(Debug)]
+pub enum ColCheck {
+    PrevCol,
+    NextCol,
 }

@@ -6,14 +6,14 @@ use crate::sprites::{Pos, SpritePointer, Update};
 
 #[derive_behavior("without_callback")]
 #[derive(Default, WithoutCallback)]
-pub struct DragBehavior {
+pub struct Drag {
     name: BehaviorType,
     last_pos: Option<Pos>,
 }
 
-impl DragBehavior {
-    pub fn new() -> DragBehavior {
-        DragBehavior {
+impl Drag {
+    pub fn new() -> Drag {
+        Drag {
             name: BehaviorType::Drag,
             ..Default::default()
         }
@@ -36,7 +36,7 @@ impl DragBehavior {
     }
 }
 
-impl BehaviorState for DragBehavior {
+impl BehaviorState for Drag {
     fn start(&mut self, _now: f64) {
         self.last_pos = None;
         self.running = true;
@@ -52,7 +52,7 @@ impl BehaviorState for DragBehavior {
     }
 }
 
-impl Behavior for DragBehavior {
+impl Behavior for Drag {
     fn name(&self) -> BehaviorType {
         self.name
     }

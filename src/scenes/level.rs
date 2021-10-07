@@ -1,9 +1,9 @@
 use crate::artists::Draw;
-use crate::behaviors::{Behavior, BehaviorCallback, BehaviorType, DragBehavior, WalkBehavior};
+use crate::behaviors::{Behavior, BehaviorCallback, BehaviorType, Drag, Walk};
 use crate::game::Game;
 use crate::loc::Loc;
 use crate::model::{Callback, Plant, SpriteType, Text, CARD, INTERFACE, PLANT, ZOMBIE};
-use crate::sprites::{BaseUpdate, Pos, Sprite, TextSprite, Update, Velocit, ZombieSprite};
+use crate::sprites::{BaseUpdate, PlantSprite, Pos, Sprite, TextSprite, Update, Velocit, Zombie};
 use crate::util::get_random_int_inclusive;
 
 pub struct LevelScene;
@@ -211,11 +211,11 @@ impl LevelScene {
             .enumerate()
             .for_each(|(index, card)| {
                 let mut zombie = Sprite::from_data_one(&game.resource, ZOMBIE, card);
-                let zombie_sprite = zombie.as_any().downcast_mut::<ZombieSprite>().unwrap();
+                let zombie_sprite = zombie.as_any().downcast_mut::<Zombie>().unwrap();
 
                 zombie_sprite.init_pos(index);
                 zombie_sprite
-                    .find_behavior(BehaviorType::Collision)
+                    .find_behavior(BehaviorType::ZombieCollision)
                     .unwrap()
                     .set_game(game);
                 zombie.toggle_behavior(BehaviorType::Cycle, true, game.now);
@@ -237,7 +237,7 @@ impl LevelScene {
 
     pub fn build_plant(game: &mut Game, name: &str, pos: Pos) -> Box<dyn Update> {
         let mut plant = Sprite::from_data_one(&game.resource, PLANT, name);
-        let mut drag: Box<dyn Behavior> = Box::new(DragBehavior::new());
+        let mut drag: Box<dyn Behavior> = Box::new(Drag::new());
 
         drag.set_sprite(plant.as_mut());
         plant.add_behavior(drag);
@@ -259,12 +259,17 @@ impl LevelScene {
         if let Some(bullet) = bullet {
             let loc = Loc::get_row_col_by_pos(&pos);
             let mut bullet = Sprite::from_data_one(&game.resource, PLANT, bullet);
+            let bullet_sprite = bullet.as_any().downcast_mut::<PlantSprite>().unwrap();
 
+            bullet_sprite
+                .find_behavior(BehaviorType::PlantCollision)
+                .unwrap()
+                .set_game(game);
             bullet.update_loc(loc);
             bullet.update_pos(pos);
             bullet.start_all_behavior(game.now);
 
-            game.toggle_behaviors(&[BehaviorType::Collision], true);
+            game.toggle_behaviors(&[BehaviorType::ZombieCollision], true);
             game.add_sprite(bullet);
         }
     }
@@ -280,11 +285,7 @@ impl LevelScene {
             }
         };
         let mut sun = Sprite::from_data_one(&game.resource, INTERFACE, "Sun");
-        let mut walk = Box::new(WalkBehavior::new(
-            Velocit::new(0.0, 20.0),
-            300.0,
-            Some(distance),
-        ));
+        let mut walk = Box::new(Walk::new(Velocit::new(0.0, 20.0), 300.0, Some(distance)));
         let id = sun.id();
 
         walk.set_sprite(sun.as_mut());

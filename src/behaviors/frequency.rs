@@ -1,6 +1,6 @@
 use derives::{WithCallback, WithTimer};
 
-use super::{Behavior, BehaviorType, CycleBehavior};
+use super::{Behavior, BehaviorType, Cycle};
 use crate::artists::Draw;
 use crate::callback::ErasedFnPointer;
 use crate::sprites::{SpritePointer, Update};
@@ -8,23 +8,23 @@ use crate::timer::Elapsed;
 
 #[derive(WithTimer, WithCallback)]
 #[behavior(cycle)]
-pub struct FrequencyBehavior {
+pub struct Frequency {
     name: BehaviorType,
     total: usize,
-    cycle: CycleBehavior,
+    cycle: Cycle,
     count: usize,
     delay_start: f64,
     delay_execute_callback: f64,
     callbacks: Vec<ErasedFnPointer<SpritePointer>>,
 }
 
-impl FrequencyBehavior {
-    pub fn new(duration: f64, delay_start: f64) -> FrequencyBehavior {
-        FrequencyBehavior {
+impl Frequency {
+    pub fn new(duration: f64, delay_start: f64) -> Frequency {
+        Frequency {
             count: 0,
             total: 2,
             name: BehaviorType::Frequency,
-            cycle: CycleBehavior::new(duration, None),
+            cycle: Cycle::new(duration, None),
             delay_execute_callback: 1000.0,
             delay_start,
             callbacks: vec![],
@@ -46,7 +46,7 @@ impl FrequencyBehavior {
     }
 }
 
-impl Behavior for FrequencyBehavior {
+impl Behavior for Frequency {
     fn name(&self) -> BehaviorType {
         self.name
     }

@@ -8,20 +8,20 @@ use crate::util::{has_sprite_clicked, set_sprite_clicked};
 
 #[derive_behavior("default")]
 #[derive(Default, WithoutTimer, WithCallback)]
-pub struct ClickBehavior {
+pub struct Click {
     name: BehaviorType,
 }
 
-impl ClickBehavior {
-    pub fn new() -> ClickBehavior {
-        ClickBehavior {
+impl Click {
+    pub fn new() -> Click {
+        Click {
             name: BehaviorType::Click,
             ..Default::default()
         }
     }
 }
 
-impl Behavior for ClickBehavior {
+impl Behavior for Click {
     fn name(&self) -> BehaviorType {
         self.name
     }

@@ -1,6 +1,6 @@
 {
   "Conehead": {
-    "constructor": "ZombieSprite",
+    "constructor": "Zombie",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
@@ -18,13 +18,13 @@
         ]
       },
       { "name": "Walk", "velocit": { "x": -10, "y": 0 }, "duration": 1000 },
-      { "name": "Collision" }
+      { "name": "ZombieCollision" }
     ],
     "collision_margin": { "left": 30, "top": 5, "right": 10, "bottom": 5 },
     "life": 200
   },
   "Buckethead": {
-    "constructor": "ZombieSprite",
+    "constructor": "Zombie",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
@@ -42,13 +42,13 @@
         ]
       },
       { "name": "Walk", "velocit": { "x": -9, "y": 0 }, "duration": 1000 },
-      { "name": "Collision" }
+      { "name": "ZombieCollision" }
     ],
     "life": 200,
     "collision_margin": { "left": 30, "top": 5, "right": 10, "bottom": 5 }
   },
   "Flag": {
-    "constructor": "ZombieSprite",
+    "constructor": "Zombie",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
@@ -66,12 +66,12 @@
         ]
       },
       { "name": "Walk", "velocit": { "x": -8, "y": 0 }, "duration": 1000 },
-      { "name": "Collision" }
+      { "name": "ZombieCollision" }
     ],
     "collision_margin": { "left": 40, "top": 5, "right": 10, "bottom": 5 }
   },
   "ScreenDoor": {
-    "constructor": "ZombieSprite",
+    "constructor": "Zombie",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
@@ -89,12 +89,12 @@
         ]
       },
       { "name": "Walk", "velocit": { "x": -12, "y": 0 }, "duration": 1000 },
-      { "name": "Collision" }
+      { "name": "ZombieCollision" }
     ],
     "life": 200
   },
   "Zombie1": {
-    "constructor": "ZombieSprite",
+    "constructor": "Zombie",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Cycle", "duration": 120 },
@@ -112,11 +112,11 @@
         ]
       },
       { "name": "Walk", "velocit": { "x": -5, "y": 0 }, "duration": 1000 },
-      { "name": "Collision" }
+      { "name": "ZombieCollision" }
     ]
   },
   "ZombieHead": {
-    "constructor": "ZombieSprite",
+    "constructor": "Zombie",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [
       { "name": "Frequency", "duration": 100 },
@@ -126,12 +126,14 @@
         "distance": 45
       }
     ],
-    "life": 0.0
+    "life": 0.0,
+    "collision_margin": { "left": 0, "top": 0, "right": 0, "bottom": 0 }
   },
   "ZombieDie": {
-    "constructor": "ZombieSprite",
+    "constructor": "Zombie",
     "pos": [{ "left": 0, "top": 0 }],
     "behaviors": [{ "name": "Cycle", "duration": 120 }],
-    "life": 0.0
+    "life": 0.0,
+    "collision_margin": { "left": 0, "top": 0, "right": 0, "bottom": 0 }
   }
 }
