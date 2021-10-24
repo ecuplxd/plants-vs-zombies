@@ -1,0 +1,51 @@
+{
+  "SunFlower": {
+    "constructor": "Sprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Click" }],
+    "scale": 0.725,
+    "order": 3
+  },
+  "Peashooter": {
+    "constructor": "Sprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Click" }],
+    "scale": 0.725,
+    "order": 3
+  },
+  "SnowPea": {
+    "constructor": "Sprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Click" }],
+    "scale": 0.725,
+    "order": 3
+  },
+  "WallNut": {
+    "constructor": "Sprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Click" }],
+    "scale": 0.725,
+    "order": 3
+  },
+  "Torchwood": {
+    "constructor": "Sprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Click" }],
+    "scale": 0.725,
+    "order": 3
+  },
+  "PumpkinHead": {
+    "constructor": "Sprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Click" }],
+    "scale": 0.725,
+    "order": 3
+  },
+  "TallNut": {
+    "constructor": "Sprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Click" }],
+    "scale": 0.725,
+    "order": 3
+  }
+}

@@ -14,7 +14,7 @@ module.exports = {
       template: 'index.html',
     }),
     new WasmPackPlugin({
-      crateDirectory: path.resolve(__dirname, './main'),
+      crateDirectory: path.resolve(__dirname, '.'),
       outDir: path.resolve(__dirname, './pkg'),
     }),
     // Have this example work in Edge which doesn't ship `TextEncoder` or

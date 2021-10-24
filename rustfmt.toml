@@ -1,0 +1,7 @@
+reorder_imports = true
+format_macro_matchers = true
+format_strings = true
+imports_granularity = "Module"
+reorder_impl_items = true
+group_imports = "StdExternalCrate"
+max_width = 102

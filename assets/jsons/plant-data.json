@@ -1,0 +1,109 @@
+{
+  "Peashooter": {
+    "constructor": "PlantSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [
+      { "name": "Cycle", "duration": 120 },
+      { "name": "Interval", "interval": 2000 }
+    ]
+  },
+  "Torchwood": {
+    "constructor": "PlantSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Cycle", "duration": 120 }]
+  },
+  "WallNut": {
+    "constructor": "PlantSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Cycle", "duration": 120 }]
+  },
+  "TallNut": {
+    "constructor": "PlantSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Cycle", "duration": 120 }]
+  },
+  "PumpkinHead": {
+    "constructor": "PlantSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [{ "name": "Cycle", "duration": 120 }]
+  },
+  "SunFlower": {
+    "constructor": "PlantSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [
+      { "name": "Cycle", "duration": 100 },
+      { "name": "Interval", "interval": 7200 },
+      {
+        "name": "Switch",
+        "infinite": false,
+        "duration": 1800,
+        "switch_cells": ["SunFlower1"]
+      }
+    ]
+  },
+  "SnowPea": {
+    "constructor": "PlantSprite",
+    "pos": [{ "left": 0, "top": 0 }],
+    "behaviors": [
+      { "name": "Cycle", "duration": 120 },
+      { "name": "Interval", "interval": 3000 }
+    ]
+  },
+  "PB100": {
+    "constructor": "PlantSprite",
+    "pos": [{ "left": 100, "top": 150 }],
+    "behaviors": [
+      { "name": "Cycle", "duration": 120 },
+      {
+        "name": "Switch",
+        "switch_cells": ["PeaBulletHit", "PB10"],
+        "duration": 80
+      },
+      { "name": "Walk", "velocit": { "x": 250, "y": 0 }, "duration": 1000 },
+      { "name": "PlantCollision" }
+    ],
+    "collision_margin": { "left": 25, "top": 2, "right": 2, "bottom": 5 }
+  },
+  "PB00": {
+    "constructor": "PlantSprite",
+    "pos": [{ "left": 100, "top": 250 }],
+    "behaviors": [
+      { "name": "Cycle", "duration": 120 },
+      {
+        "name": "Switch",
+        "switch_cells": ["PeaBulletHit", "PB10"],
+        "duration": 80
+      },
+      { "name": "Walk", "velocit": { "x": 200, "y": 0 }, "duration": 1000 },
+      { "name": "PlantCollision" }
+    ],
+    "collision_margin": { "left": 25, "top": 2, "right": 2, "bottom": 5 }
+  },
+  "PB01": {
+    "constructor": "PlantSprite",
+    "pos": [{ "left": 100, "top": 350 }],
+    "behaviors": [
+      { "name": "Cycle", "duration": 120 },
+      { "name": "Walk", "velocit": { "x": -200, "y": 0 }, "duration": 1000 }
+    ],
+    "collision_margin": { "left": 2, "top": 2, "right": 25, "bottom": 5 }
+  },
+  "PB10": {
+    "constructor": "PlantSprite",
+    "pos": [{ "left": 100, "top": 450 }],
+    "behaviors": [
+      { "name": "Cycle", "duration": 120 },
+      { "name": "Walk", "velocit": { "x": -200, "y": 0 }, "duration": 1000 }
+    ],
+    "collision_margin": { "left": 30, "top": 2, "right": 2, "bottom": 5 }
+  },
+  "PB11": {
+    "constructor": "PlantSprite",
+    "pos": [{ "left": 100, "top": 550 }],
+    "behaviors": [
+      { "name": "Cycle", "duration": 120 },
+      { "name": "Walk", "velocit": { "x": 200, "y": 0 }, "duration": 1000 }
+    ],
+    "collision_margin": { "left": 2, "top": 2, "right": 30, "bottom": 5 }
+  }
+}
