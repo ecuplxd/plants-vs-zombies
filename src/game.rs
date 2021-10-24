@@ -154,7 +154,7 @@ impl Game {
     }
 
     fn debug_start(&mut self) {
-        self.state.selected_card = true;
+        self.state.finished_select_card();
         self.show_seed_chooser(None);
         self.build_test_plant_card();
         self.build_test_plant();
@@ -349,7 +349,7 @@ impl Game {
     }
 
     fn goto_home_scene(&mut self, _back_button: SpritePointer) {
-        self.state.selected_card = false;
+        self.state.cancel_select_card();
         self.clear_sprites();
 
         HomeScene::build(self);

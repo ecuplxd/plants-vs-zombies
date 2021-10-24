@@ -506,4 +506,8 @@ impl State {
     pub fn finished_select_card(&mut self) {
         self.selected_card = true;
     }
+
+    pub fn cancel_select_card(&mut self) {
+        self.selected_card = false;
+    }
 }

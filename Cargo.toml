@@ -9,15 +9,15 @@ crate-type = ["cdylib", "rlib"]
 
 [dependencies]
 derives = { path = "./derives" }
-futures = "0.3.14"
-js-sys = "0.3.53"
+futures = "0.3.17"
+js-sys = "0.3.55"
 serde = { version = "1.0.130", features = ["derive"] }
 serde_derive = "1.0.130"
-wasm-bindgen = { version = "0.2.76", features = ["serde-serialize"] }
-wasm-bindgen-futures = "0.4.23"
+wasm-bindgen = { version = "0.2.78", features = ["serde-serialize"] }
+wasm-bindgen-futures = "0.4.28"
 
 [dependencies.web-sys]
-version = "0.3.53"
+version = "0.3.55"
 features = [
     'CanvasRenderingContext2d',
     'console',
@@ -41,7 +41,7 @@ features = [
 ]
 
 [target."cfg(debug_assertions)".dependencies]
-console_error_panic_hook = "0.1.6"
+console_error_panic_hook = "0.1.7"
 
 [profile.release]
 opt-level = 'z'

@@ -260,7 +260,7 @@ impl BaseUpdate for Sprite {
     }
 
     fn get_offset(&self) -> Pos {
-        self.pos
+        self.offset
     }
 
     fn update_offset(&mut self, offset: Pos) {
